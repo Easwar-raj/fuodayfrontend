@@ -1,0 +1,357 @@
+<div *ngIf="loading">Loading feedbacks...</div>
+<div *ngIf="error">{{ error }}</div>
+<div *ngIf="!loading && !error">
+  <div class="feedback-request">
+    <p class="section-title headlevel-three mb-0">Feedback Request</p>
+  </div>
+
+  <!-- Three boxes in three columns -->
+  <div class="feedback-grid">
+    <!-- Box 1 -->
+    <div class="feedback-box" *ngFor="let feedback of requestedFeedbacks">
+      <div class="feedback-row">
+        <div class="person-info">
+          <div class="feedbackavatar-initial">
+            <img
+              [src]="
+                feedback.profile_image ||
+                'assets/images/fuoday/logo/default.jpg'
+              "
+              alt="Profile"
+              width="50"
+            />
+          </div>
+          <div>
+            <span class="person-name box-title">{{ feedback.to_name }}</span
+            ><br />
+            <span class="person-role box-title-small">{{
+              feedback.to_designation
+            }}</span>
+          </div>
+        </div>
+        <div class="rate-text cursor-pointer" (click)="openPopup()">RATE</div>
+        <!-- (click)="openPopup()" -->
+        <!-- Sliding Popup -->
+         <!-- [class.open]="isPopupOpen" -->
+        <div class="feedback-popup" [class.open]="isPopupOpen">
+          <div class="popup-header">
+            <div class="rateSlide-Block">
+              <div class="rate-header">
+                <div class="headerOverall">
+                  <div class="person-profile">
+                    <img src="{{ profilePhoto }}" alt="" />
+                  </div>
+                  <div>
+                    <div>
+                      <p class="profile-name-w mb-1">{{ userName }}</p>
+                      <p class="profile-smfont-w mb-1">
+                        Employee ID : {{ empID }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="feedPop-body">
+            <div class="covered-allBlock">
+              <div class="first-block">
+                <span class="number">1</span>
+                <div class="combine">
+                  <div class="raisefeed">
+                    <p class="mb-1">Give Your Rating</p>
+                  </div>
+                  <div class="rating">
+                    <div class="ratingGroup">
+                      <span>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                </div>
+                <div class="second-block">
+                  <span class="number">2</span>
+                   <div class="combine">
+                  <div class="raisefeed">
+                    <p class="mb-1">Review</p>
+                  </div>
+                  <div class="feedQuestion">
+
+                  </div>
+                </div>
+                </div>
+                <div class="third-block">
+                  <span class="number">3</span>
+                </div>
+
+            </div>
+            <div>
+              <span>Give Feedback</span>
+              <button (click)="closePopup()">X</button>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="feedback-row">
+      <div class="person-info">
+        <div class="feedbackavatar-initial">P</div>
+        <div>
+          <span class="person-name box-title">Priya Reddy</span><br>
+          <span class="person-role box-title-small">Team Leader</span>
+        </div>
+      </div>
+      <div class="rate-text">RATE</div>
+    </div> -->
+      </div>
+    </div>
+    </div>
+
+    <div class="feedback-wrapper">
+      <!-- Left Side: Comments -->
+      <div class="comments-section">
+        <div class="comment-header">
+          <p class="section-title headlevel-three mb-0">Comments</p>
+          <div class="comment-count">50</div>
+        </div>
+
+        <!-- Search box -->
+        <div class="search-box">
+          <span class="search-lense">
+            <img
+              src="assets/images/fuoday/svg/search.png"
+              alt="Search"
+              class="search-icon"
+            />
+          </span>
+          <input
+            type="text"
+            placeholder="Search comments..."
+            class="search-input"
+          />
+        </div>
+
+        <!-- Comment -->
+        <div class="comment-card" *ngFor="let feedback of receivedFeedbacks">
+          <div class="comment-info">
+            <div class="feedbackavatar-reply">
+              {{ feedback.from_name.slice(0, 1) }}
+            </div>
+            <div>
+              <span class="person-name box-title">{{ feedback.from_name }}</span
+              ><br />
+              <span class="person-role box-title-small">Project Manager</span>
+            </div>
+          </div>
+          <p class="comment-text">
+            {{ feedback.comments }}
+          </p>
+          <div>
+            <button class="small gradientBtn">Reply</button>
+            <div class="reply-block mt-2">
+              <div class="reply-sub" *ngIf="feedback.replies.length">
+                <div *ngFor="let reply of feedback.replies" class="ml-3">
+                  <div>
+                    <div
+                      class="d-flex align-items-center justify-content-end mb-1"
+                    >
+                      <small class="dateBadge">{{
+                        reply.date | date : "dd-MM-yyyy"
+                      }}</small>
+                    </div>
+                    <strong
+                      ><span class="text-prim-color">Reply :</span>
+                      {{ reply.from_name }}</strong
+                    >
+                    to <strong>{{ reply.to_name }}</strong> : {{ reply.reply }}
+                    <br />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Side: Flowchart -->
+      <div class="flowchart-box">
+        <h5 class="flowchart-title">Employee Feedback</h5>
+        <div class="flowchart-body">
+          <!-- Flow content here -->
+          <div class="donut-chart">
+            <svg width="200" height="200" viewBox="0 0 36 36">
+              <!-- Background circle -->
+              <circle
+                cx="18"
+                cy="18"
+                r="15.9155"
+                fill="none"
+                stroke="#2196f3"
+                stroke-width="3.8"
+              />
+              <!-- Segment 1 -->
+              <circle
+                cx="18"
+                cy="18"
+                r="15.9155"
+                fill="none"
+                stroke="#64b5f6"
+                stroke-width="3.8"
+                stroke-dasharray="20, 80"
+                stroke-dashoffset="60"
+              />
+              <!-- Segment 2 -->
+              <circle
+                cx="18"
+                cy="18"
+                r="15.9155"
+                fill="none"
+                stroke="#1565c0"
+                stroke-width="3.8"
+                stroke-dasharray="10, 90"
+                stroke-dashoffset="40"
+              />
+            </svg>
+            <div class="center-text">200</div>
+            <div class="legend-container">
+              <div class="legend-item">
+                <span class="dot dot-positive"></span>
+                <span class="legend-label">Positive</span>
+              </div>
+              <div class="legend-item">
+                <span class="dot dot-neutral"></span>
+                <span class="legend-label">Neutral</span>
+              </div>
+              <div class="legend-item">
+                <span class="dot dot-negative"></span>
+                <span class="legend-label">Negative</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Legend -->
+        </div>
+      </div>
+    </div>
+
+</div>
+
+
+<!-- Fetching Details  -->
+
+<div class="feedback-section" *ngIf="!loading">
+  <h2>Performance Feedback</h2>
+
+  <div class="error" *ngIf="error">{{ error }}</div>
+
+  <!-- Received Feedback List -->
+  <div class="feedback-list" *ngIf="receivedFeedbacks.length">
+    <h3>Feedback Received</h3>
+    <div class="feedback-card" *ngFor="let fb of receivedFeedbacks">
+      <div class="feedback-header">
+        <img
+          [src]="fb.profile_image || 'assets/images/fuoday/logo/default.jpg'"
+          alt="Profile"
+          width="50"
+        />
+        <div>
+          <p><strong>{{ fb.from_name }}</strong> ➝ {{ fb.to_name }}</p>
+          <p><small>{{ fb.date }}</small></p>
+        </div>
+      </div>
+      <div class="feedback-content">
+        <p *ngIf="fb.comments"><strong>Comments:</strong> {{ fb.comments }}</p>
+        <p *ngIf="fb.overall_ratings">
+          <strong>Overall Rating:</strong> {{ fb.overall_ratings }} / 5
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Button to open feedback form -->
+  <button class="btn btn-primary mt-3" (click)="openPopup()">Give Feedback</button>
+</div>
+
+<!-- Feedback Form Popup -->
+<div class="popup" *ngIf="isPopupOpen">
+  <div class="popup-content">
+    <h3>Submit Feedback</h3>
+
+    <form [formGroup]="feedbackForm" (ngSubmit)="submitFeedback()">
+  <div class="form-group">
+    <label>To (Employee)</label>
+    <input
+      type="text"
+      formControlName="to_name"
+      class="form-control"
+      placeholder="Employee Name"
+      required
+    />
+    <input
+      type="number"
+      formControlName="to_id"
+      class="form-control mt-2"
+      placeholder="Employee ID"
+      required
+    />
+  </div>
+
+  <div class="form-group mt-3">
+    <label>Overall Rating</label>
+    <input
+      type="number"
+      formControlName="overall_ratings"
+      class="form-control"
+      min="1"
+      max="5"
+      placeholder="1-5"
+    />
+  </div>
+
+  <!-- ✅ Dynamic Feedback Questions inside FormArray -->
+  <div class="form-group mt-3" *ngIf="questions.length">
+    <label>Feedback Questions:</label>
+    <div formArrayName="review_ratings">
+      <div *ngFor="let question of questions; let i = index" class="mb-3">
+        <label>{{ question.question }}</label>
+        <input
+          type="number"
+          class="form-control"
+          min="1"
+          max="5"
+          [formControlName]="i"
+          placeholder="Rate 1 to 5"
+        />
+        <div class="text-danger" *ngIf="reviewRatings.at(i).invalid && reviewRatings.at(i).touched">
+          Rating must be between 1 and 5.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group mt-3">
+    <label>Comments</label>
+    <textarea formControlName="comments" class="form-control" rows="3"></textarea>
+  </div>
+
+  <!-- Submit / Cancel Buttons -->
+  <div class="form-actions mt-3">
+    <button type="submit" class="btn btn-success" [disabled]="feedbackForm.invalid">
+      Submit
+    </button>
+    <button type="button" class="btn btn-secondary ms-2" (click)="closePopup()">Cancel</button>
+  </div>
+
+  <p class="text-success mt-2" *ngIf="message">{{ message }}</p>
+</form>
+
+  </div>
+</div>
+
+<!-- Loading Spinner -->
+<div *ngIf="loading" class="loading-spinner">
+  Loading feedback...
+</div>

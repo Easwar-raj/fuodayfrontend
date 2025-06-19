@@ -1,0 +1,232 @@
+<div class="dashboardBlock" style="width: 100%; height: 100%">
+  <div class="row gy-4">
+    <div class="col-lg-12">
+      <div class="">
+        <!-- Example usage -->
+        <div>
+          <div class="generalBlock">
+            <div class="row gy-4">
+              <div class="col-lg-12 mt-0">
+                <div class="">
+                  <div class="">
+                    <!-- Example usage -->
+                    <div *ngIf="activeTopTab === 'activities'">
+                      <div class="activity">
+                        <div class="welcome">
+                          <div class="background-container" [ngStyle]="{'background-image': backgroundStyle, 'background-size': 'cover'}">
+                            <div class="inside">
+                              <div class="content">
+                                <h2 class="headlevel-one-w">Welcome <br> {{ userName }}</h2>
+                                <p class="desc-one-w">
+                                  Your work is going to fill a large part of
+                                  your life, and the only way be truly satisfied
+                                  is to do what you believe is great work.
+                                </p>
+                              </div>
+                            </div>
+                            <div class="right-img">
+                              <div class="table-img">
+                                <img src="assets/images/fuoday/dashboard/ofctable.png" alt="" loading="lazy" />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </div>
+             <div class="row gy-4">
+              <div class="col-lg-9  order-md-2">
+                <div class="eventBlock">
+                  <div class="headblock">
+                    <div class="eventicon">
+                      <h2 class="headlevel-two">Events</h2>
+                      <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" width="30" height="29" viewBox="0 0 30 29">
+                          <path d="m30,23.8H6.6V4h23.4v19.8Zm-21.4-2h19.4V6H8.6v15.8Z"/>
+                          <polygon points="17.8 17.5 13.1 13.3 13.8 12.5 17.8 16.2 23.7 10.5 24.4 11.3 17.8 17.5"/>
+                          <rect x="9.4" width="2" height="4"/>
+                          <rect x="24.1" width="2" height="4"/>
+                          <polygon points="23.5 29 0 29 0 10.9 2 10.9 2 27 23.5 27 23.5 29"/>
+                        </svg>
+                      </span>
+                    </div>
+                    <div class="row gy-4">
+                      <div class="col-lg-4 col-md-6">
+                        <div class="card-block card-common-bg">
+                          <div class="bodyCard">
+                            <div class="cardhead">
+                             <div class="w-100 text-left">
+                              <h2 class="headlevel-three-normal">Celebrations</h2>
+                             </div>
+                              <dotlottie-player
+                                src="https://lottie.host/ab26f44d-d3b3-4daa-a446-845988bffa13/vTr0T2XTW7.lottie"
+                                background="transparent"
+                                speed="1"
+                                style="width: 250px; height: 250px"
+                                loop
+                                autoplay
+                              ></dotlottie-player>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-4 col-md-6">
+                        <div class="card-block card-common-bg">
+                          <div class="bodyCard">
+                            <div class="cardhead">
+                              <div class="w-100 text-left">
+                                <h2 class="headlevel-three-normal">Operations</h2>
+                              </div>
+
+                              <dotlottie-player
+                                src="https://lottie.host/215df238-c40c-4d26-81ee-8a6b4356e5ba/TyWwgcohQ9.lottie"
+                                background="transparent"
+                                speed="1"
+                                style="width: 250px; height: 250px"
+                                loop
+                                autoplay
+                              ></dotlottie-player>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-4 col-md-6">
+                        <div class="card-block card-common-bg">
+                          <div class="bodyCard">
+                            <div class="cardhead">
+                              <div class="w-100 text-left">
+                                <h2 class="headlevel-three-normal">Announcement</h2>
+                              </div>
+                              <dotlottie-player
+                                src="https://lottie.host/5e1b9f09-9a50-4d3e-a63b-7e55ae0f2f4c/S4uLD1XKzY.lottie"
+                                background="transparent"
+                                speed="1"
+                                style="width: 250px; height: 250px"
+                                loop
+                                autoplay
+                              ></dotlottie-player>
+                              <!-- <div class="announcement-view position-relative">
+                                <button type="button" class="small gradientBtn" (click)="openPopup()">View Announcement</button>
+                                <div class="announce-count">
+                                  <span class="counter">1</span>
+                                </div>
+                              </div> -->
+                              <!-- Announce Popup Modal -->
+                                <!-- <div class="popup-overlay" *ngIf="showPopup">
+                                  <div class="popup-content">
+                                    <h3>Fill the audit form</h3>
+                                    <button (click)="goToAuditForm()" class="gradientBtn">Open Audit Form</button>
+                                    <button class="close-btn" (click)="closePopup()">×</button>
+                                  </div>
+                                </div> -->
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="regonisation">
+                  <div class="reg-card card-common-bg">
+                    <div class="header-block">
+                      <h2 class="headersub headlevel-three-normal">Recognition Wall</h2>
+                      <p class="desc desc-one-b">Recognizing our team’s extraordinary efforts, we express heartfelt gratitude for your dedication, hard work, and the positive impact you bring daily</p>
+                    </div>
+                    <div class="regonisation-badge">
+                      <div class="imageBadge-block">
+                        <div class="imageBadge-one d-badge">
+                          <img src="assets/images/fuoday/badge/badgeone.png" alt="" loading="lazy" />
+                          <span class="award">Star Achiever</span>
+                        </div>
+                        <div class="imageBadge-one d-badge">
+                          <img src="assets/images/fuoday/badge/badgetwo.png" alt="" loading="lazy" >
+                          <span class="award">Core Achiever</span>
+                        </div>
+                        <div class="imageBadge-one d-badge">
+                          <img src="assets/images/fuoday/badge/badgethree.png" alt="" loading="lazy" >
+                          <span class="award">Strategic Achiever</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+               </div>
+               <div class="col-lg-3 order-lg-2">
+                <div class="d-flex flex-column gap-4">
+                  <div class="checkbox card-common-bg">
+                    <div class="loginclick">
+                      <div class="imgBlock">
+                        <div class="imgGroup">
+                          <img
+                            src="assets/images/fuoday/dashboard/ofcdesk.png"
+                            alt=""
+                          />
+                        </div>
+                      </div>
+                      <div class="time-calculation">
+                        <div class="time-display">
+                          <h2>
+                            {{ hours }} : {{ minutes }} : {{ seconds }}
+                          </h2>
+                          <p class="time-space mb-2"><span>HRS</span><span>MIN</span><span>SEC</span></p>
+                        </div>
+                        <div class="timerBlock">
+                          <div class="btn-block">
+                            <button
+                              (click)="toggleLogin()"
+                              class="logon-btn"
+                              [ngClass]="isLoggedIn ? 'logoff' : 'logon'"
+                              >
+                              {{ isLoggedIn ? 'Log off' : 'Log on' }}
+                            </button>
+                          </div>
+                          <p class="text-center status-txt">
+                            Status:
+                            {{ isLoggedIn ? "Checked in" : "Not Checked in" }}
+                          </p>
+                          <div class="badge-cover">
+                            <p class="badge-site mb-0">Location: On - Site</p>
+                          </div>
+                        </div>
+                        <div class="d-flex justify-content-between crtShift">
+                          <div class="crtshiftin-time log  gap-2">
+                            <span class="logIcon">
+                              <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" class="icon" data-name="Layer 1" width="28" height="28" viewBox="0 0 28 28">
+                                <path d="m11.2,13.1c-3.7,0-6.7-2.9-6.7-6.6S7.5,0,11.2,0s6.7,2.9,6.7,6.6-3,6.6-6.7,6.6Zm0-11.1c-2.5,0-4.6,2-4.6,4.5s2.1,4.5,4.6,4.5,4.6-2,4.6-4.5-2.1-4.5-4.6-4.5Z"/>
+                                <path d="m.3,23.4c-.7-3.1-.2-5.5,1.6-7.3,4.7-4.7,16.6-2.3,17.1-2.2l-.4,2c-3.1-.6-11.9-1.6-15.2,1.7-1.3,1.2-1.6,3-1.1,5.4l-2.1.5Z"/>
+                                <rect x="19" y="23.5" width="4.2" height=".7"/>
+                                <polygon points="28 28 13.9 28 13.9 17.6 20.5 17.6 20.5 19 15.3 19 15.3 26.6 26.6 26.6 26.6 19.7 23.1 19.7 23.1 18.3 28 18.3 28 28"/>
+                                <rect x="20.2" y="15.6" width="1.4" height="4.1"/>
+                              </svg>
+                            </span>
+                            <span>9:00 AM</span>
+                          </div>
+                          <div class="crtshiftout-time log  gap-2">
+                            <span class="logIcon">
+                              <svg id="Layer_1" data-name="Layer 1"  class="icon" xmlns="http://www.w3.org/2000/svg" width="29.5" height="29.5" viewBox="0 0 29.5 29.5">
+                                <path d="m12.5,13.9c-4,0-7.3-3.1-7.3-7S8.5,0,12.5,0s7.3,3.1,7.3,7-3.3,7-7.3,7Zm0-12.4c-3.2,0-5.8,2.5-5.8,5.5s2.6,5.5,5.8,5.5,5.8-2.5,5.8-5.5S15.6,1.5,12.5,1.5Z"/>
+                                <path d="m22.2,29.5c-4,0-7.3-3.1-7.3-7s3.3-7,7.3-7,7.3,3.1,7.3,7-3.3,7-7.3,7Zm0-12.4c-3.2,0-5.8,2.5-5.8,5.5s2.6,5.5,5.8,5.5,5.8-2.5,5.8-5.5-2.6-5.5-5.8-5.5Z"/>
+                                <path d="m.3,25.8c-.8-3.2-.2-5.8,1.6-7.7,5.2-5.3,18.9-2.7,19.5-2.5l-.3,1.5c-.1,0-13.5-2.6-18.1,2.1-1.5,1.5-1.8,3.6-1.2,6.3l-1.5.3Z"/>
+                                <rect x="22" y="18.5" width=".5" height="5.6" transform="translate(-8.6 22.7) rotate(-46.3)"/>
+                                <rect x="19.4" y="21.1" width="5.6" height=".5" transform="translate(-8.6 21.3) rotate(-43.7)"/>
+                                <rect x="19.8" y="24.6" width="4.9" height=".5"/>
+                              </svg>
+                            </span>
+                            <span>6:00 PM</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

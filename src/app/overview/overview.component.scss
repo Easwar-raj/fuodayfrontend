@@ -1,0 +1,192 @@
+.pay-overview{
+  .payslip-container {
+    display: flex;
+    gap: 2rem;
+
+    .employee-info-card {
+      background: linear-gradient(to bottom, #f3f4f6, #fff);
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      width: 60%;
+
+      .header {
+        font-weight: bold;
+        padding: 0.75rem;
+        border-radius: 5px 5px 0 0;
+        font-size: 1.1rem;
+
+      }
+      .overviewall-block{
+        padding: 10px 20px;
+      }
+      .info-row {
+        display: flex;
+        padding: 0.5rem 0;
+
+        label {
+          font-weight: 500;
+          color: #555;
+          width: 100%;
+        }
+
+        span {
+          font-weight: 400;
+          color: #333;
+          width: 100%;
+          border-bottom: 1px solid #ddd;
+          padding-left: 8px;
+          &.main-space{
+            border-bottom:unset;
+          }
+          .btn-cus{
+            border: 1px solid #0360df;
+            border-radius: 50px;
+            padding: 2px 10px;
+            background-color: #0360df;
+            background-image: radial-gradient(75% 50% at 50% 0%, #f4feff, transparent), radial-gradient(75% 35% at 50% 85%, #2f45f5, transparent);
+            box-shadow: inset 0 -2px 4px 1px rgba(17, 110, 231, 0.6), inset 0 -4px 4px 1px #2f45f5, inset 0 0 2px 1px rgba(255, 255, 255, 0.2), 0 1px 4px 1px rgba(17, 110, 231, 0.2), 0 1px 4px 1px rgba(0, 0, 0, 0.1);
+            color: #fff;
+            text-align: center;
+            text-shadow: 0 1px 1px #116ee7;
+            transition-property: border-color, transform, background-color;
+            transition-duration: 0.2s;
+
+        &:hover {
+          background: #0033cc;
+        }
+          }
+        }
+      }
+    }
+
+    .net-pay-card {
+      background: linear-gradient(to bottom, #f1f5f9, #fff);
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+      width: 30%;
+      align-self: center;
+
+      .title {
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
+
+      .amount {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+      }
+
+      .days {
+        font-weight: 500;
+      }
+    }
+  }
+  // Earning and Deduction Style
+
+  .salary-section {
+
+    h2 {
+      font-size: 1.5rem;
+
+      margin: 2rem 0 1rem;
+    }
+
+    .table-container {
+      background: #fff;
+      border-radius: 8px;
+      overflow-x: auto;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.95rem;
+
+        thead {
+          // background-color: #0033cc;
+          // color: white;
+
+          th {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            white-space: nowrap;
+          }
+        }
+
+        tbody {
+          tr {
+            border-bottom: 1px solid #eaeaea;
+
+            &:last-child {
+              border-bottom: none;
+            }
+
+            td {
+              padding: 0.75rem 1rem;
+              color: #333;
+              white-space: nowrap;
+            }
+          }
+        }
+      }
+    }
+  }
+  .payable-container {
+    margin-top: 20px;
+    .payable-title {
+      font-weight: bold;
+      text-align: left;
+      margin-bottom: 20px;
+    }
+
+    .payable-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+
+      .payable-table {
+        border-collapse: collapse;
+        width: auto;
+        border: 1px solid #ccc;
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+
+        thead {
+          // background-color: #0026ea;
+          // color: white;
+
+          th {
+            padding: 1rem;
+          }
+        }
+
+        tbody {
+          td {
+            padding: 1rem;
+            font-weight: 500;
+          }
+        }
+      }
+
+      .net-summary {
+        text-align: left;
+        font-size: 1.1rem;
+        margin-right: 100px;
+
+        strong {
+          font-size: 1.2rem;
+        }
+
+        p {
+          font-weight: 600;
+        }
+      }
+    }
+  }
+
+
+}

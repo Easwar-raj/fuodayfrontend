@@ -1,0 +1,200 @@
+<div class="body">
+  <!-- Tab Content Wrapper -->
+  <div class="tab-content">
+
+    <!-- Dashboard Tab -->
+    <div class="tab-pane fade show active" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab" *ngFor="let payroll of payrolls">
+      <div class="payroll-block">
+        <div class="row">
+
+          <!-- Cards Section -->
+          <div class="col-md-6 mb-4">
+            <div class="card weather-card h-100 text-center p-3">
+              <div class="payIcon">
+                <div class="icon">
+                  <img src="assets/images/icons/cost.png" alt="">
+                </div>
+              </div>
+              <div class="current-date">Pay Roll Cost</div>
+              <div class="date mt-3"><h3><strong>₹ {{ payroll.total_salary }}</strong></h3></div>
+              <!-- <div class="d-flex justify-content-center">
+                <button class="gradientBtn custom">View Report <span>
+                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000" height="800px" width="800px" version="1.1" id="Layer_1" viewBox="0 0 330 330" xml:space="preserve">
+                    <path id="XMLID_222_" d="M250.606,154.389l-150-149.996c-5.857-5.858-15.355-5.858-21.213,0.001  c-5.857,5.858-5.857,15.355,0.001,21.213l139.393,139.39L79.393,304.394c-5.857,5.858-5.857,15.355,0.001,21.213  C82.322,328.536,86.161,330,90,330s7.678-1.464,10.607-4.394l149.999-150.004c2.814-2.813,4.394-6.628,4.394-10.606  C255,161.018,253.42,157.202,250.606,154.389z"/>
+                    </svg>
+                </span></button>
+              </div> -->
+            </div>
+          </div>
+
+          <!-- <div class="col-md-3 mb-4">
+            <div class="card weather-card h-100 text-center p-3">
+              <div class="payIcon">
+                <div class="icon">
+                  <img src="assets/images/icons/yearpay.png" alt="">
+                </div>
+              </div>
+              <div class="current-date">Pending Approvals</div>
+              <div class="date mt-3"><h3><strong>12</strong></h3></div>
+              <div class="d-flex justify-content-center">
+              <button class="gradientBtn custom">View Report <span>
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000" height="800px" width="800px" version="1.1" id="Layer_1" viewBox="0 0 330 330" xml:space="preserve">
+                  <path id="XMLID_222_" d="M250.606,154.389l-150-149.996c-5.857-5.858-15.355-5.858-21.213,0.001  c-5.857,5.858-5.857,15.355,0.001,21.213l139.393,139.39L79.393,304.394c-5.857,5.858-5.857,15.355,0.001,21.213  C82.322,328.536,86.161,330,90,330s7.678-1.464,10.607-4.394l149.999-150.004c2.814-2.813,4.394-6.628,4.394-10.606  C255,161.018,253.42,157.202,250.606,154.389z"/>
+                  </svg>
+              </span></button>
+            </div>
+            </div>
+          </div> -->
+
+          <div class="col-md-6 mb-4">
+            <div class="card weather-card h-100 text-center p-3" >
+              <div class="payIcon">
+                <div class="icon">
+                  <img src="assets/images/icons/totemp.png" alt="">
+                </div>
+              </div>
+              <div *ngFor="let payroll of payrolls">
+                <div class="current-date">Total Pay per Year</div>
+              <div class="date mt-3"><h3><strong>₹ {{ totalCTC }}</strong></h3></div>
+              </div>
+              <!-- <div class="d-flex justify-content-center">
+              <button class="gradientBtn custom">View Report <span>
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000" height="800px" width="800px" version="1.1" id="Layer_1" viewBox="0 0 330 330" xml:space="preserve">
+                  <path id="XMLID_222_" d="M250.606,154.389l-150-149.996c-5.857-5.858-15.355-5.858-21.213,0.001  c-5.857,5.858-5.857,15.355,0.001,21.213l139.393,139.39L79.393,304.394c-5.857,5.858-5.857,15.355,0.001,21.213  C82.322,328.536,86.161,330,90,330s7.678-1.464,10.607-4.394l149.999-150.004c2.814-2.813,4.394-6.628,4.394-10.606  C255,161.018,253.42,157.202,250.606,154.389z"/>
+                  </svg>
+              </span></button>
+            </div> -->
+            </div>
+          </div>
+
+          <!-- <div class="col-md-3 mb-4">
+            <div class="card weather-card h-100 text-center p-3">
+              <div class="payIcon">
+                <div class="icon">
+                  <img src="assets/images/icons/pending.png" alt="">
+                </div>
+              </div>
+              <div class="current-date">Total Employees</div>
+              <div class="date mt-3"><h3><strong>320</strong></h3></div>
+              <div class="d-flex justify-content-center">
+              <button class="gradientBtn custom">View Report <span>
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000" height="800px" width="800px" version="1.1" id="Layer_1" viewBox="0 0 330 330" xml:space="preserve">
+                  <path id="XMLID_222_" d="M250.606,154.389l-150-149.996c-5.857-5.858-15.355-5.858-21.213,0.001  c-5.857,5.858-5.857,15.355,0.001,21.213l139.393,139.39L79.393,304.394c-5.857,5.858-5.857,15.355,0.001,21.213  C82.322,328.536,86.161,330,90,330s7.678-1.464,10.607-4.394l149.999-150.004c2.814-2.813,4.394-6.628,4.394-10.606  C255,161.018,253.42,157.202,250.606,154.389z"/>
+                  </svg>
+              </span></button>
+            </div>
+            </div>
+          </div> -->
+        </div>
+
+        <!-- Chart Section -->
+        <div class="row mt-3">
+          <div class="col-md-7 mb-4">
+            <div class="chart-container card p-3">
+              <div class="chart-header d-flex justify-content-between">
+                <div class="chart-title fw-bold">Payroll Overview</div>
+                <div class="chart-options d-flex gap-2">
+                  <div class="chart-option active"><i class="bi bi-calendar-month"></i> Monthly</div>
+                  <div class="chart-option"><i class="bi bi-calendar-week"></i> Weekly</div>
+                </div>
+              </div>
+              <div class="chart mt-3">
+                <div class="chart-line"></div>
+              </div>
+              <div class="chart-labels d-flex justify-content-between mt-2">
+                <div class="chart-label">Jan</div>
+                <div class="chart-label">Feb</div>
+                <div class="chart-label">Mar</div>
+                <div class="chart-label">Apr</div>
+                <div class="chart-label">May</div>
+                <div class="chart-label">June</div>
+                <div class="chart-label">July</div>
+                <div class="chart-label">Aug</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stats Section -->
+          <div class="col-md-5 mb-4">
+            <div class="card stats-card text-center p-3 h-100">
+              <h5 class="text-start">Bonuses and Incentives</h5>
+              <p class="text-muted">Coming soon...</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Payroll Table Section -->
+        <h5 class="mb-0">Payroll List</h5>
+        <div class="table-container mt-4">
+          <div class="table-responsive">
+            <table class="table text-center attendance-table">
+              <thead class="table-light">
+                <tr>
+                  <th>Payroll ID</th>
+                  <th>Role</th>
+                  <th>Date & Time</th>
+                  <th>Gross Pay</th>
+                  <th>Deduction</th>
+                  <th>Total Salary</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{ payroll.payroll_id }}</td>
+                  <td>{{ payroll.designation }}</td>
+                  <td>{{ payroll.date }} & {{ payroll.time }}</td>
+                  <td>{{ payroll.total_gross }}</td>
+                  <td>{{ payroll.total_deductions }}</td>
+                  <td>{{ payroll.total_salary }}</td>
+                  <td><span class="badge bg-success">{{ payroll.status }}</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Payroll services -->
+
+<!-- <div class="container mt-4">
+  <h3>Payroll Details</h3>
+  <p><strong>Total Incentives:</strong> ₹{{ incentives }}</p>
+
+  <table class="table table-bordered table-striped mt-3" *ngIf="payrolls.length > 0">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Designation</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Total Salary</th>
+        <th>CTC</th>
+        <th>Gross</th>
+        <th>Deductions</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let payroll of payrolls">
+        <td>{{ payroll.payroll_id }}</td>
+        <td>{{ payroll.designation }}</td>
+        <td>{{ payroll.date }}</td>
+        <td>{{ payroll.time }}</td>
+        <td>₹{{ payroll.total_salary }}</td>
+        <td>₹{{ totalCTC }}</td>
+        <td>₹{{ payroll.total_gross }}</td>
+        <td>₹{{ payroll.total_deductions }}</td>
+        <td>{{ payroll.status }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="payrolls.length === 0">
+    <p>No payroll records found.</p>
+  </div>
+</div> -->
+

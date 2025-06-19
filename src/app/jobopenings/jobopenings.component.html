@@ -1,0 +1,33 @@
+<div class="container mb-5">
+  <div class="mb-4">
+    <h1 class="h3">Job Openings</h1>
+  </div>
+
+  <form (ngSubmit)="submitJobOpening()" #jobOpeningForm="ngForm">
+    <div class="mb-3">
+      <label for="title" class="form-label">Job Title</label>
+      <input
+        type="text"
+        class="form-control"
+        id="title"
+        name="title"
+        [(ngModel)]="jobOpeningData.title"
+        required
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="position" class="form-label">Position</label>
+      <input
+        type="text"
+        class="form-control"
+        id="position"
+        name="position"
+        [(ngModel)]="jobOpeningData.position"
+        required
+      />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save Job Opening</button>
+  </form>
+</div>

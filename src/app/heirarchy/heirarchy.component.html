@@ -1,0 +1,56 @@
+<div class="container mb-5">
+  <div class="mb-4">
+    <h1 class="h3">Heirarchy</h1>
+  </div>
+
+  <form (ngSubmit)="submitHeirarchy()" #heirarchyForm="ngForm">
+    <div class="mb-3">
+      <label for="level" class="form-label">Level</label>
+      <input
+        type="text"
+        class="form-control"
+        id="level"
+        name="level"
+        [(ngModel)]="heirarchyData.level"
+        required
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="title" class="form-label">Title</label>
+      <input
+        type="text"
+        class="form-control"
+        id="title"
+        name="title"
+        [(ngModel)]="heirarchyData.title"
+        required
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="experience_range" class="form-label">Experience Range</label>
+      <input
+        type="text"
+        class="form-control"
+        id="experience_range"
+        name="experience_range"
+        [(ngModel)]="heirarchyData.experience_range"
+        required
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <textarea
+        class="form-control"
+        id="description"
+        name="description"
+        rows="3"
+        [(ngModel)]="heirarchyData.description"
+      ></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save Hierarchy</button>
+  </form>
+</div>

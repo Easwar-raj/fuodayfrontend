@@ -1,0 +1,22 @@
+<div class="node-container" *ngIf="member">
+  <div class="node-card" [class.has-children]="member.children && member.children.length > 0" (click)="toggleCollapse(member)">
+    <img
+      [src]="member.profile"
+      [alt]="member.name"
+      class="profile-pic"
+      (error)="onImageError($event)">
+    <div class="member-info">
+      <div class="member-name">{{ member.name }}</div>
+      <div class="member-designation">{{ member.designation }}</div>
+    </div>
+    <div *ngIf="member.children && member.children.length > 0" class="toggler">
+      {{ member.isCollapsed ? '+' : '-' }}
+    </div>
+  </div>
+
+  <ul *ngIf="member.children && member.children.length > 0 && !member.isCollapsed" class="children-list">
+    <li *ngFor="let child of member.children">
+      <app-team-node [member]="child"></app-team-node>
+    </li>
+  </ul>
+</div>

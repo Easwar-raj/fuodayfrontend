@@ -1,0 +1,308 @@
+<div class="leave-block">
+  <div class="leave-blockSub">
+    <div
+      class="d-flex justify-content-between align-items-center mb-4 leave-sub"
+    >
+      <h5 class="fw-semibold headlevel-title headlevel-three">Leave Balance</h5>
+      <!-- Leave Request Button -->
+      <button class="gradientBtn custom" (click)="openLeavePopup()">
+        Leave Request
+        <span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="#000000"
+            height="18"
+            width="18"
+            viewBox="0 0 330 330"
+          >
+            <path
+              d="M250.606,154.389l-150-149.996c-5.857-5.858-15.355-5.858-21.213,0.001c-5.857,5.858-5.857,15.355,0.001,21.213l139.393,139.39L79.393,304.394c-5.857,5.858-5.857,15.355,0.001,21.213C82.322,328.536,86.161,330,90,330s7.678-1.464,10.607-4.394l149.999-150.004c2.814-2.813,4.394-6.628,4.394-10.606C255,161.018,253.42,157.202,250.606,154.389z"
+            />
+          </svg>
+        </span>
+      </button>
+
+      <!-- Leave Request Modal Popup -->
+      <div
+        class="modal-overlay"
+        *ngIf="isLeavePopupOpen"
+        (click)="closeLeavePopup()"
+      >
+        <div class="modal-content" (click)="$event.stopPropagation()">
+          <div class="modal-header">
+            <h2 class="headlevel-three mb-0">Request for leave</h2>
+            <button class="closeicon" (click)="closeLeavePopup()">×</button>
+          </div>
+
+          <form
+            (ngSubmit)="submitLeaveRequest()"
+            #leaveForm="ngForm"
+            class="modal-body"
+          >
+          <div class="same-line">
+  <label>Employee ID</label>
+  <input
+    type="text"
+    [value]="leaveRequest.emp_id"
+    disabled
+  />
+</div>
+
+            <div class="same-line">
+              <label>Department</label>
+              <input
+                type="text"
+                name="department"
+                [value]="leaveRequest.department"
+    disabled
+              />
+            </div>
+
+            <div class="same-line">
+              <label>Type</label>
+              <select name="type" [(ngModel)]="leaveRequest.type" required>
+                <option value="" disabled selected>Select leave type</option>
+                <option value="Casual Leave">Casual Leave</option>
+                <option value="Sick Leave">Sick Leave</option>
+                <option value="Paternity Leave">Paternity Leave</option>
+                <option value="Unpaid Leave">Unpaid Leave</option>
+              </select>
+            </div>
+
+            <div class="same-line">
+              <label>Start Date</label>
+              <input
+                type="date"
+                name="startDate"
+                [(ngModel)]="leaveRequest.startDate"
+                [min]="today"
+                required
+              />
+            </div>
+
+            <div class="same-line">
+              <label>End Date</label>
+              <input
+                type="date"
+                name="endDate"
+                [(ngModel)]="leaveRequest.endDate"
+                [min]="leaveRequest.startDate || today"
+                required
+              />
+            </div>
+
+            <div class="same-line">
+              <label>Reason</label>
+              <textarea
+                name="reason"
+                [(ngModel)]="leaveRequest.reason"
+                required
+              ></textarea>
+            </div>
+
+
+            <div class="leaveReq-grp-btn">
+              <button type="button" class="cancel-btn" (click)="closeLeavePopup()">Cancel</button>
+              <button class="gradientBtn done" type="submit">Send</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <!-- Right Column: Stats Cards -->
+      <div class="col-lg-9">
+        <!-- First Row of Cards -->
+        <div class="row">
+          <!-- Total Employees -->
+          <div class="col-lg-6 col-md-6" *ngFor="let leave of leaveSummary">
+            <div class="card">
+              <h5 class="card-title">{{ leave.type }}</h5>
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <div class="d-flex align-items-center">
+                    <span class="leave-indicator bg-primary"></span>
+                    <small>Used : {{ leave.taken }}</small>
+                  </div>
+                  <div class="d-flex align-items-center">
+                    <span class="leave-indicator bg-success"></span>
+                    <small>Remaining : {{ leave.remaining }}</small>
+                  </div>
+                  <div class="d-flex align-items-center">
+                    <span class="leave-indicator bg-black"></span>
+                    <small>Total : {{ leave.allowed }}</small>
+                  </div>
+                </div>
+                <div class="leave-circle">
+                  <svg width="80" height="80" viewBox="0 0 80 80">
+                    <circle
+                      cx="40"
+                      cy="40"
+                      r="34"
+                      fill="none"
+                      stroke="#e6e6e6"
+                      stroke-width="8"
+                    ></circle>
+                    <circle
+                    class="leave-color"
+                      cx="40"
+                      cy="40"
+                      r="34"
+                      fill="none"
+                      stroke="#4263EB"
+                      stroke-width="8"
+                      stroke-dasharray="213.52"
+                      stroke-dashoffset="152.51"
+                      transform="rotate(-90 40 40)"
+                    ></circle>
+                  </svg>
+                  <div class="leave-circle-value">{{ leave.taken }}/{{ leave.remaining }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Left Column: Weather Card -->
+      <div class="col-lg-3 holidayblock">
+        <div class="card" style="height: 100%">
+          <div
+            class="d-flex justify-content-between align-items-center mb-2 upcome"
+          >
+            <p class="mb-0 box-sm-title">Upcoming Holidays</p>
+            <!-- <a href="#" class="text-primary">See All</a> -->
+          </div>
+          <div class="holidaytake">
+            <div
+              class="border-bottom pb-2 m-2"
+              *ngFor="let holiday of holidays"
+            >
+              <h6 class="mb-1">
+                {{ holiday.holiday }}
+                <span class="holibadge">{{ holiday.description }}</span>
+              </h6>
+              <small class="text-muted">{{ holiday.date }}</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chart Section -->
+    <div class="row mt-3 align-items-center">
+      <div class="col-lg-7 col-md-12">
+        <div class="chart-container">
+          <div class="chart-header">
+            <div class="chart-title">Month Leave</div>
+          </div>
+
+          <div>
+
+              <div id="monthlyLeaveChartContainer" style="width: 100%; height: 400px;"></div>
+
+          </div>
+          <!-- <div class="chart">
+              <div class="chart-line"></div>
+          </div>
+          <div class="chart-labels">
+              <div class="chart-label">Jan</div>
+              <div class="chart-label">Feb</div>
+              <div class="chart-label">Mar</div>
+              <div class="chart-label">Apr</div>
+              <div class="chart-label">May</div>
+              <div class="chart-label">June</div>
+              <div class="chart-label">July</div>
+              <div class="chart-label">Aug</div>
+          </div> -->
+        </div>
+      </div>
+      <div class="col-lg-5 col-md-12">
+        <!-- Stats Grid -->
+        <div class="row">
+          <div class="col-md-12">
+            <div class="">
+              <div class="">
+                <div id="leaveChartContainer" style="width: 100%; height: 400px;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Table Section -->
+    <div class="table-header mt-3">
+      <div class="table-title">Leave Report</div>
+    </div>
+    <div class="table-container mt-3">
+      <div class="table-responsive">
+        <table class="attendance-table">
+          <thead>
+            <tr>
+              <th>S.No</th>
+              <th>Date</th>
+              <th>Type</th>
+              <th>Start</th>
+              <th>End</th>
+              <th>Reason</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let report of leaveReport |paginate
+                    : { itemsPerPage: itemsPerPage, currentPage: currentPage };let i = index">
+              <td>{{ i + 1 }}.</td>
+              <td>{{ report.date | date: 'dd/MM/yyyy' }}</td>
+              <td>{{ report.type }}</td>
+              <td>{{ report.from | date: 'dd/MM/yyyy' }}</td>
+              <td>{{ report.to | date: 'dd/MM/yyyy' }}</td>
+              <td>{{ report.reason }}</td>
+              <td class=""><span  [ngClass]="{
+                              'status-pending': report.status === 'Pending',
+                              'status-approved': report.status === 'Approved',
+                              'status-rejected': report.status === 'Rejected',
+                                }">{{ report.status }}</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+       <div class="pagination-wrapper mt-3">
+        <pagination-controls
+          (pageChange)="currentPage = $event"
+        ></pagination-controls>
+      </div>
+    </div>
+  </div>
+
+  <!-- Leave Fetch -->
+
+  <!-- <h3>Leave Summary</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Allowed</th>
+      <th>Taken</th>
+      <th>Pending</th>
+      <th>Remaining</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let leave of leaveSummary">
+      <td>{{ leave.type }}</td>
+      <td>{{ leave.allowed }}</td>
+      <td>{{ leave.taken }}</td>
+      <td>{{ leave.pending }}</td>
+      <td>{{ leave.remaining }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Upcoming Holidays</h3>
+<ul>
+  <li *ngFor="let holiday of holidays">
+    {{ holiday.date }} - {{ holiday.holiday }} ({{ holiday.description }})
+  </li>
+</ul> -->
+</div>

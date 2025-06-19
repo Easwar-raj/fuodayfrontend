@@ -1,0 +1,1145 @@
+<div class="body" *ngIf="profileData">
+  <!---else errorBlock-->
+  <!-- Profile Header -->
+  <div class="profile-header" [ngStyle]="{'background-image': backgroundStyle, 'background-size': 'cover'}">
+    <div class="edit-button" (click)="openEditPopup(userId)">
+      <i class="fas fa-pencil-alt"></i>
+    </div>
+    <!-- Edit Popup (Modal) -->
+
+    <div class="d-flex align-items-center justify-content-center">
+      <div class="profile-img-container">
+        <img
+          src="{{ profileData.profile_photo }}"
+          class="profile-img"
+          alt="{{ profileData.name }}"
+        />
+        <!-- {{profile_photo}} -->
+      </div>
+      <div class="profile-info">
+        <p class="profile-name-w mb-1">{{ profileData.name }}</p>
+        <p class="profile-smfont-w mb-1">
+          Employee ID: {{ profileData.emp_id }}
+        </p>
+        <p class="profile-smfont-w mb-0">
+          {{ profileData.personal_contact_no }}
+        </p>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="showEditPopup" class="modal-overlay">
+    <div class="modal-content">
+      <form [formGroup]="editForm" (ngSubmit)="submitEdit()">
+        <div class="editProfileHeader">
+          <div class="editProfileBlock">
+            <div class="headerBlock">
+              <h4 class="headlevel-three mb-0">Edit Profile</h4>
+            </div>
+            <div>
+              <button
+                type="button"
+                class="closeicon"
+                (click)="closeEditPopup()"
+              >
+                X
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="model-body">
+          <div class="image-block">
+            <img
+              *ngIf="profileData.profile_photo"
+              [src]="profileData.profile_photo"
+              alt="Profile"
+              width="100"
+              height="100"
+              style="
+                border-radius: 50%;
+                margin-bottom: 10px;
+                border: 1px solid #80808063;
+              "
+            />
+          </div>
+          <div class="formlabel-group">
+            <div class="block-flex">
+              <label>Name</label>
+              <input type="text" formControlName="name" />
+            </div>
+
+            <div class="block-flex">
+              <label>Phone</label>
+              <input type="text" formControlName="phone" />
+            </div>
+
+            <div class="block-flex">
+              <label>Profile Image</label>
+              <input type="file" (change)="onFileChange($event)" />
+            </div>
+          </div>
+          <div *ngIf="successMessage" class="alert-success">
+              {{ successMessage }}
+          </div>
+
+          <div class="modal-buttons">
+            <button type="submit" class="gradientBtn">Save</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="profile-detBlock">
+    <div class="row">
+      <!-- Welcome Card -->
+      <div class="col-lg-6 col-md-12">
+        <div class="card">
+          <div class="welcome-card">
+            <div class="welcome-text">
+              <p class="headlevel-three">Welcome back,</p>
+              <h2>{{ profileData.name }}</h2>
+              <p>Glad to see you again!</p>
+              <div class="quote">
+                "Strive not to be a success, but rather to be of value"
+              </div>
+              <div class="quote-author">- Albert Einstein</div>
+            </div>
+            <div>
+              <img
+                src="assets/images/fuoday/profile/trophy-img.svg"
+                class="trophy-img"
+                alt="Trophy"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Referral Tracking -->
+      <div class="col-lg-6 col-md-12">
+        <div class="card referral-card">
+          <div class="referral-header">
+            <div class="referral-title headlevel-three">Referral Tracking</div>
+            <!-- <div class="referral-options">
+                      <i class="fas fa-ellipsis-h"></i>
+                  </div> -->
+          </div>
+          <div class="referral-stats">
+            <div class="referral-boxes">
+              <div class="referral-box">
+                <div class="referral-box-title">Invited</div>
+                <div class="referral-box-value">
+                  {{ profileData.referred_summary?.total ?? 0 }} people
+                </div>
+              </div>
+              <div class="referral-box">
+                <div class="referral-box-title">Selected</div>
+                <div class="referral-box-value">
+                  {{ profileData?.referred_summary?.selected ?? 0 }} people
+                </div>
+              </div>
+            </div>
+            <!-- <div class="progress-circle">
+              <svg width="120" height="120" viewBox="0 0 120 120">
+                <circle
+                  cx="60"
+                  cy="60"
+                  r="54"
+                  fill="none"
+                  stroke="#f3f3f3"
+                  stroke-width="12"
+                />
+                <circle
+                  cx="60"
+                  cy="60"
+                  r="54"
+                  fill="none"
+                  stroke="#1de9b6"
+                  stroke-width="12"
+                  stroke-dasharray="339.3"
+                  stroke-dashoffset="254.5"
+                  transform="rotate(-90 60 60)"
+                />
+              </svg>
+              <div class="progress-circle-text">
+                <div class="progress-circle-value">{{ profileData.referred_summary?.onboarded ?? 0 }}</div>
+                <div class="progress-circle-label">Onboarded</div>
+              </div>
+            </div> -->
+            <div class="progress-circle">
+              <svg width="120" height="120" viewBox="0 0 120 120">
+                <circle
+                  cx="60"
+                  cy="60"
+                  r="54"
+                  fill="none"
+                  stroke="#f3f3f3"
+                  stroke-width="12"
+                />
+                <circle
+                  cx="60"
+                  cy="60"
+                  r="54"
+                  fill="none"
+                  stroke="#1de9b6"
+                  stroke-width="12"
+                  [attr.stroke-dasharray]="circumference"
+                  [attr.stroke-dashoffset]="strokeOffset"
+                  transform="rotate(-90 60 60)"
+                />
+              </svg>
+              <div class="progress-circle-text">
+                <div class="progress-circle-value">
+                  {{ profileData.referred_summary?.onboarded ?? 0 }}
+                </div>
+                <div class="progress-circle-label">Onboarded</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Satisfaction Level -->
+      <!-- <div class="col-lg-4 col-md-12">
+        <div class="card satisfaction-card">
+          <div class="satisfaction-title headlevel-three">
+            Satisfaction Level
+          </div>
+          <div class="satisfaction-chart">
+            <div class="donut-chart">
+              <svg width="150" height="150" viewBox="0 0 150 150">
+                <circle
+                  cx="75"
+                  cy="75"
+                  r="60"
+                  fill="none"
+                  stroke="#f3f3f3"
+                  stroke-width="15"
+                />
+                <circle
+                  cx="75"
+                  cy="75"
+                  r="60"
+                  fill="none"
+                  stroke="#9370DB"
+                  stroke-width="15"
+                  stroke-dasharray="377"
+                  stroke-dashoffset="75.4"
+                  transform="rotate(-90 75 75)"
+                />
+                <circle
+                  cx="75"
+                  cy="75"
+                  r="60"
+                  fill="none"
+                  stroke="#ADD8E6"
+                  stroke-width="15"
+                  stroke-dasharray="377"
+                  stroke-dashoffset="320.45"
+                  transform="rotate(264.6 75 75)"
+                />
+                <circle
+                  cx="75"
+                  cy="75"
+                  r="60"
+                  fill="none"
+                  stroke="#FF6B6B"
+                  stroke-width="15"
+                  stroke-dasharray="377"
+                  stroke-dashoffset="358.15"
+                  transform="rotate(320.4 75 75)"
+                />
+                <circle cx="75" cy="75" r="45" fill="white" />
+              </svg>
+            </div>
+            <div class="satisfaction-legend">
+              <div class="legend-item">
+                <div
+                  class="legend-color"
+                  style="background-color: #9370db"
+                ></div>
+                <div class="legend-text">80% (Positive)</div>
+              </div>
+              <div class="legend-item">
+                <div
+                  class="legend-color"
+                  style="background-color: #add8e6"
+                ></div>
+                <div class="legend-text">15% (Neutral)</div>
+              </div>
+              <div class="legend-item">
+                <div
+                  class="legend-color"
+                  style="background-color: #ff6b6b"
+                ></div>
+                <div class="legend-text">5% (Negative)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+    </div>
+
+    <div class="row mt-3">
+      <!-- About Section -->
+      <div class="col-lg-6 col-md-12">
+        <div class="card" *ngIf="!isAboutEditing">
+          <div
+            class="box-header d-flex align-items-center justify-content-between"
+          >
+            <div>
+              <p class="mb-0">About</p>
+            </div>
+            <div class="cursor-pointer" (click)="enableAboutEdit()">
+              <i class="fas fa-pencil-alt"></i>
+            </div>
+          </div>
+          <div class="section-content">
+            <p class="about-text mb-0">
+              {{ profileData.about }}
+            </p>
+          </div>
+        </div>
+        <div *ngIf="isAboutEditing" class="">
+          <div class="card">
+            <div
+              class="box-header d-flex align-items-center justify-content-between"
+            >
+              <div>
+                <p class="mb-0">About</p>
+              </div>
+            </div>
+            <div class="section-content">
+              <form [formGroup]="aboutForm" (ngSubmit)="saveAbout()">
+                <div class="form-group row">
+                  <label class="col-lg-6 col-md-4 col-sm-4 col-form-label"
+                    >About</label
+                  >
+                  <div class="col-lg-6 col-md-8 col-sm-8">
+                    <textarea
+                      class="border-bottom-line"
+                      formControlName="about"
+                    ></textarea>
+                  </div>
+                  <div class="d-flex justify-content-end gap-2 mt-2">
+                    <button
+                      type="button"
+                      class="cancel-btn"
+                      (click)="cancelAboutEdit()"
+                    >
+                      Cancel
+                    </button>
+
+                    <button type="submit" class="gradientBtn">Save</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Skillset Section -->
+      <div class="col-lg-6 col-md-12">
+        <div class="card" *ngIf="!isSkillEditing">
+          <div
+            class="box-header d-flex align-items-center justify-content-between"
+          >
+            <div>
+              <p class="mb-0">Skillset</p>
+            </div>
+            <div class="cursor-pointer" (click)="enableSkillEdit()">
+              <i class="fas fa-pencil-alt"></i>
+            </div>
+          </div>
+          <div class="section-content">
+            <!-- <h5 class="mb-4 text-center">Skillset</h5> -->
+            <div class="row">
+              <div class="col-md-7 w-100">
+                <div class="row" *ngFor="let skill of profileData.skills">
+                  <div class="skill-item">
+                    <div class="col-lg-2 col-md-4">
+                      <div class="skill-name">{{ skill.skill }}</div>
+                    </div>
+                    <div class="col-lg-10 col-md-8">
+                      <div class="skill-bar">
+                        <div
+                          class="skill-progress"
+                          [style.width]="getWidth(skill.level)"
+                        ></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Edit skill -->
+        <div *ngIf="isSkillEditing">
+          <div class="card">
+            <div
+              class="box-header d-flex align-items-center justify-content-between"
+            >
+              <div>
+                <p class="mb-0">Skillset</p>
+              </div>
+            </div>
+            <div class="section-content">
+              <form [formGroup]="skillForm" (ngSubmit)="saveSkill()">
+                <input formControlName="web_user_id" type="hidden" />
+
+                <div formArrayName="skills" class="skillGroup-block">
+                  <div
+                    *ngFor="let skillGroup of skills.controls; let i = index"
+                    [formGroupName]="i"
+                    class="skill-row"
+                  >
+                    <input
+                      formControlName="skill"
+                      placeholder="Skill"
+                      required
+                    />
+                    <select formControlName="level" required>
+                      <option value="" disabled>Select level</option>
+                      <option value="Beginner">Beginner</option>
+                      <option value="Intermediate">Intermediate</option>
+                      <option value="Advanced">Advanced</option>
+                      <option value="Expert">Expert</option>
+                    </select>
+                    <button type="button" class="cancel-btn" (click)="removeSkill(i)">Remove</button>
+                  </div>
+                </div>
+
+                <div class="d-flex justify-content-between mt-3">
+                  <button
+                    type="button"
+                    class="gradientBtn"
+                    (click)="addSkill()"
+                  >
+                    Add Skill
+                  </button>
+                  <button
+                    type="button"
+                    class="cancel-btn"
+                    (click)="cancelSkillEdit()"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    class="gradientBtn"
+                    [disabled]="skillForm.invalid"
+                  >
+                    Save
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Personal Details -->
+      <div class="col-lg-6 col-md-12">
+        <div class="card" *ngIf="!isEditing">
+          <div
+            class="box-header d-flex align-items-center justify-content-between"
+          >
+            <div>
+              <p class="mb-0">Personal Details</p>
+            </div>
+            <div class="cursor-pointer" (click)="enableEdit()">
+              <i class="fas fa-pencil-alt"></i>
+            </div>
+          </div>
+          <div class="section-content">
+            <div class="form-group row">
+              <label class="col-lg-6 col-md-4 col-sm-4 col-form-label"
+                >First name</label
+              >
+              <div class="col-lg-6 col-md-8 col-sm-8">
+                <p class="personal-content">
+                  {{ profileData.name.split(" ")[0] }}
+                </p>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-lg-6 col-md-4 col-sm-4 col-form-label"
+                >Last name</label
+              >
+              <div class="col-lg-6 col-md-8 col-sm-8">
+                <p class="personal-content">
+                  {{ profileData.name.split(" ")[1] }}
+                </p>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-lg-6 col-md-4 col-sm-4 col-form-label"
+                >Date of Birth</label
+              >
+              <div class="col-lg-6 col-md-8 col-sm-8">
+                <p class="personal-content">{{ profileData.dob }}</p>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-lg-6 col-md-4 col-sm-4 col-form-label"
+                >Contact Information</label
+              >
+              <div class="col-lg-6 col-md-8 col-sm-8">
+                <p class="personal-content">{{ profileData.email }} </p>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-lg-6 col-md-4 col-sm-4 col-form-label"
+                >Address</label
+              >
+              <div class="col-lg-6 col-md-8 col-sm-8">
+                <p class="personal-content">{{ profileData.address }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Profile Edit Form -->
+
+        <div *ngIf="isEditing" class="">
+          <div class="card">
+            <div
+              class="box-header d-flex align-items-center justify-content-between"
+            >
+              <div>
+                <p class="mb-0">Personal Details</p>
+              </div>
+            </div>
+            <div class="section-content">
+              <form [formGroup]="profileForm" (ngSubmit)="saveProfile()">
+                <div class="form-group row">
+                  <label class="col-lg-6 col-md-4 col-sm-4 col-form-label"
+                    >First name</label
+                  >
+                  <div class="col-lg-6 col-md-8 col-sm-8">
+                    <input
+                      class="border-bottom-line"
+                      formControlName="first_name"
+                    />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-lg-6 col-md-4 col-sm-4 col-form-label"
+                    >Last name</label
+                  >
+                  <div class="col-lg-6 col-md-8 col-sm-8">
+                    <input
+                      class="border-bottom-line"
+                      formControlName="last_name"
+                    />
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-lg-6 col-md-4 col-sm-4 col-form-label"
+                    >Date of Birth</label
+                  >
+                  <div class="col-lg-6 col-md-8 col-sm-8">
+                    <input
+                      class="border-bottom-line"
+                      type="date"
+                      formControlName="dob"
+                    />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-lg-6 col-md-4 col-sm-4 col-form-label"
+                    >Contact Information</label
+                  >
+                  <div class="col-lg-6 col-md-8 col-sm-8">
+                    <input
+                      class="border-bottom-line"
+                      formControlName="official_email"
+                      readonly
+                    />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-lg-6 col-md-4 col-sm-4 col-form-label"
+                    >Address</label
+                  >
+                  <div class="col-lg-6 col-md-8 col-sm-8">
+                    <input
+                      class="border-bottom-line"
+                      formControlName="address"
+                    />
+                  </div>
+                </div>
+                <div class="d-flex justify-content-end gap-2 mt-2">
+                  <button
+                    class="cancel-btn"
+                    type="cancel"
+                    (click)="cancelPersonalEdit()"
+                  >
+                    cancel
+                  </button>
+                  <button type="submit" class="gradientBtn">Save</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Employment Detail -->
+      <div class="col-lg-6 col-md-12">
+        <div class="card">
+          <!-- *ngIf="!isEmployeeEditing" -->
+          <div
+            class="box-header d-flex align-items-center justify-content-between"
+          >
+            <div>
+              <p class="mb-0">Employee Details</p>
+            </div>
+            <!-- <div class="cursor-pointer" (click)="enableEmployeeEdit()">
+              <i class="fas fa-pencil-alt"></i>
+            </div> -->
+          </div>
+          <div class="section-content">
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label">Department</label>
+              <div class="col-sm-8">
+                <p class="personal-content">{{ profileData.department }}</p>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label">Job role</label>
+              <div class="col-sm-8">
+                <p class="personal-content">{{ profileData.designation }}</p>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label">Date of Joining</label>
+              <div class="col-sm-8">
+                <p class="personal-content">
+                  {{ profileData.date_of_joining }}
+                </p>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label">Reporting Manager</label>
+              <div class="col-sm-8">
+                <p class="personal-content">
+                  {{ profileData.reporting_manager_name }}
+                </p>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label">Employee ID</label>
+              <div class="col-sm-8">
+                <p class="personal-content">{{ profileData.emp_id }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Employee Edit Form -->
+
+        <!-- <div *ngIf="isEmployeeEditing" class="">
+          <div class="card">
+            <div
+              class="box-header d-flex align-items-center justify-content-between"
+            >
+              <div>
+                <p class="mb-0">Personal Details</p>
+              </div>
+            </div>
+            <div class="section-content">
+              <form [formGroup]="employeeForm" (ngSubmit)="saveEmployee()">
+                <div class="form-group row">
+                  <label class="col-lg-6 col-md-4 col-sm-4 col-form-label"
+                    >Department</label
+                  >
+                  <div class="col-lg-6 col-md-8 col-sm-8">
+                    <input
+                      class="border-bottom-line"
+                      formControlName="department"
+                    />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-lg-6 col-md-4 col-sm-4 col-form-label"
+                    >Job role</label
+                  >
+                  <div class="col-lg-6 col-md-8 col-sm-8">
+                    <input
+                      class="border-bottom-line"
+                      formControlName="designation"
+                    />
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-lg-6 col-md-4 col-sm-4 col-form-label"
+                    >Date of Joining</label
+                  >
+                  <div class="col-lg-6 col-md-8 col-sm-8">
+                    <input
+                      class="border-bottom-line"
+                      type="date"
+                      formControlName="date_of_joining"
+                    />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-lg-6 col-md-4 col-sm-4 col-form-label"
+                    >Reporting Manager</label
+                  >
+                  <div class="col-lg-6 col-md-8 col-sm-8">
+                    <input
+                      class="border-bottom-line"
+                      formControlName="reporting_manager_name"
+                    />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-lg-6 col-md-4 col-sm-4 col-form-label"
+                    >Employee ID</label
+                  >
+                  <div class="col-lg-6 col-md-8 col-sm-8">
+                    <input
+                      class="border-bottom-line"
+                      formControlName="emp_id"
+                      [readonly]="true"
+                    />
+                  </div>
+                </div>
+               <div class="d-flex justify-content-end gap-2 mt-2">
+                    <button class="cancel-btn" type="cancel" *ngIf="isEmployeeEditing">cancel</button>
+                  <button type="submit" class="gradientBtn">Save</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div> -->
+      </div>
+
+      <!-- Onboarding -->
+      <div class="col-lg-6 col-md-12">
+        <div class="card" *ngIf="!isOnboardEditing">
+          <div
+            class="box-header d-flex align-items-center justify-content-between"
+          >
+            <div>
+              <p class="mb-0">Onboarding</p>
+            </div>
+            <div class="cursor-pointer" (click)="enableOnboardEdit()">
+              <i class="fas fa-pencil-alt"></i>
+            </div>
+          </div>
+          <div
+            class="section-content"
+            *ngFor="let onboard of profileData.onboardings"
+          >
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label">Welcome Email</label>
+              <div class="col-sm-8">
+                <p class="personal-content">
+                  Sent on {{ onboard.welcome_email_sent }}
+                </p>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label">Onboarding</label>
+              <div class="col-sm-8">
+                <p class="personal-content">
+                  Completed on {{ onboard.scheduled_date }}
+                </p>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label">Photo</label>
+              <div class="col-sm-8">
+                <p class="personal-content">{{ onboard.photo ? '✅ Yes' : 'Upload Your Photo' }}</p>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label">PAN</label>
+              <div class="col-sm-8">
+                <p class="personal-content">{{ onboard.pan ? '✅ Yes' : 'Upload Your PAN' }}</p>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label">Bank Passbook</label>
+              <div class="col-sm-8">
+                <p class="personal-content">{{ onboard.passbook ? '✅ Yes' : 'Upload Your Passbook' }}</p>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label">Payslip</label>
+              <div class="col-sm-8">
+                <p class="personal-content">{{ onboard.payslip ? '✅ Yes' : 'Upload Your Payslip' }}</p>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label">Offer Letter</label>
+              <div class="col-sm-8">
+                <p class="personal-content">{{ onboard.offer_letter ? '✅ Yes' : 'Upload Your Offer Letter' }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="isOnboardEditing" class="">
+          <div class="card">
+            <div
+              class="box-header d-flex align-items-center justify-content-between"
+            >
+              <div>
+                <p class="mb-0">Onboarding</p>
+              </div>
+            </div>
+            <div class="section-content">
+              <form [formGroup]="onboardForm" (ngSubmit)="saveonboard()">
+                <div class="form-group row">
+                  <label class="col-lg-6 col-md-4 col-sm-4 col-form-label">
+                    Welcome Email
+                  </label>
+                  <div class="col-lg-6 col-md-8 col-sm-8">
+                    <input
+                      type="date"
+                      class="border-bottom-line"
+                      formControlName="welcome_email_sent"
+                    />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-lg-6 col-md-4 col-sm-4 col-form-label"
+                    >Onboarding</label
+                  >
+                  <div class="col-lg-6 col-md-8 col-sm-8">
+                    <input
+                      type="date"
+                      class="border-bottom-line"
+                      formControlName="scheduled_date"
+                    />
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-lg-6 col-md-4 col-sm-4 col-form-label"
+                    >Photo</label
+                  >
+                  <div class="col-lg-6 col-md-8 col-sm-8">
+                    <input
+                      type="file"
+                      class="border-bottom-line"
+                      (change)="onFileSelected($event, 'photo')"
+                    />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-lg-6 col-md-4 col-sm-4 col-form-label"
+                    >PAN</label
+                  >
+                  <div class="col-lg-6 col-md-8 col-sm-8">
+                    <input
+                      type="file"
+                      class="border-bottom-line"
+                      (change)="onFileSelected($event, 'pan')"
+                    />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-lg-6 col-md-4 col-sm-4 col-form-label"
+                    >Bank Passbook</label
+                  >
+                  <div class="col-lg-6 col-md-8 col-sm-8">
+                    <input
+                      type="file"
+                      class="border-bottom-line"
+                      (change)="onFileSelected($event, 'passbook')"
+                    />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-lg-6 col-md-4 col-sm-4 col-form-label"
+                    >Payslip</label
+                  >
+                  <div class="col-lg-6 col-md-8 col-sm-8">
+                    <input
+                      type="file"
+                      class="border-bottom-line"
+                      (change)="onFileSelected($event, 'payslip')"
+                    />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-lg-6 col-md-4 col-sm-4 col-form-label"
+                    >Offer Letter</label
+                  >
+                  <div class="col-lg-6 col-md-8 col-sm-8">
+                    <input
+                      type="file"
+                      class="border-bottom-line"
+                      (change)="onFileSelected($event, 'offer_letter')"
+                    />
+                  </div>
+                </div>
+
+                <div class="d-flex justify-content-end gap-2 mt-2">
+                  <button
+                    class="cancel-btn"
+                    type="cancel"
+                    *ngIf="isOnboardEditing"
+                  >
+                    cancel
+                  </button>
+                  <button type="submit" class="gradientBtn">Save</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Professional Experience -->
+      <div class="col-lg-6 col-md-12">
+        <div class="card" *ngIf="!isExperienceEditing">
+          <div
+            class="box-header d-flex align-items-center justify-content-between"
+          >
+            <div>
+              <p class="mb-0">Professional Experience</p>
+            </div>
+            <div class="cursor-pointer" (click)="enableExperienceEdit()">
+              <i class="fas fa-pencil-alt"></i>
+            </div>
+          </div>
+          <div class="sectionBlock">
+            <div
+              class="section-content exp"
+              *ngFor="let experience of profileData.experiences"
+            >
+              <div class="company-name">
+                <p class="headlevel-three mb-2 mt-2">
+                  {{ experience.company_name }}
+                </p>
+              </div>
+              <div class="form-group row">
+                <label class="col-lg-6 col-md-4 col-sm-4 col-form-label"
+                  >Company</label
+                >
+                <div class="col-lg-6 col-md-8 col-sm-8">
+                  <p class="personal-content">{{ experience.company_name }}</p>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-lg-6 col-md-4 col-sm-4 col-form-label"
+                  >Experience</label
+                >
+                <div class="col-lg-6 col-md-8 col-sm-8">
+                  <p class="personal-content">
+                    {{ experience.no_of_yrs }}
+                  </p>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-lg-6 col-md-4 col-sm-4 col-form-label"
+                  >Job Role</label
+                >
+                <div class="col-lg-6 col-md-8 col-sm-8">
+                  <p class="personal-content">{{ experience.role }}</p>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-lg-6 col-md-4 col-sm-4 col-form-label"
+                  >Duration of Employment</label
+                >
+                <div class="col-lg-6 col-md-8 col-sm-8">
+                  <p class="personal-content">{{ experience.duration }}</p>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-lg-6 col-md-4 col-sm-4 col-form-label"
+                  >Key Responsibilities</label
+                >
+                <div class="col-lg-6 col-md-8 col-sm-8">
+                  <p class="personal-content">
+                    {{ experience.responsibilities }}
+                  </p>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-lg-6 col-md-4 col-sm-4 col-form-label"
+                  >Achievements</label
+                >
+                <div class="col-lg-6 col-md-8 col-sm-8">
+                  <p class="personal-content">{{ experience.achievements }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Experience Edit Form -->
+
+        <div *ngIf="isExperienceEditing" class="">
+          <div class="card">
+            <div
+              class="box-header d-flex align-items-center justify-content-between"
+            >
+              <div>
+                <p class="mb-0">Professional Experience</p>
+              </div>
+            </div>
+            <div class="section-content">
+             <form [formGroup]="onexperienceForm" (ngSubmit)="saveExperience()">
+  <div formArrayName="experiences">
+    <div *ngFor="let group of experiences.controls; let i = index" [formGroupName]="i" class="card mb-3">
+      <input formControlName="company_name" placeholder="Company Name" />
+      <input formControlName="no_of_yrs" placeholder="Years" />
+      <input formControlName="role" placeholder="Role" />
+      <input formControlName="duration" placeholder="Duration" />
+      <input formControlName="responsibilities" placeholder="Responsibilities" />
+      <input formControlName="achievements" placeholder="Achievements" type="text" />
+
+      <button type="button" (click)="removeExperience(i)">Remove</button>
+    </div>
+  </div>
+
+  <button type="button" (click)="addExperience()">Add</button>
+  <button type="submit">Save</button>
+  <button type="button" (click)="cancelExperienceEdit()">Cancel</button>
+</form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Educational Background -->
+      <div class="col-lg-6 col-md-12">
+        <div class="card" *ngIf="!isEducationEditing">
+          <div
+            class="box-header d-flex align-items-center justify-content-between"
+          >
+            <div>
+              <p class="mb-0">Educational Background</p>
+            </div>
+            <div class="cursor-pointer" (click)="enableEducationEdit()">
+              <i class="fas fa-pencil-alt"></i>
+            </div>
+          </div>
+          <div class="section-content total-grp">
+            <div class=" " *ngFor="let educations of profileData.education">
+              <div class="edu-qulification">
+                <p class="headlevel-three mb-0 mt-0">
+                  {{ educations.qualification }}
+                </p>
+              </div>
+              <div class="form-group row">
+                <label class="col-lg-6 col-md-4 col-sm-4 col-form-label"
+                  >Highest Qualification</label
+                >
+                <div class="col-lg-6 col-md-8 col-sm-8">
+                  <p class="personal-content">{{ educations.qualification }}</p>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-lg-6 col-md-4 col-sm-4 col-form-label"
+                  >University/CoIIege</label
+                >
+                <div class="col-lg-6 col-md-8 col-sm-8">
+                  <p class="personal-content">{{ educations.university }}</p>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-lg-6 col-md-4 col-sm-4 col-form-label"
+                  >Year of Passing</label
+                >
+                <div class="col-lg-6 col-md-8 col-sm-8">
+                  <p class="personal-content">
+                    {{ educations.year_of_passing }}
+                  </p>
+                </div>
+              </div>
+              <!-- <div class="form-group row">
+                <label class="col-lg-6 col-md-4 col-sm-4 col-form-label"
+                  >Other Certifications</label
+                >
+                <div class="col-lg-6 col-md-8 col-sm-8">
+                  <p class="personal-content">{{ educations.certificate }}</p>
+                </div>
+              </div> -->
+            </div>
+          </div>
+        </div>
+        <!-- Education Edit Form -->
+
+        <div *ngIf="isEducationEditing" class="">
+          <div class="card">
+            <div
+              class="box-header d-flex align-items-center justify-content-between"
+            >
+              <div>
+                <p class="mb-0">Educational Background</p>
+              </div>
+            </div>
+            <div class="section-content">
+              <form [formGroup]="educationForm" (ngSubmit)="saveEducation()">
+                <div class="form-group row">
+                  <label class="col-lg-6 col-md-4 col-sm-4 col-form-label"
+                    >Highest Qualification</label
+                  >
+                  <div class="col-lg-6 col-md-8 col-sm-8">
+                    <input
+                      class="border-bottom-line"
+                      formControlName="qualification"
+                    />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-lg-6 col-md-4 col-sm-4 col-form-label"
+                    >University/CoIIege</label
+                  >
+                  <div class="col-lg-6 col-md-8 col-sm-8">
+                    <input
+                      class="border-bottom-line"
+                      formControlName="university"
+                    />
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-lg-6 col-md-4 col-sm-4 col-form-label"
+                    >Year of Passing</label
+                  >
+                  <div class="col-lg-6 col-md-8 col-sm-8">
+                    <input
+                      class="border-bottom-line"
+                      type="date"
+                      formControlName="year_of_passing"
+                    />
+                  </div>
+                </div>
+                <div class="d-flex justify-content-end gap-2 mt-2">
+                  <button
+                    class="cancel-btn"
+                    type="cancel"
+                    (click)="cancelEducationEdit()"
+                  >
+                    cancel
+                  </button>
+                  <button type="submit" class="gradientBtn">Save</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Data Collected Detail -->
+
+<!-- <ng-template #errorBlock>
+  <p *ngIf="errorMessage">{{ errorMessage }}</p>
+</ng-template> -->

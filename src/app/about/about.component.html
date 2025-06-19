@@ -1,0 +1,89 @@
+<div class="container mt-4">
+  <h2 class="mb-4">Description Block</h2>
+
+  <div class="accordion" id="aboutAccordion">
+    <!-- Accordion Item 1: Form -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingForm">
+        <button class="accordion-button font-weight-600" type="button" data-bs-toggle="collapse" data-bs-target="#collapseForm" aria-expanded="true" aria-controls="collapseForm">
+          About Description Form
+        </button>
+      </h2>
+      <div id="collapseForm" class="accordion-collapse collapse show" aria-labelledby="headingForm" data-bs-parent="#aboutAccordion">
+        <div class="accordion-body">
+          <form [formGroup]="aboutForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+              <label class="form-label d-block mb-1 font-weight-600 font-size-16">About Description</label>
+              <textarea class="form-control w-50" formControlName="about" rows="3"></textarea>
+            </div>
+            <div class="mb-3">
+              <label class="form-label d-block mb-1 font-weight-600 font-size-16">Services Description</label>
+              <textarea class="form-control w-50" formControlName="services" rows="3"></textarea>
+            </div>
+            <div class="mb-3">
+              <label class="form-label d-block mb-1 font-weight-600 font-size-16">Industries Description</label>
+              <textarea class="form-control w-50" formControlName="industries" rows="3"></textarea>
+            </div>
+            <div class="mb-3">
+              <label class="form-label d-block mb-1 font-weight-600 font-size-16">Client Description</label>
+              <textarea class="form-control w-50" formControlName="client" rows="3"></textarea>
+            </div>
+            <div class="mb-3">
+              <label class="form-label d-block mb-1 font-weight-600 font-size-16">Team Description</label>
+              <textarea class="form-control w-50" formControlName="team" rows="3"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary me-2">
+              {{ isEditMode ? 'Update' : 'Add' }}
+            </button>
+            <button type="button" class="btn btn-secondary" *ngIf="isEditMode" (click)="onCancel()">
+              Cancel
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Accordion Item 2: Table -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingTable">
+        <button class="accordion-button font-weight-600 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTable" aria-expanded="false" aria-controls="collapseTable">
+          About Description Records
+        </button>
+      </h2>
+      <div id="collapseTable" class="accordion-collapse collapse" aria-labelledby="headingTable" data-bs-parent="#aboutAccordion">
+        <div class="accordion-body">
+          <table class="table table-bordered table-striped" *ngIf="aboutList && aboutList.length > 0; else noData">
+            <thead>
+              <tr>
+                <th>About</th>
+                <th>Services</th>
+                <th>Industries</th>
+                <th>Client</th>
+                <th>Team</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let about of aboutList">
+                <td>{{ about.about || 'N/A' }}</td>
+                <td>{{ about.services || 'N/A' }}</td>
+                <td>{{ about.industries || 'N/A' }}</td>
+                <td>{{ about.client || 'N/A' }}</td>
+                <td>{{ about.team || 'N/A' }}</td>
+                <td>
+                  <button class="btn btn-sm btn-info me-1" (click)="onEdit(about)">Edit</button>
+                  <button class="btn btn-sm btn-danger" (click)="onDelete(about.id)">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <ng-template #noData>
+            <p class="text-muted">No about data available.</p>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

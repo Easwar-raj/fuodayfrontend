@@ -1,0 +1,236 @@
+
+
+/* Main content */
+.main {
+
+}
+
+
+
+.profile-section{
+
+    img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 20px;
+}
+.profile-info {
+    background-image: url(/assets/images/fuoday/bg/welbg.png);
+   background-size: cover;
+
+}
+.profile-info {
+    background-position: center top;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+
+}
+}
+
+.edit-button{
+  position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: #fff;
+    color: #555;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex
+;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px #0000001a;
+    cursor: pointer;
+}
+
+/* Cards */
+.card-container {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.card {
+  width: 100%;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  background-color: #f0f0f0;
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.icon-circle {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 15px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-circle img {
+  width: 30px;
+  height: 30px;
+}
+
+.title {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.count {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.view-btn {
+    background-color: #2d64f5;
+    color: white;
+    border: none;
+    padding: 5px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    width: 130px;
+}
+
+.view-btn:hover {
+  background-color: #174de5;
+}
+
+/* Background colors */
+.pink { background-color: #fce4ec; }
+.blue { background-color: #e0f7fa; }
+.purple { background-color: #e8eaf6; }
+.peach { background-color: #fff3e0; }
+
+
+/* Hiring Manager */
+.hiring-section {
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.hiring-section button {
+    background: #208ef1;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    font-weight: bold;
+    box-shadow: 2px 2px 8px #aaa;
+    cursor: pointer;
+}
+
+.manager-card {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.manager-card .info {
+    text-align: center;
+}
+
+.manager-card img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 4px solid #208ef1;
+}
+
+.manager-card .name {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #208ef1;
+}
+
+.manager-card .role {
+    font-size: 14px;
+    color: gray;
+}
+
+/* Backgrounds for different cards */
+.card.pink {
+    background-color: #ffe0eb;
+}
+
+.card.blue {
+    background-color: #d6efff;
+}
+
+.card.lavender {
+    background-color: #e5e9ff;
+}
+
+.card.orange {
+    background-color: #ffe9d6;
+}
+
+// Hiring Chart
+
+.hiring-chart{
+  .hiring-chart-block{
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    .hiring-chart-head{
+
+    }
+  }
+}
+
+
+@media screen and (max-width: 992px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .top-nav {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 10px;
+
+
+    }
+    .top-nav .icons {
+
+    gap: 20px;
+
+}
+
+.top-nav .icons i {
+    font-size: 11px;
+
+}
+.profile-section{
+    width: 600px;
+}
+.nav-buttons{
+
+}
+}

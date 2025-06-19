@@ -1,0 +1,447 @@
+@use "./../../styles.scss" as *;
+
+.organization-block{
+  .organization{
+    .organization-box{
+      // background: url(../../assets/images/fuoday/bg/welbg.png) center / cover;
+      background-position: center top;
+      display: flex;
+      align-items: center;
+      justify-content: start;
+      padding: 20px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+      .img-block{
+        background-color: #fff;
+        padding: 10px;
+        border-radius: 10px;
+        width:150px;
+        height:100px;
+        img{
+          object-fit: contain;
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+    // Nav Tab
+    .organization-tab{
+      margin-top: 0;
+      .custom-tab {
+        border: 1px solid #ccc;
+        background-color: white;
+        border-radius: 30px;
+        overflow: hidden;
+        padding: 5px 10px;
+        justify-content: space-between;
+      }
+
+      .custom-tab .nav-link {
+        border: none;
+        color: black;
+        font-weight: 500;
+        padding: 8px 20px;
+        transition: 0.3s;
+      }
+
+      .custom-tab .nav-link.active {
+          text-decoration: none;
+    font-weight: bold;
+    color: white;
+    border-radius: 10px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    // box-shadow: 2px 2px 0.5em rgba(30, 80, 180, 0.45), inset 1px 1px 0 rgba(255, 255, 255, 0.8), inset -1px -1px 0 rgba(0, 0, 0, 0.2);
+    // border: 1px solid #bcd9ff;
+    // background: linear-gradient(-60deg, #d4f0ff, #a6d7ff 15%, #69b3ff 30%, #3689ff 45%, #1565c0 60%, /* lite dark blue */ #3689ff 75%, #a6d7ff 90%, #d4f0ff);
+      }
+
+      .custom-tab .nav-item:last-child .nav-link {
+        padding: 8px 12px;
+      }
+
+      .tab-content {
+        margin: 20px auto;
+        border-radius: 12px;
+      }
+      // About
+      .about-block{
+        .aboutmain{
+          main {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            text-align: center;
+          }
+          h2 {
+            margin-bottom: 1rem;
+            padding: 10px;
+          }
+          .intro {
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            justify-content: center;
+          }
+
+
+
+          .card li
+          .red { background-color: #ef4444; }
+          .green { background-color: #10b981; }
+          .blue { background-color: #3b82f6; }
+          .yellow { background-color: #facc15; }
+          .purple { background-color: #6366f1; }
+
+
+        }
+      }
+      // Service
+      .service-block {
+        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #fefefe;
+        color: #000;
+        .service-main{
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+        }
+      }
+
+      .services-section {
+        margin: 0 auto;
+        padding: 60px 20px;
+        text-align: center;
+
+      }
+
+      .section-title {
+        // color: #004aad;
+        // border-bottom: 2px solid #004aad;
+        display: inline-block;
+        margin-bottom: 10px;
+      }
+
+      .section-description {
+        font-size: 1rem;
+        margin-bottom: 40px;
+        color: #333;
+        max-width: 500px;
+      }
+
+      .services-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 40px;
+      }
+
+      .service-card {
+        background-color: #fff;
+        padding: 20px;
+        width: 400px;
+        border-right: 1px solid #8080806b;
+        &:last-child{
+          border-right: none;
+        }
+      }
+
+      .service-icon {
+        font-size: 2.5rem;
+        color: #0070f3;
+        margin-bottom: 15px;
+      }
+
+      .service-card h3 {
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+      }
+
+      .service-card p {
+        font-size: 0.95rem;
+        color: #555;
+      }
+      // Industries
+
+      .industries-block {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #fff;
+        color: #000;
+      }
+
+      .industries-section {
+        padding: 60px 20px;
+        text-align: center;
+      }
+
+      .industries-title {
+        // color: #004aad;
+        margin-bottom: 10px;
+      }
+
+      .industries-subtitle {
+        font-size: 1rem;
+        color: #333;
+        max-width: 800px;
+        margin: 0 auto 40px;
+      }
+
+      .industries-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        justify-content: center;
+      }
+
+      .industry-card {
+        width: 400px;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .industry-card .icon {
+        font-size: 2rem;
+        background-color: #fff;
+        border-radius: 50%;
+        padding: 10px;
+        margin-bottom: 15px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .industry-card h3 {
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+      }
+
+      .industry-card p {
+        font-size: 0.95rem;
+        color: #444;
+        margin-bottom: 20px;
+      }
+
+      .industry-card button {
+        padding: 8px 18px;
+        border: 1px solid #004aad;
+        background-color: #fff;
+        color: #004aad;
+        font-weight: bold;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .industry-card button:hover {
+        background-color: #004aad;
+        color: #fff;
+      }
+      // Client
+      .client-block{
+        .client-section{
+          .client-main{
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            text-align: center;
+          }
+        }
+      }
+
+      // Team
+      .team-block{
+        .teammain{
+          main {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            text-align: center;
+
+          }
+          .team-start{
+
+            }
+          h2 {
+            margin-bottom: 1rem;
+            // color: #1e40af;
+            padding: 10px;
+          }
+          .intro {
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            justify-content: center;
+          }
+          .cards {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 1rem;
+            /* border-bottom: 1px solid black; */
+          }
+          .card {
+            flex: 1 1 300px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            background-color: #fff;
+          }
+          .card ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+          }
+          .card li {
+            display: flex;
+            margin: 5px 0;
+            align-items: center;
+            padding: 5px 10px;
+            border-bottom: 1px solid;
+            &:last-child{
+              border-bottom:none;
+            }
+            p{
+              margin-bottom:0;
+              text-align: left;
+              font-weight: 500;
+            }
+          }
+          .card li span {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            margin-right: 1rem;
+            text-align: center;
+            line-height: 30px;
+            border-radius: 50%;
+            color: #fff;
+            font-size: 1.1rem;
+          }
+          .red { background-color: #ef4444; }
+          .green { background-color: #10b981; }
+          .blue { background-color: #3b82f6; }
+          .yellow { background-color: #facc15; }
+          .purple { background-color: #6366f1; }
+          .settings-icon {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: #e0f2ff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+          }
+
+        }
+      }
+
+    }
+
+  }
+}
+
+// Tab
+
+
+// Client Page
+
+// Business Partner
+
+// .businesspartner  {
+//   .businesspartner-header {
+//     h3 {
+//       font-size: 36px;
+//     }
+//   }
+// }
+
+.businesspartner{
+  .mainBlock{
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgb(6 24 44 / 55%) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+    border-radius: 20px;
+    padding: 20px;
+    height:300px;
+
+    .blockPlace{
+      .client-header{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+      }
+      .para-max{
+        max-width: 900px;
+      }
+    }
+  }
+}
+
+.carousel-control-next-icon, .carousel-control-prev-icon{
+    border-radius: 50px;
+    width: 35px;
+    height: 35px;
+}
+.businesspartner{
+  .carousel-item-next, .carousel-item-prev, .carousel-item.active{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+  // .carousel-item.blockPlace.active{
+  //   display: flex;
+  //   flex-direction: column;
+  //   align-items: center;
+  // }
+  .business-para{
+    margin-bottom: 0;
+    margin-left: 44px;
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+}
+
+// Team Main Class
+
+            .overall-detail{
+                display: flex;
+                align-items: center;
+                column-gap: 10px;
+                border-bottom: 1px solid;
+                padding: 5px 10px;
+                &:last-child{
+                  border-bottom: unset;
+                }
+                .first-letter{
+                  .circle{
+                    width: 35px;
+                    height: 35px;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background: #0000ff8f;
+                    color: $white-color;
+                    font-family: $head-thikse-font2;
+                  }
+
+                }
+                .desc{
+                  .detail{
+                    display: flex;
+                    flex-direction: column;
+                    align-content: flex-start;
+                    align-items: flex-start;
+                  }
+                }
+            }

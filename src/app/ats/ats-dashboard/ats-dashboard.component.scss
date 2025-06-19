@@ -1,0 +1,97 @@
+.atsdashboard-fullpage-box {
+  max-width: 96%;
+  width: 100%;
+  background-color: #4a90e2;
+  padding:1%;
+  margin: 50px auto 0 auto; /* 60px space from top */
+  border-radius: 20px;
+}
+.atsboxtext{
+  text-align: start;
+ font-weight: bolder;
+ font-size: 40px;
+}
+.atstext{
+  color:white;
+  padding-top: 10px;
+  font-size: 23px;
+  // width: 90%;
+}
+.atslogo-img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+
+}
+
+.atsdashboard-rowbox {
+
+  padding: 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  border-radius: 20px;
+
+}
+.firstcolor{
+  background-color:  #FBDDEC;
+}
+.thirdcolor{
+  background-color: #E8E8FC;
+
+
+}
+.secoundcolor{
+  background: #36C9FD40;
+}
+.atssmall-box {
+  flex: 0 0 20%; /* or use 18%, 22%, etc. depending on layout */
+// height: 248px;
+// width: 100%;
+
+}
+.boxnumber{
+  font-size: 35px;
+}
+.boxtext{
+  font-size: 22px;
+}
+.boxsubtext{
+  font-size: 17px;
+  color: #509BD2;
+
+}
+.atsdashboard-lastbox{
+  border: 1px solid #E6E8EC;
+  width: 65%;
+  border-radius: 10px;
+
+}
+.hrflowimg{
+  width: 25%;
+}
+.lastbox-text{
+  font-size: 25px;
+  font-weight: 700;
+}
+.lastbox-date{
+  font-size: 15px;
+  font-weight: 400;
+  padding-right: 30px;
+}
+.atsdashboard-center-box{
+  margin-left: 3%;
+  padding-bottom: 20px;
+}
+.boxcontent{
+  text-align: center;
+}
+.boxcontenttext{
+  font-size: 25px;
+  font-weight: 400;
+}
+.boxsubcontent{
+  font-size: 17px;
+  margin-right: 9%;
+}

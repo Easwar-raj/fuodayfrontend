@@ -1,0 +1,91 @@
+.hierarchy {
+
+  padding: 2rem;
+}
+
+.tree {
+  list-style: none;
+  padding-left: 0;
+  position: relative;
+}
+
+.tree li {
+  position: relative;
+  padding-left: 4rem;
+  margin: 1.5rem 0;
+}
+
+.connector {
+  position: absolute;
+  pointer-events: none;
+}
+
+.vertical-line {
+  left: 1.5rem;
+  top: -1.5rem;
+  height: calc(100% + 3rem);
+  width: 2px;
+}
+
+.horizontal-line {
+  left: 1.5rem;
+  top: 50%;
+  width: 2rem;
+  height: 2px;
+}
+
+.node {
+  display: inline-block;
+  padding: 1rem 2rem;
+  background: #fff;
+  border: 2px solid #4a90e2;
+  border-radius: 6px;
+  position: relative;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.node:hover {
+  background: #4a90e2;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+}
+
+@media (max-width: 768px) {
+  .tree li {
+      padding-left: 3rem;
+  }
+
+  .vertical-line {
+      left: 1rem;
+  }
+
+  .horizontal-line {
+      left: 1rem;
+      width: 1.5rem;
+  }
+
+  .node {
+      padding: 0.8rem 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hierarchy {
+      padding: 1rem;
+  }
+
+  .tree li {
+      padding-left: 2rem;
+  }
+
+  .vertical-line {
+      left: 0.5rem;
+  }
+
+  .horizontal-line {
+      left: 0.5rem;
+      width: 1rem;
+  }
+}

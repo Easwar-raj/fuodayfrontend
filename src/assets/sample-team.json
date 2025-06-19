@@ -1,0 +1,35 @@
+{
+  "organizationdept": {
+    "Executive": [
+      {
+        "designation": "CEO",
+        "Name": "Sundar Raj",
+        "Profile": "sundar.png"
+      },
+      {
+        "designation": "Founder",
+        "Name": "Kavitha Elango",
+        "Profile": "kavitha.png"
+      }
+    ],
+    "IT": [
+      {
+        "designation": "Front-End Developer",
+        "Name": "Saravanan Kumar",
+        "Profile": "saravanan.png"
+      },
+      {
+        "designation": "Back-End Developer",
+        "Name": "Priya Mohan",
+        "Profile": "priya.png"
+      }
+    ],
+    "HR": [
+      {
+        "designation": "HR Manager",
+        "Name": "Lakshmi Iyer",
+        "Profile": "lakshmi.png"
+      }
+    ]
+  }
+}

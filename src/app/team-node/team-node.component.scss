@@ -1,0 +1,190 @@
+/* Basic Reset & Structure */
+.node-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding-top: 20px; /* Space for incoming connector */
+  margin: 0 10px; /* Horizontal spacing between sibling nodes */
+}
+
+.node-card {
+  border-radius: 8px;
+  padding: 10px 15px;
+  display: flex;
+  flex-direction: column; /* Stack image and text vertically initially */
+  align-items: center;
+  text-align: center;
+  min-width: 150px; /* Minimum width for the card */
+
+  position: relative; /* For absolute positioning of toggler */
+  cursor: pointer; /* Indicate it's clickable for toggle */
+  z-index: 1; /* Ensure card is above connector lines */
+}
+
+.profile-pic {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+ /* Light blue border around pic */
+  object-fit: cover;
+  margin-bottom: 8px;
+}
+
+.member-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.member-name {
+  font-weight: bold;
+  color: #333;
+  font-size: 1em;
+}
+
+.member-designation {
+  font-size: 0.85em;
+  color: #555;
+}
+
+.toggler {
+  position: absolute;
+  bottom: -10px; /* Position below the card */
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.children-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex; /* Arrange children horizontally */
+  position: relative; /* For the horizontal connecting line */
+  justify-content: center; /* Center children if there's extra space */
+}
+
+.children-list > li {
+  padding-top: 40px; /* Space for connector from horizontal line */
+  position: relative; /* For vertical connector lines */
+  display: flex; /* Ensure li takes up only necessary width */
+  flex-direction: column; /* To align node-container properly */
+  align-items: center;
+}
+
+/* --- Connector Lines --- */
+
+/* Vertical line from parent card down to the horizontal children's line */
+.node-card.has-children::after {
+  content: '';
+  position: absolute;
+  bottom: -20px; /* Start from below the card (or toggler) */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 20px; /* Height of the line segment */
+  z-index: 0;
+}
+/* Adjust if toggler is present */
+.node-card.has-children .toggler + ::after { /* This selector might not work as ::after is on node-card */
+   /* This is tricky, let's adjust the base ::after to account for toggler */
+}
+/* If toggler is present, node-card::after connects to it */
+.node-card.has-children::after {
+  bottom: -10px; /* Connects to the toggler's top */
+  height: 10px; /* Line from card bottom to toggler top */
+}
+/* And the toggler needs a line down from it */
+.node-card.has-children .toggler::after {
+  content: '';
+  position: absolute;
+  top: 100%; /* Start from bottom of toggler */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 20px; /* Line from toggler down to horizontal bar level */
+
+  z-index: -1; /* Behind the toggler itself */
+}
+
+
+/* Horizontal line above children */
+.children-list::before {
+  content: '';
+  position: absolute;
+  top: 20px; /* Position it vertically centered with the vertical connector start */
+  left: 50%;
+  right: 50%;
+  height: 2px;
+  z-index: 0;
+}
+
+/* Adjust horizontal line for multiple children */
+.children-list > li:first-child:not(:last-child) ~ li::before, /* If there's a sibling after */
+.children-list > li:last-child:not(:first-child) ~ li::before { /* If there's a sibling before */
+  /* This is complex. Let's adjust children-list::before */
+}
+
+/* Horizontal line should span from the first child's center to the last child's center */
+/* We'll make it span the full width of the children container and rely on centering */
+.children-list::before {
+  left: 10%; /* Heuristic, adjust as needed or use JS for precision */
+  right: 10%;
+  /* If children-list is centered, and li elements are inline-block, this can be tricky.
+     A better way for the horizontal line is to use ::before on the first child and ::after on the last child,
+     OR, give the UL a width and center it, then the ::before can be 100% width.
+     For simplicity with flex, let's try this:
+  */
+  left: 0;
+  right: 0;
+  /* The horizontal line will be as wide as the children-list.
+     It connects to the parent's downward line at its center (top: 20px, left: 50% of ul)
+     And children connect to it from their top center.
+  */
+}
+
+/* Vertical line from horizontal bar down to each child card */
+.children-list > li::before {
+  content: '';
+  position: absolute;
+  top: 20px; /* Start from the top of the li's padding */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 20px; /* Connects to horizontal line (which is at children-list's top: 20px) */
+  z-index: 0;
+}
+
+
+/* Specific styling for the root node's container if it's the only one */
+/* This might be done in team-chart.component.css */
+/* Hide the incoming connector for root nodes (they have no parent in the displayed tree) */
+:host > .node-container:first-child > .node-card::before { /* ::before was not used, this is for upward connector if any */
+  display: none;
+}
+.node-container:first-child { /* If this node-container is a direct child of app-team-chart's root ul */
+    padding-top: 0; /* No incoming line space needed for the ultimate root */
+}
+/* The upward connector for children nodes (from card to parent's horizontal line) */
+/* This is handled by .children-list > li::before combined with .children-list > li padding-top */
+
+/* Ensure the first level of children doesn't try to draw a line upwards if its parent is the absolute root */
+/* This is tricky. Let's make the .node-container in general not have an upward line if it's a root. */
+/* The current padding-top approach handles the space, and children-list > li::before draws the line. */
+
+/* If a node is a root (no parent visually above it in this component instance) */
+.node-container[data-is-root="true"] { /* We'd need to set this attribute */
+    padding-top: 0;
+}
+.node-container[data-is-root="true"] > .node-card::before {
+    display: none;
+}
+/* This is becoming complex. The simplest is to style the team-chart's direct children. */

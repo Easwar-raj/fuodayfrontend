@@ -1,0 +1,520 @@
+@use './../../styles.scss' as *;
+
+.loginBlock{
+  // width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+   .login_main{
+  //     max-width: 70%;
+      width: 100%;
+      // height: 700px;
+      box-shadow: $boxShadow-login-thikse-light;
+      border-radius: 10px;
+      padding: 20px;
+      background: #000000;
+      background: $loginGd-thikse-light;
+      position: relative;
+      .enquire-form{
+        .enquire-block{
+          position: absolute;
+          width: 80px;
+          height: 80px;
+          border-radius: 50%;
+          bottom: 20px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          right: 20px;
+          .enquire-detail{
+
+          }
+        }
+      }
+  }
+  .login_sub{
+    .top-logo{
+      width: 100px;
+      height: 100px;
+      img{
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+      .login_shadow{
+          box-shadow: $boxShadow-2;
+          border-radius: 10px;
+          padding:20px;
+          background-color: $white-color;
+          max-width: 400px;
+          width: 100%;
+          .login_fill{
+              margin-bottom: 10px;
+          }
+          .tabs {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+
+                &__header {
+                  display: flex;
+                  padding: 10px;
+                  box-shadow: $boxShadow-login-thikse-light;
+                  border-radius: 10px;
+                }
+
+                &__title {
+                  font-size: 25px;
+                  color: #020617;
+                  font-family: $headFont-thikse-login;
+                  margin-bottom: 10px;
+                  text-transform: capitalize;
+                  letter-spacing: 1px;
+                }
+
+                &__description {
+                  font-size: 16px;
+                  color: $grayLow-color;
+                  font-family: $descFon-thikse-login;
+                  margin-bottom: 10px;
+                }
+
+                &__tab {
+                  width: 50%;
+                  border: none;
+                  background-color: transparent;
+                  padding: 10px;
+                  color: $text-color-light;
+                  font-weight: 600;
+                  font-size: 14px;
+                  transition:0.3ms;
+
+
+                  &:hover {
+                    cursor: pointer;
+                  }
+
+                  &--active {
+                    background: $logonbg-thikse-light;
+                    background: $loginGd-thikse-light;
+                    border-radius: 10px;
+                    color: $white-color;
+                  }
+                }
+
+                &__content {
+                  display: flex;
+                  flex-direction: column;
+                  border-radius: 4px;
+                }
+
+                &__form {
+                  margin-top: 8px;
+                  display: flex;
+                  flex-direction: column;
+                  gap: 10px;
+                }
+
+                &__form-group {
+                  display: flex;
+                  flex-direction: column;
+                  gap: 4px;
+                  margin-bottom: 10px;
+                }
+
+                &__label {
+                  font-size: 16px;
+                  font-weight: 600;
+                  font-family: $labelFont-thikse-login;
+                }
+
+                &__input {
+                  padding: 5px 10px;
+                  border: none;
+                  border-bottom: 1px solid $input-color;
+                  color: #475569;
+                  outline: unset;
+                }
+
+                &__button {
+                  border: none;
+                  align-self: flex-start;
+                  padding: 8px 24px;
+                  background: $logonbg-thikse-light;
+                  background: $loginGd-thikse-light;
+                  color: #fefefe;
+                  font-weight: bold;
+                  border-radius: 4px;
+                  width: 300px;
+                  transition: 0.3ms;
+                  font-family: $descFon-thikse-login;
+
+                  &:hover {
+                      background-color: #047bfac2
+                  }
+                }
+                .submitBlock{
+                  display: flex;
+                  justify-content: center;
+                  flex-direction: column-reverse;
+                  .error-msg{
+                    margin-bottom: 5px;
+                    .error-col{
+                    color: #dc3545;
+                  }
+                  }
+                  .success-msg{
+                    margin-bottom: 5px;
+                    .success-col{
+                    color: #198754;
+                  }
+                  }
+                }
+              }
+
+      }
+
+  }
+  .login-head{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 47px;
+    flex-direction: column;
+    margin-left: 100px;
+    .head{
+      text-align: center;
+      h3{
+        font-size: 37px;
+        font-family: $headFont-thikse-login;
+        color: #fff;
+      }
+    }
+  }
+  .headLogin{
+    display: none;
+  }
+}
+
+.password-container {
+  position: relative;
+  // display: flex;
+  align-items: center;
+  // border-bottom: 1px solid $input-color;
+
+  .tabs__input{
+      // border: unset !important;
+      width: 100%;
+  }
+
+  .eye-icon {
+      position: absolute;
+      right: 10px;
+      top: 12px;
+      cursor: pointer;
+      font-size: 18px;
+      color: #888;
+  }
+
+  .eye-icon:hover {
+      color: #333;
+  }
+  .forget{
+      position: absolute;
+      left: 0;
+      top: 40px;
+      font-size: 12px;
+      font-weight: 600;
+      // font-family: $labelFont-thikse-login;
+      transition: 0.3ms;
+      cursor: pointer;
+      &:hover{
+          text-decoration: underline;
+          color:$primary-thikse-color;
+      }
+  }
+}
+
+input{
+  font-family: $descFon-thikse-login;
+  font-size: 16px;
+  font-weight: 500;
+&::placeholder{
+  font-family: $descFon-thikse-login;
+  font-size: 16px;
+}
+}
+
+// Login and Recruitor Tab
+
+
+// Media Query
+
+@media screen and (max-width: 990px){
+  .loginBlock{
+    height: 100% !important;
+    .login-head{
+      margin-left: 0 !important;
+    }
+    .second-drop{
+      margin-bottom: 20px;
+    }
+  }
+}
+@media screen and (max-width : 988px){
+  .reverse-handle{
+    flex-direction: column-reverse;
+    .second-drop{
+      margin-top: 20px;
+    }
+    .login-head{
+      .head{
+        display: none;
+      }
+    }
+    .overDropBox{
+      .headLogin{
+        display: block;
+        text-align: center;
+        margin-bottom: 30px;
+        .head{
+          h3{
+            font-size: 37px;
+            font-family: "Playfair Display", serif;
+            color: #fff;
+          }
+        }
+      }
+    }
+
+  }
+}
+
+@media screen and (max-width: 500px){
+  .loginBlock{
+    .loginVideo{
+      .dotlot-size{
+        width: 300px !important;
+        height: 300px !important;
+      }
+    }
+    .tabs__header{
+      margin:0 10px !important;
+    }
+  }
+}
+
+// Spinning Loading
+
+.spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(0,0,0,0.2);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+  vertical-align: middle;
+}
+
+/* Spin keyframes */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Toast style */
+.toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  z-index: 1000;
+  animation: fadein 0.3s, fadeout 0.3s 1.7s;
+}
+
+@keyframes fadein {
+  from { opacity: 0; right: 0px; }
+  to { opacity: 1; right: 20px; }
+}
+
+@keyframes fadeout {
+  from { opacity: 1; right: 20px; }
+  to { opacity: 0; right: 0px; }
+}
+
+// Enquire Form
+
+.enquire-block {
+  cursor: pointer;
+  background: #fff;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  width: 100px;
+  .enquire-detail{
+    span{
+      width: 60px;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      img{
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+ .expert-badge{
+    background: blue;
+    color: #fff;
+    border-radius: 5px;
+    padding: 0 10px;
+    position: absolute;
+    top: -34px;
+    display: none;
+    opacity: 0;
+    animation: slideDown 0.5s ease forwards;
+  p{
+    white-space:nowrap;
+    font-size: 18px;
+  }
+ }
+ &:hover{
+   .expert-badge{
+    display: flex;
+   }
+ }
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.popup {
+  background: #fff;
+  border-radius: 20px;
+  width: 400px;
+  position: relative;
+  .header-theme{
+    display: flex;
+    justify-content: space-between;
+    background: #000000;
+    background: linear-gradient(131deg, rgb(0, 0, 0) 2%, rgb(15, 132, 245) 38%, rgb(0, 0, 0) 100%);
+    padding: 8px 20px;
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+    align-items: center;
+    h3{
+      color: $white-color;
+      font-size: 16px;
+      margin-bottom: 0;
+    }
+    span{
+      h3{
+        color: #fff;
+        margin-bottom: 0;
+        font-size: 18px;
+        font-family: $descFon-thikse-login;
+      }
+    }
+  }
+  .formBlock{
+    padding: 20px;
+    .form-read{
+      label{
+        font-family:$labelFont-thikse-login;
+        font-size: 15px;
+        font-weight: 500;
+        margin-bottom: 8px;
+
+      }
+      input{
+          margin: 0 0 10px 0;
+        }
+    }
+  }
+}
+
+.close-btn {
+    cursor: pointer;
+    font-size: 12px;
+    color: #fff;
+    border: 1px solid;
+    border-radius: 50px;
+    width: 25px;
+    height: 25px;
+    display: flex
+;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.3ms;
+    &:hover{
+      background: #dc3545;
+    }
+}
+
+input, textarea {
+  width: 100%;
+  margin: 10px 0;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.btn-center{
+  button {
+    width: 100%;
+    padding: 10px;
+    background: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+}
+
+/* Animation keyframes */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Message Popup
+
+.message-popup {
+  background-color: #e0ffe0;
+  color: #2e7d32;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  text-align: center;
+  font-weight: bold;
+  animation: fadeIn 0.3s ease-in-out;
+  box-shadow: 0 0 6px rgba(0, 128, 0, 0.3);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}

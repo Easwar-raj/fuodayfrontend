@@ -1,0 +1,186 @@
+<div class="teamBlock">
+  <div class="team">
+    <div class="profile-banner" [ngStyle]="{'background-image': backgroundStyle, 'background-size': 'cover'}">
+      <img
+        src={{profilePhoto}}
+        alt="Profile Image"
+        class="profile-img"
+      />
+      <div class="profile-details">
+        <h2 class="profile-name-w mb-1">{{ userName }}</h2>
+        <p class="profile-smfont-w mb-1">Employee Id : {{empId}}</p>
+        <p class="profile-smfont-w mb-0">{{userMail}}</p>
+      </div>
+    </div>
+    <div class="team-repot">
+      <!-- Nav Tabs -->
+      <ul class="nav nav-tabs custom-tab">
+        <li class="nav-item">
+          <a class="nav-link active" data-bs-toggle="tab" href="#reportees"
+            >Team Reportees</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-bs-toggle="tab" href="#projects">Projects</a>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link" data-bs-toggle="tab" href="#department"
+            >Department</a
+          >
+        </li> -->
+        <li class="nav-item">
+          <a class="nav-link" data-bs-toggle="tab" href="#teamlist"
+            >Team List</a
+          >
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link" ><i class="fas fa-sliders-h"></i></a>
+        </li> -->
+      </ul>
+
+      <!-- Tab Content -->
+      <div class="tab-content">
+        <div class="tab-pane fade show active" id="reportees">
+          <!-- Report -->
+          <div class="direct-reports">
+            <h5 class="headlevel-three mb-4">Direct Reports</h5>
+            <div class="row g-3">
+              <!-- Card 1 -->
+              <div class="col-md-3" *ngFor="let member of teamMembers">
+                <div class="report-card">
+                  <div class="report-initial" style="background-color: #7e57c2">
+                    {{ member.name.slice(0,1) }}
+                  </div>
+                  <div class="name">{{ member.name }}</div>
+                  <div><span class="label">Role :</span> {{ member.department }}</div>
+                  <div>
+                    <span class="label">Contact :</span>
+                    {{ member.email }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="teamTreeBlock">
+              <div class="org-chart-container">
+  <ul class="org-chart-root" *ngIf="teamRoots$ | async as roots">
+    <li *ngFor="let rootMember of roots">
+      <!-- Pass a flag or use CSS in team-chart.component.css to hide upward connector for roots -->
+      <app-team-node [member]="rootMember"></app-team-node>
+    </li>
+  </ul>
+  <div *ngIf="!(teamRoots$ | async)?.length">
+    Loading team data or no data available...
+  </div>
+</div>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="projects">
+          <div class="projectBlock">
+            <div class="projectHead">
+              <h1 class="headlevel-three">Project Overview</h1>
+            </div>
+            <div class="row gy-4">
+              <div class="col-lg-3" *ngFor="let project of handledProjects">
+                <div class="project-card">
+                  <div class="card-pro-body">
+                      <div class="group-cont">
+                        <p class="smallhead">Project</p>
+                        <p class="mainhead">{{ project.name }}</p>
+                        <span class="small-main">Domain : {{ project.domain }}</span>
+                        <div class="project-group">
+                          <h2>Team Members</h2>
+                          <div class="projectmemGrp">
+                            <div class="projectmem" *ngFor="let team of project.team_members">
+                              <span class="card-small lit-blue">{{ team.name.slice(0,1) }}</span>
+                            </div>
+                          </div>
+                          <div class="timegrp">
+                            <span>
+                              <img src="assets/images/fuoday/badge/time.png" alt="">
+                            </span>
+                            <p>{{ project.deadline | date: 'dd/MM/yyyy'}}</p>
+                          </div>
+                          <div class="app-grp">
+                            <p>Approved</p>
+                            <span>
+                              <img src="assets/images/fuoday/badge/approved.png" alt="">
+                            </span>
+                          </div>
+                          <div class="desc-last">
+                            <!-- <p>Excellent proposal, John. Proceed with the plan.</p> -->
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <!-- Department -->
+        <!-- <div class="tab-pane fade" id="department">
+          <div class="departmentBlock">
+            <div class="department-main">
+              <div class="depart-box">
+                <div class="depart w-100 ">
+                  <div class="custom-select-wrapper">
+                    <select class="form-select" (click)="toggleArrow()">
+                      <option selected>Department Type</option>
+                      <option value="1">Administration</option>
+                      <option value="2">Management</option>
+                    </select>
+                    <i id="dropdownIcon" class="fa-solid fa-chevron-down dropdown-icon"></i>
+                  </div>
+                  <div class="custom-select-wrapper">
+                    <select class="form-select" (click)="toggleArrow()">
+                      <option selected>Location</option>
+                      <option value="1">Administration</option>
+                      <option value="2">Management</option>
+                    </select>
+                    <i id="dropdownIcon" class="fa-solid fa-chevron-down dropdown-icon"></i>
+                  </div>
+                </div>
+                <div class="w-100 d-flex justify-content-end">
+                  <div class="badge-count">
+                    <span>5 Member</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div> -->
+        <div class="tab-pane fade" id="teamlist">
+          <div>
+            <div class="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Employee ID</th>
+                    <th>Name</th>
+                    <th>Location</th>
+                    <th>Email Address</th>
+                    <th>Department</th>
+                    <th>Designation</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let member of teamMembers">
+                    <td>{{ member.emp_id }}</td>
+                    <td>{{ member.name }}</td>
+                    <td>on site</td>
+                    <td>{{ member.email }}</td>
+                    <td>{{ member.department }}</td>
+                    <td>{{ member.designation }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

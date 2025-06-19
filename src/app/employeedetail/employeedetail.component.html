@@ -1,0 +1,177 @@
+<form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+  <div class="container mt-5 pt-5">
+    <h2 class="mb-4">Employee Information Form</h2>
+    <div class="accordion" id="employeeAccordion">
+
+      <!-- Basic Information -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="basicInfoHeading">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#basicInfo" aria-expanded="true">
+            🧾 Basic Information
+          </button>
+        </h2>
+        <div id="basicInfo" class="accordion-collapse collapse show">
+          <div class="accordion-body">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label">First Name <span class="text-danger">*</span></label>
+                <input formControlName="firstName" type="text" class="form-control" placeholder="First Name">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Last Name <span class="text-danger">*</span></label>
+                <input formControlName="lastName" type="text" class="form-control" placeholder="Last Name">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Email <span class="text-danger">*</span></label>
+                <input formControlName="email" type="email" class="form-control" placeholder="Email">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Employee ID <span class="text-danger">*</span></label>
+                <input formControlName="employeeId" type="text" class="form-control" placeholder="Employee ID">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Role <span class="text-danger">*</span></label>
+                <select formControlName="role" class="form-select">
+                  <option value="">Select Role</option>
+                  <option value="employee">Employee</option>
+                  <option value="recruiter">Recruiter</option>
+                  <option value="both">Both</option>
+                </select>
+              </div>
+              <!-- Continue for group, password, department, etc. -->
+              <div class="col-md-6">
+                <label class="form-label">Blood Group</label>
+                <input type="text" class="form-control" placeholder="Group">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Password <span style="color: red;">*</span></label>
+                <input type="password" class="form-control" placeholder="Password">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Department <span style="color: red;">*</span></label>
+                <input type="text" class="form-control" placeholder="Department">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Designation <span style="color: red;">*</span></label>
+                <input type="text" class="form-control" placeholder="Designation">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Employment Type <span style="color: red;">*</span></label>
+                <select class="form-select">
+                  <option value="">Select Employment Type</option>
+                  <option value="full-time">Full-Time</option>
+                  <option value="part-time">Part-Time</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Role Location <span style="color: red;">*</span></label>
+                <input type="text" class="form-control" placeholder="Role Location">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Work Module <span style="color: red;">*</span></label>
+                <select class="form-select">
+                  <option value="">Select Work Module</option>
+                  <option value="wfo">WFO (Work From Office)</option>
+                  <option value="wfh">WFH (Work From Home)</option>
+                  <option value="remote">Remote</option>
+                  <option value="hybrid">Hybrid</option>
+                </select>
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label">Date of Joining <span style="color: red;">*</span></label>
+                <input type="date" class="form-control" placeholder="Date of Joining">
+              </div>
+              <!-- Continue for group, password, department, etc. -->
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Continue with other accordion sections similarly -->
+       <!-- Reporting Manager -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="reportingHeading">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#reporting" aria-expanded="false" aria-controls="reporting">
+            🧑‍🏫 Reporting Manager Info
+          </button>
+        </h2>
+        <div id="reporting" class="accordion-collapse collapse" aria-labelledby="reportingHeading" data-bs-parent="#employeeAccordion">
+          <div class="accordion-body">
+            <input type="text" class="form-control mb-3" placeholder="Reporting Manager ID">
+            <input type="text" class="form-control" placeholder="Reporting Manager Name">
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Bank Details -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="bankDetailsHeading">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#bankDetails" aria-expanded="false" aria-controls="bankDetails">
+            🏦 Payroll Details
+          </button>
+        </h2>
+        <div id="bankDetails" class="accordion-collapse collapse" aria-labelledby="bankDetailsHeading" data-bs-parent="#employeeAccordion">
+          <div class="accordion-body">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label">Basics Salary</label>
+                <input type="text" class="form-control" placeholder="Enter Basic Salary">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">City Compensatory Allowance</label>
+                <input type="text" class="form-control" placeholder="Enter CCA">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Special Allowance</label>
+                <input type="text" class="form-control" placeholder="Enter Special Allowance">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Additional Allowance</label>
+                <input type="text" class="form-control" placeholder="Enter Additional Allowance">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Fixed Allowance</label>
+                <input type="text" class="form-control" placeholder="Enter Fixed Allowance">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Leave Encashment</label>
+                <input type="text" class="form-control" placeholder="Enter Leave Encashment">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Gross Salary</label>
+                <input type="text" class="form-control" placeholder="Enter Gross Salary">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">EPF Contribution</label>
+                <input type="text" class="form-control" placeholder="Enter EPF Contribution">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Employee State Insurance</label>
+                <input type="text" class="form-control" placeholder="Enter ESI Contribution">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Professional Tax</label>
+                <input type="text" class="form-control" placeholder="Enter Professional Tax">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Total Deductions</label>
+                <input type="text" class="form-control" placeholder="Enter Total Deductions">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Total Salary</label>
+                <input type="text" class="form-control" placeholder="Enter Total Salary">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Continue with other accordion sections similarly -->
+
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Submit</button>
+  </div>
+</form>

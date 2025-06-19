@@ -1,0 +1,55 @@
+<div class="container" style="margin-top: 8%;">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h3 class="text-center">Employee Details Table</h3>
+    <p>Remaining Employee Count : {{ employeeData.length }} / 50</p>
+    <button class="btn btn-primary" routerLink="/employee-page">+ Add</button>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>S.No</th>
+            <th>Employee ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Department</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let emp of paginatedData; let i = index">
+            <td>{{ (currentPage - 1) * rowsPerPage + i + 1 }}</td>
+            <td>{{ emp.id }}</td>
+            <td>{{ emp.name }}</td>
+            <td>{{ emp.email }}</td>
+            <td>{{ emp.phone }}</td>
+            <td>{{ emp.dept }}</td>
+            <td>
+              <button class="btn btn-sm btn-outline-primary me-1" title="Edit">
+                <i class="fas fa-edit"></i>
+              </button>
+              <a class="btn btn-sm btn-outline-info me-1 text-dark" title="View" routerLink="/employee-page">
+                <i class="fas fa-eye"></i>
+              </a>
+              <button class="btn btn-sm btn-outline-danger" (click)="confirmDelete(i)">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Pagination -->
+      <nav>
+        <ul class="pagination justify-content-end">
+          <li *ngFor="let page of totalPages" class="page-item" [class.active]="page === currentPage">
+            <button class="page-link" (click)="changePage(page)">{{ page }}</button>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>

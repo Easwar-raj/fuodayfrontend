@@ -1,0 +1,356 @@
+@use './../../styles.scss' as *;
+
+.dashboard {
+  .overview-cards {
+    .timemanagement-block{
+      .welcomeNotes{
+        .welhead{
+          font-size: 20px;
+        }
+      }
+      .time-management-card {
+        background: #F3F4F9;
+        background: linear-gradient(274deg, rgba(243, 244, 249, 1) 0%, rgba(255, 255, 255, 1) 100%);
+        border-radius: 12px;
+        box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+        width: 100%;
+
+        .header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          border-bottom: 1px solid #000;
+          padding: 10px 15px;
+
+          h3 {
+            margin: 0;
+            font-size: 16px;
+          }
+
+          p {
+            margin: 0;
+            font-size: 12px;
+            color: #666;
+          }
+
+          .see-all {
+            font-size: 12px;
+            color: #8f8f91;
+            text-decoration: none;
+            transition: 0.3s;
+            &:hover{
+              text-decoration: underline;
+            }
+          }
+        }
+
+        .day-row {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 10px;
+          border-bottom: 1px solid #dbdada;
+
+          &:last-child {
+            border-bottom: none;
+          }
+
+          .day {
+            display: flex;
+            flex-direction: column;
+            width: 90px;
+
+            strong {
+              font-size: 0.95rem;
+            }
+
+            small {
+              font-size: 0.75rem;
+              color: #888;
+              width:150px;
+            }
+          }
+
+          .time {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+
+            .time-box {
+              padding: 0.3rem 0.6rem;
+              border-radius: 6px;
+              font-size: 0.85rem;
+            }
+          }
+
+          .total {
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: #444;
+          }
+        }
+
+
+        // total-block
+        .total-block{
+
+          .header-row {
+            background: #f8f9fa;
+            font-weight: bold;
+            font-size: 0.85rem;
+            padding: 5px 10px;
+            color: #555;
+            border-bottom: 1px solid #000;
+          }
+          .overall-login{
+
+          }
+        }
+      }
+
+    }
+    .card {
+      background: linear-gradient(to right, #f9f9f9, #fefefe);;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      flex: 1;
+      height: 225px;
+      .icon-block{
+        display: flex;
+        justify-content: center;
+        .icon {
+          width: 65px;
+          height: 65px;
+          box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+          border-radius: 50px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+
+      .time-cont{
+        margin-bottom: 0;
+      }
+      .hr-cont{
+        font-size: 22px;
+        margin-top: 10px;
+        margin-bottom: 50px;
+      }
+
+      h2 {
+        margin: 0.5rem 0;
+      }
+
+    }
+  }
+
+// Project Task update
+.project-task-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  margin-top: 20px;
+  gap: 20px;
+  .header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #000;
+    padding:10px;
+    margin-bottom: 1rem;
+
+
+
+    a {
+      font-size: 0.85rem;
+      color: #007bff;
+      text-decoration: none;
+    }
+  }
+
+  .project-covered{
+    max-height: 400px;
+    overflow: auto;
+    padding: 10px 20px;
+  }
+
+  .project-block {
+    margin-bottom: 15px;
+    border-bottom: 1px solid #cfcfcf;
+    padding-bottom: 20px;
+    &:last-child{
+      border-bottom: unset;
+      margin-bottom: 0px;
+    }
+    .bor-rig{
+      border-right: 1px solid #d5d2d2 ;
+      text-align: left;
+    }
+
+    .project-info {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+      .cont-style{
+        font-size: 15px;
+        font-weight: 600;
+        color: #484848;
+      }
+      .cont-style-high{
+        font-weight: 600;
+        font-size: 16px;
+      }
+      strong {
+        font-weight: 600;
+        display: block;
+        margin-bottom: 0.25rem;
+      }
+
+      .highlight {
+        font-weight: bold;
+        color: #000;
+        margin-right: 0.4rem;
+      }
+
+      .team-tags {
+        display: flex;
+        margin-top: 0.2rem;
+        justify-content: center;
+
+        .tag {
+          background: #f1f1f1;
+          border: 1px solid #000;
+          border-radius: 5px;
+          font-size: 0.75rem;
+          font-weight: bold;
+          color: #333;
+          width: 30px;
+          height: 30px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          &.tagone{
+            background: #d2f0ff;
+          }
+        }
+      }
+
+      .deadline {
+        display: flex;
+        align-items: center;
+        font-size: 0.8rem;
+        display: flex;
+        background: #d1d7e8;
+        padding: 3px 10px;
+        border-radius: 50px;
+        align-items: center;
+        margin-bottom: 5px;
+
+        .clock-icon {
+          margin-right: 0.25rem;
+        }
+      }
+    }
+
+    .progress-row {
+      display: flex;
+      justify-content: space-between;
+      background: #f9f9f9;
+      padding: 0.75rem 1rem;
+      border-radius: 10px;
+
+      .circle {
+        text-align: center;
+        font-size: 0.8rem;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+
+        span {
+          display: block;
+          font-weight: bold;
+          font-size: 1rem;
+          color: #0057ff;
+          margin-bottom: 0.2rem;
+        }
+      }
+    }
+  }
+}
+
+}
+
+
+// Time Tracker Block
+
+.time-tracker-page {
+  padding: 20px;
+
+  section {
+    margin-bottom: 30px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px 12px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f8f8f8;
+    }
+  }
+
+  .project-card {
+    border: 1px solid #eee;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    background-color: #fafafa;
+  }
+
+  button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #45a049;
+    }
+  }
+}
+
+.progress-ring {
+  display: flex;
+      gap: 15px;
+}
+
+circle {
+  fill: none;
+  stroke-width: 10;
+  transform: rotate(-90deg);
+  transform-origin: center;
+}
+
+.bg {
+  stroke: #cfe2ff;
+}
+
+.progress {
+  stroke: #2563eb;
+  stroke-dasharray: 220; /* 2 * PI * R (2*3.14*35) */
+  stroke-dashoffset: 44;  /* Adjust for 80% => 220 - (220 * 0.8) = 44 */
+  transition: stroke-dashoffset 0.5s ease;
+}

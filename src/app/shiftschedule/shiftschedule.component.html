@@ -1,0 +1,31 @@
+<div class="calendar-container">
+  <div class="calendar-header">
+    <h2>{{ monthName }} {{ currentYear }}</h2>
+    <div class="nav-icons">
+      <button (click)="previousMonth()">&#8592;</button>
+      <button (click)="nextMonth()">&#8594;</button>
+    </div>
+  </div>
+
+  <div class="calendar-grid">
+    <div class="day-name" *ngFor="let day of dayNames">{{ day }}</div>
+
+    <div class="day-cell" *ngFor="let day of calendarDays">
+      <div *ngIf="day">
+        <div class="day-number">{{ day.date }}</div>
+
+        <div class="slots">
+          <ng-container *ngIf="day.slots.length > 0; else addSlot">
+            <div class="slot" *ngFor="let slot of day.slots" [ngClass]="slot.type">
+              {{ slot.time }}
+            </div>
+          </ng-container>
+
+          <ng-template #addSlot>
+            <div class="add-slot" (click)="addShift(day.date)">+</div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

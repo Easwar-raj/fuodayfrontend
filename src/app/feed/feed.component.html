@@ -1,0 +1,79 @@
+
+<div class="body" >
+    <!-- Error Message -->
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+  <div class="row gy-4">
+    <div class="col-lg-6">
+          <!-- Assigned Works -->
+    <div class="box assigned" *ngIf="assignedToMe.length; else noAssignedTo">
+      <h2 class="headlevel-three">Assigned Works</h2>
+      <div class="task-block"  >
+        <div class="task" *ngFor="let task of assignedToMe">
+          <div class="task-title">{{ task.project_name }}</div>
+          <div class="text-mute">Assigned by <span class="task-badge">{{ task.assigned_by }}</span></div>
+          <p class="text-mute mb-0">{{ task.description }}</p>
+        </div>
+      </div>
+    </div>
+    <ng-template #noAssignedTo><p>No tasks assigned to you.</p></ng-template>
+    </div>
+    <div class="col-lg-6">
+          <!-- Pending Works -->
+    <div class="box pending" *ngIf="assignedByMe.length">
+      <h2 class="headlevel-three">Pending Works</h2>
+      <div class="task-block"  >
+        <div class="task" *ngFor="let task of assignedByMe">
+          <div class="task-title">{{ task.project_name }}</div>
+          <div class="text-mute">Assigned by <span class="task-badge">{{ task.assigned_to }}</span></div>
+          <p class="text-mute mb-0">{{ task.description }}</p>
+        </div>
+      </div>
+    </div>
+     <ng-template #noAssignedBy><p>No tasks assigned by you.</p></ng-template>
+    </div>
+
+
+
+
+   <div class="col-lg-6">
+     <!-- Project Report -->
+     <div class="box table-report">
+      <h2 class="headlevel-three">Project Report</h2>
+      <table class="report-table" *ngIf="projects.length">
+        <tr>
+          <th>Project Name</th>
+          <th>Progress</th>
+          <th>Deadline</th>
+        </tr>
+        <tr *ngFor="let project of projects">
+          <td>{{ project.name }}</td>
+          <td><div class="progress-block">
+            <div class="progress-bar">
+              <div class="progress" style="width: 40%; background: #e15a5a;"></div></div>
+            <span>{{ project.progress }}</span>
+          </div></td>
+          <td>{{ project.deadline }}</td>
+        </tr>
+      </table>
+    </div>
+     <ng-template #noProjects><p>No project involvement found.</p></ng-template>
+   </div>
+
+<!-- <div class="col-lg-6">
+  <div class="box schedule-box">
+    <h2 class="headlevel-three p-3 border-bottom">Schedule - {{ currentMonthYear }}</h2>
+    <div class="schedule-calendar">
+      <div *ngFor="let day of calendarDays" class="calendar-day">
+        <div class="day-number">{{ day.day }}</div>
+        <div *ngFor="let event of day.events" class="event-badge">{{ event }}</div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+  </div>
+
+
+</div>

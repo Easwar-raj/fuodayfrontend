@@ -1,0 +1,141 @@
+<div class="pay-overview">
+  <div class="payslip-container" *ngIf="employeeDetails">
+    <div class="employee-info-card">
+      <div class="header">Employee Information</div>
+        <div class="overviewall-block">
+          <div class="info-row"><label>Employee Name</label><span>{{ employeeDetails.name }}</span></div>
+          <div class="info-row"><label>Employee ID</label><span>{{ employeeDetails.emp_id }}</span></div>
+          <div class="info-row"><label>Designation</label><span>{{ employeeDetails.designation }}</span></div>
+          <div class="info-row"><label>Date of Joining</label><span>{{ employeeDetails.date_of_joining }}</span></div>
+         <div *ngIf="payslip">
+          <div class="info-row"><label>Pay Period</label><span>{{ payslip.month }}</span></div>
+          <div class="info-row"><label>Pay Date</label><span>{{ payslip.date }}</span></div>
+         </div>
+         <div *ngIf="onboardingDetails">
+          <div class="info-row"><label>PF A/C Number</label><span>{{ onboardingDetails.pf_account_no }}</span></div>
+          <div class="info-row"><label>UAN</label><span>{{ onboardingDetails.uan }}</span></div>
+          <div class="info-row"><label>ESI Number</label><span>{{ onboardingDetails.esi_no }}</span></div>
+         </div>
+          <!-- <div class="info-row align-items-center">
+            <label>Bank Account No</label>
+            <span class="main-space">
+              <button class="gradientBtn">Download</button>
+            </span>
+        </div> -->
+        </div>
+    </div>
+
+    <div class="net-pay-card">
+      <p class="title">Employee Net Pay</p>
+      <p class="amount">₹ {{ payslip.total_salary }}</p>
+      <p class="days">Paid Days : {{ payslip.total_paid_days }} | LOP Days : {{ payslip.lop ?? 0 }}</p>
+    </div>
+  </div>
+  <!-- Salary Detail -->
+
+  <div class="salary-section">
+    <h2 class="headlevel-three">Earnings</h2>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Months</th>
+            <th *ngFor="let item of salaryComponents?.Earnings | keyvalue">{{ item.key }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{payslip.month}}</td>
+            <td *ngFor="let item of salaryComponents?.Earnings | keyvalue">{{ item.value | number:'1.2-2' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="headlevel-three">Deductions</h2>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Months</th>
+            <th *ngFor="let item of salaryComponents?.Deductions| keyvalue">{{ item.key }} </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{payslip.month}}</td>
+            <td *ngFor="let item of salaryComponents?.Deductions| keyvalue">{{ item.value | number:'1.2-2' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="payable-container">
+    <h2 class="payable-title headlevel-three">Total Payable for {{payslip.month}}</h2>
+    <div class="payable-content">
+      <table class="payable-table">
+        <thead>
+          <tr >
+            <th>Gross Earnings</th>
+            <th>Total Deductions</th>
+            <th>Net Payable</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>₹ {{ payslip.gross }}</td>
+            <td>₹ {{ payslip.total_deductions }}</td>
+            <td>₹ {{ payslip.total_salary }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="net-summary">
+        <strong class="headlevel-three">Total Net Payable: ₹{{ payslip.total_salary }}</strong>
+        <p class="headlevel-three">{{ payslip.total_salary_word }}</p>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+
+<!-- Overview  -->
+
+<!-- <h2>Current Payslip</h2>
+<p *ngIf="payslip">Month: {{ payslip.month }} | Total Salary: ₹{{ payslip.total_salary }}</p>
+
+<h3>Employee Details</h3>
+<ul *ngIf="employeeDetails">
+  <li>Name: {{ employeeDetails.name }}</li>
+  <li>Designation: {{ employeeDetails.designation }}</li>
+  <li>Emp ID: {{ employeeDetails.emp_id }}</li>
+  <li>DOJ: {{ employeeDetails.date_of_joining }}</li>
+</ul>
+
+<h3>Onboarding Details</h3>
+<ul *ngIf="onboardingDetails">
+  <li>PF No: {{ onboardingDetails.pf_account_no }}</li>
+  <li>UAN: {{ onboardingDetails.uan }}</li>
+  <li>ESI No: {{ onboardingDetails.esi_no }}</li>
+  <li>Bank Acc: {{ onboardingDetails.bank_account_no }}</li>
+</ul>
+
+<h3>Salary Components</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Component</th>
+      <th>Amount</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let component of salaryComponents">
+      <td>{{ component.type }}</td>
+      <td>{{ component.salary_component }}</td>
+      <td>{{ component.amount }}</td>
+    </tr>
+  </tbody>
+</table> -->
+

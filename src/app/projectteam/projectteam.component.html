@@ -1,0 +1,68 @@
+<div class="container mb-5">
+  <div class="mb-4">
+    <h1 class="h3">Project Team Details</h1>
+  </div>
+
+  <form (ngSubmit)="submitProject()" #projectForm="ngForm">
+    <div class="mb-3">
+      <label for="name" class="form-label">Project Name</label>
+      <input type="text" class="form-control" id="name" name="name" [(ngModel)]="projectData.name" required />
+    </div>
+
+    <div class="mb-3">
+      <label for="domain" class="form-label">Domain</label>
+      <input type="text" class="form-control" id="domain" name="domain" [(ngModel)]="projectData.domain" required />
+    </div>
+
+    <div class="mb-3">
+      <label for="project_manager_id" class="form-label">Project Manager ID</label>
+      <input type="text" class="form-control" id="project_manager_id" name="project_manager_id" [(ngModel)]="projectData.project_manager_id" required />
+    </div>
+
+    <div class="mb-3">
+      <label for="project_manager_name" class="form-label">Project Manager Name</label>
+      <input type="text" class="form-control" id="project_manager_name" name="project_manager_name" [(ngModel)]="projectData.project_manager_name" required />
+    </div>
+
+    <div class="mb-3">
+      <label for="progress" class="form-label">Progress</label>
+      <input type="text" class="form-control" id="progress" name="progress" [(ngModel)]="projectData.progress" />
+    </div>
+
+    <div class="mb-3">
+      <label for="client" class="form-label">Client</label>
+      <input type="text" class="form-control" id="client" name="client" [(ngModel)]="projectData.client" />
+    </div>
+
+    <div class="mb-3">
+      <label for="comment" class="form-label">Comment</label>
+      <input type="text" class="form-control" id="comment" name="comment" [(ngModel)]="projectData.comment" />
+    </div>
+
+    <div class="mb-3">
+      <label for="date" class="form-label">Deadline</label>
+      <input type="date" class="form-control" id="date" name="date" [(ngModel)]="projectData.deadline" required />
+    </div>
+
+    <div class="mb-4">
+      <h3 class="h5 mb-3">Team Members</h3>
+      <div *ngFor="let member of projectData.team; let i = index" class="border rounded p-3 mb-3">
+        <div class="mb-3">
+          <label class="form-label">Member ID</label>
+          <input type="text" class="form-control" [(ngModel)]="member.member_id" name="member_id_{{i}}" required />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Member Name</label>
+          <input type="text" class="form-control" [(ngModel)]="member.member" name="member_{{i}}" required />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Role</label>
+          <input type="text" class="form-control" [(ngModel)]="member.role" name="role_{{i}}" required />
+        </div>
+      </div>
+      <button type="button" class="btn btn-secondary" (click)="addTeamMember()">Add Team Member</button>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save Project</button>
+  </form>
+</div>

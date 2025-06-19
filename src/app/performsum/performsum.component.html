@@ -1,0 +1,168 @@
+<div *ngIf="loading">Loading performance data...</div>
+<div *ngIf="errorMessage">{{ errorMessage }}</div>
+
+<div class="body" *ngIf="performanceData && !loading">
+  <div class="dashboard">
+    <h2 class="headlevel-three">{{ greeting }}, {{ UserName }}</h2>
+    <div class="cards">
+      <div class="card">
+        <div class="icon-block">
+          <div class="icon">
+            <img
+              src="assets/images/icons/tperform.png"
+              alt="Weekly work hour"
+            />
+          </div>
+        </div>
+        <h4 class="perf-cont">Performance Score</h4>
+        <p class="value">{{ performanceData.performance_score }}</p>
+        <!-- <div class="d-flex justify-content-center">
+          <button class="gradientBtn custom">View Attendance <span>
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000" height="800px" width="800px" version="1.1" id="Layer_1" viewBox="0 0 330 330" xml:space="preserve">
+              <path id="XMLID_222_" d="M250.606,154.389l-150-149.996c-5.857-5.858-15.355-5.858-21.213,0.001  c-5.857,5.858-5.857,15.355,0.001,21.213l139.393,139.39L79.393,304.394c-5.857,5.858-5.857,15.355,0.001,21.213  C82.322,328.536,86.161,330,90,330s7.678-1.464,10.607-4.394l149.999-150.004c2.814-2.813,4.394-6.628,4.394-10.606  C255,161.018,253.42,157.202,250.606,154.389z"/>
+              </svg>
+            </span>
+          </button>
+        </div> -->
+      </div>
+
+      <div class="card">
+        <div class="icon-block">
+          <div class="icon">
+            <img
+              src="assets/images/icons/lucide_goal.png"
+              alt="Weekly work hour"
+            />
+          </div>
+        </div>
+        <h4 class="perf-cont">Goal Progress</h4>
+        <p class="value">{{ performanceData.completed_percentage }}</p>
+        <div class="legend">
+          <span class="completed"></span> Completed
+          <span class="remaining"></span> Remaining
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="icon-block">
+          <div class="icon">
+            <img
+              src="assets/images/icons/speedrate.png"
+              alt="Weekly work hour"
+            />
+          </div>
+        </div>
+        <h4 class="perf-cont">Performance Ratings</h4>
+        <p class="value">
+          {{ performanceData.performance_rating_out_of_5 }} / 5
+        </p>
+        <!-- <div class="d-flex justify-content-center">
+          <button class="gradientBtn custom">View Attendance <span>
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000" height="800px" width="800px" version="1.1" id="Layer_1" viewBox="0 0 330 330" xml:space="preserve">
+              <path id="XMLID_222_" d="M250.606,154.389l-150-149.996c-5.857-5.858-15.355-5.858-21.213,0.001  c-5.857,5.858-5.857,15.355,0.001,21.213l139.393,139.39L79.393,304.394c-5.857,5.858-5.857,15.355,0.001,21.213  C82.322,328.536,86.161,330,90,330s7.678-1.464,10.607-4.394l149.999-150.004c2.814-2.813,4.394-6.628,4.394-10.606  C255,161.018,253.42,157.202,250.606,154.389z"/>
+              </svg>
+          </span>
+        </button>
+        </div> -->
+      </div>
+
+      <div class="card">
+        <div class="icon-block">
+          <div class="icon">
+            <img src="assets/images/icons/track.png" alt="Weekly work hour" />
+          </div>
+        </div>
+        <h4 class="perf-cont">Average Monthly Attendance</h4>
+        <p class="value">78%</p>
+        <!-- <div class="d-flex justify-content-center">
+          <button class="gradientBtn custom">View Attendance <span>
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000" height="800px" width="800px" version="1.1" id="Layer_1" viewBox="0 0 330 330" xml:space="preserve">
+              <path id="XMLID_222_" d="M250.606,154.389l-150-149.996c-5.857-5.858-15.355-5.858-21.213,0.001  c-5.857,5.858-5.857,15.355,0.001,21.213l139.393,139.39L79.393,304.394c-5.857,5.858-5.857,15.355,0.001,21.213  C82.322,328.536,86.161,330,90,330s7.678-1.464,10.607-4.394l149.999-150.004c2.814-2.813,4.394-6.628,4.394-10.606  C255,161.018,253.42,157.202,250.606,154.389z"/>
+              </svg>
+          </span>
+        </button>
+        </div> -->
+      </div>
+    </div>
+
+    <div class="charts">
+      <div class="team-status">
+        <h4 class="headlevel-three">My Teams</h4>
+        <!-- <small>From 26–30 July, 2024</small> -->
+        <ul class="circle-list">
+          <li
+            *ngFor="let item of performanceData.team_availability | keyvalue"
+            class="circle-item"
+          >
+            <div class="circle" [style.background]="getColor(item.key)">
+              {{ item.value }}%
+            </div>
+            <span class="label">{{ item.key }}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Old Line Graph -->
+
+<!-- <div class="team-efficiency">
+        <h4>Team Efficiency<br><small>From 26–30 July, 2024</small></h4>
+        <div class="bars">
+          <div class="bar-group">
+            <div class="bar last" style="height: 30px"></div>
+            <div class="bar increase" style="height: 50px"></div>
+            <span>J</span>
+          </div>
+          <div class="bar-group">
+            <div class="bar last" style="height: 40px"></div>
+            <div class="bar increase" style="height: 50px"></div>
+            <span>M</span>
+          </div>
+          <div class="bar-group">
+            <div class="bar last" style="height: 30px"></div>
+            <div class="bar increase" style="height: 40px"></div>
+            <span>E</span>
+          </div>
+          <div class="bar-group">
+            <div class="bar last" style="height: 35px"></div>
+            <div class="bar decrease" style="height: 30px"></div>
+            <span>D</span>
+          </div>
+          <div class="bar-group">
+            <div class="bar last" style="height: 40px"></div>
+            <div class="bar increase" style="height: 50px"></div>
+            <span>P</span>
+          </div>
+          <div class="bar-group">
+            <div class="bar last" style="height: 45px"></div>
+            <div class="bar increase" style="height: 50px"></div>
+            <span>A</span>
+          </div>
+        </div>
+      </div> -->
+
+<!-- <div *ngIf="loading">Loading performance data...</div>
+<div *ngIf="errorMessage">{{ errorMessage }}</div>
+
+<div *ngIf="performanceData && !loading">
+  <h3>Team Availability</h3>
+  <ul class="circle-list">
+    <li *ngFor="let item of performanceData.team_availability | keyvalue" class="circle-item">
+      <div class="circle" [style.background]="getColor(item.key)">
+  {{ item.value }}%
+</div>
+<span class="label">{{ item.key }}</span>
+
+    </li>
+  </ul>
+
+  <h3>Task Summary</h3>
+  <p>Completed: {{ performanceData.completed_percentage }}%</p>
+  <p>Pending: {{ performanceData.pending_percentage }}%</p>
+
+  <h3>Performance Score</h3>
+  <p>On-time Task Completion: {{ performanceData.performance_score }}%</p>
+  <p>Performance Rating: {{ performanceData.performance_rating_out_of_5 }} / 5</p>
+</div> -->

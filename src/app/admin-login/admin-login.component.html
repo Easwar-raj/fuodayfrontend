@@ -1,0 +1,58 @@
+
+<section class="home d-flex justify-content-center align-items-center vh-100">
+  <div class="container">
+    <div class="row d-flex align-items-center">
+
+      <!-- Left Side - Image -->
+      <div class="col-md-6 justify-content-center text-center">
+        <img src="assets/images/fuoday/logo/fuodaylogo.png" alt="Login Illustration" class="img-fluid logo-img" />
+        <!-- Optional Title -->
+        <!-- <h3 class="text-center text-uppercase animate__animated animate__fadeInDown">HRMS Sub Admin Page</h3> -->
+      </div>
+
+      <!-- Right Side - Login Card -->
+      <div class="col-md-6 d-flex justify-content-center">
+        <div class="card p-4 card-img animate__animated animate__zoomIn">
+          <h2 class="text-center mb-4">Admin Login</h2>
+          <form (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+              <label class="form-label">Email</label>
+              <input type="email"
+              name="email"
+              [(ngModel)]="formData.email"
+              placeholder="Enter your user id"
+              class="tabs__input"
+              required
+              ngModel
+              #email="ngModel" />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Password</label>
+              <input [type]="showPassword ? 'text' : 'password'"
+              id="password"
+              name="password"
+              [(ngModel)]="formData.password"
+              placeholder="******"
+              class="tabs__input"
+              required
+              ngModel
+              #password="ngModel" />
+              <span class="eye-icon" (click)="togglePasswordVisibility()">
+                {{ showPassword ? '🙈' : '👁️' }}
+              </span>
+            </div>
+            <!-- <div class="alert text-center text-danger" role="alert" *ngIf="errorMessage">
+              {{ errorMessage }}
+            </div> -->
+            <div class="d-grid">
+              <button type="submit" class="submit-btn">
+                Login Now
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

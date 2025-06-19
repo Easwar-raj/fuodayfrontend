@@ -1,0 +1,54 @@
+<div class="mb-5">
+
+
+<div class="container mt-5">
+  <h2>Create or Update Client</h2>
+
+  <form [formGroup]="clientForm" (ngSubmit)="onSubmit()">
+    <!-- <div class="mb-3">
+      <label class="form-label">Admin User ID *</label>
+      <input type="text" class="form-control" formControlName="admin_user_id">
+    </div> -->
+
+    <div class="mb-3">
+      <label class="form-label">Client Name *</label>
+      <input type="text" class="form-control" formControlName="name">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Description</label>
+      <textarea class="form-control" formControlName="description"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Logo (Image)</label>
+      <input type="file" (change)="onFileChange($event)" accept="image/*" class="form-control">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Action *</label>
+      <select class="form-select" formControlName="action">
+        <option value="create">Create</option>
+        <option value="update">Update</option>
+      </select>
+    </div>
+
+    <div class="mb-3" *ngIf="clientForm.get('action')?.value === 'update'">
+      <label class="form-label">Client ID (for update only)</label>
+      <input type="text" class="form-control" formControlName="id">
+    </div>
+  <div class="alert mt-3" *ngIf="responseMessage">
+    {{ responseMessage }} ✅
+  </div>
+    <button class="btn btn-primary" type="submit" [disabled]="isSubmitting">
+      {{ isSubmitting ? 'Submitting...' : 'Submit' }}
+    </button>
+  </form>
+
+
+</div>
+
+
+
+
+</div>

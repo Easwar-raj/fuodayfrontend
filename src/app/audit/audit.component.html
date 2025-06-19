@@ -1,0 +1,61 @@
+<div class="audit-wrapper">
+  <h2 class="headlevel-three"><i class="icon-user"></i> Employee Information</h2>
+  <div class="info-card">
+    <p><span>Employee Name:</span> {{ profileData.name }}</p>
+    <p><span>Emp ID:</span> {{ profileData.emp_id }}</p>
+    <p><span>Department:</span> {{ profileData.department }}</p>
+    <p><span>Designation:</span> {{ profileData.designation }}</p>
+    <p><span>Reporting Manager:</span> {{ profileData.reporting_manager_name }}</p>
+    <p><span>Date of Joining:</span> {{ profileData.date_of_joining }}</p>
+    <p><span>Attendance Summary:</span> {{ profileData.attendance }}</p>
+    <p><span>Payroll (May 2025):</span> {{ profileData.payroll }}</p>
+  </div>
+
+  <form [formGroup]="auditForm" (ngSubmit)="submitForm()" enctype="multipart/form-data" class="audit-form">
+    <h2 class="headlevel-three"><i class="icon-edit"></i> Self Filling Form</h2>
+    <div class="form-card">
+      <label>Project / Task Highlights</label>
+      <textarea formControlName="taskHighlights" placeholder="Project / Task Highlights"></textarea>
+
+      <label>Challenges</label>
+      <textarea formControlName="challenges" placeholder="Challenges"></textarea>
+
+      <label>Support Needed</label>
+      <textarea formControlName="supportNeeded" placeholder="Support Needed"></textarea>
+
+      <label>Self-Rating (1–5)</label>
+      <input type="number" formControlName="selfRating" placeholder="1–5" />
+
+      <label>Additional Comments</label>
+      <textarea formControlName="comments" placeholder="Comments (optional)"></textarea>
+
+      <label>Month Report Upload</label>
+      <input type="file" (change)="onFileSelected($event)" />
+    </div>
+
+    <div *ngIf="profileData?.designation === 'Reporting Manager'">
+      <h2 class="headlevel-three"><i class="icon-briefcase"></i> Manager Review</h2>
+      <div class="form-card">
+        <label>Work Justification</label>
+        <textarea formControlName="workJustification" placeholder="Justify the work"></textarea>
+
+        <label>Manager Rating (1–5)</label>
+        <input type="number" formControlName="managerRating" placeholder="1–5" />
+
+        <label>Final Remarks</label>
+        <textarea formControlName="finalRemarks" placeholder="Final Remarks"></textarea>
+
+        <label>Submission Status</label>
+        <select formControlName="submissionStatus">
+          <option>Submitted to Management</option>
+          <option>Pending Review</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="d-flex  justify-content-end">
+      <button type="submit" class="gradientBtn mb-2 move-right">Submit</button>
+    </div>
+    <p *ngIf="submitted" class="success">✅ Successfully submitted your audit form!</p>
+  </form>
+</div>

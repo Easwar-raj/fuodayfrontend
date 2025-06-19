@@ -1,0 +1,326 @@
+@use './../../styles.scss' as *;
+
+.teamBlock{
+  .team{
+    .profile-banner {
+      // background: url('../../assets/images/fuoday/bg/welbg.png') center / cover;
+      background-position: center top;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+      .profile-img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 20px;
+      }
+
+      .profile-details {
+        display: flex;
+        flex-direction: column;
+        .txt-bold{
+          font-weight: bold;
+          font-size: 0.9rem;
+
+        }
+      }
+  }
+  .custom-tab {
+    border: 1px solid #ccc;
+    background-color: white;
+    border-radius: 30px;
+    overflow: hidden;
+    padding: 5px 10px;
+    justify-content: space-between;
+  }
+
+  .custom-tab .nav-link {
+    border: none;
+    color: black;
+    font-weight: 500;
+    padding: 8px 20px;
+    transition: 0.3s;
+    cursor: pointer;
+  }
+
+  .custom-tab .nav-link.active {
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+    border-radius: 10px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  }
+
+  .custom-tab .nav-item:last-child .nav-link {
+    padding: 8px 12px;
+  }
+
+  .tab-content {
+    margin: 20px auto;
+    border-radius: 12px;
+  }
+  // Team Tree
+
+  .teamTreeBlock{
+
+  }
+
+  // Report
+  .direct-reports {
+
+  }
+
+  .report-card {
+    border: 1px solid #00000050;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 15px;
+    background: linear-gradient(to right, #f9f9f9, #fefefe);
+    position: relative;
+  }
+
+  .report-initial {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #6c757d;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 30px;
+    font-weight: bold;
+  }
+
+  .report-card .name {
+    font-weight: 600;
+  }
+
+  .report-card .label {
+    font-weight: 600;
+  }
+  // Project
+  .projectBlock{
+    .projectHead{
+      // h1{
+      //   font-size: 20px;
+      //   margin-bottom: 20px;
+      //   color: #0d6efd;
+      // }
+    }
+    .project-card{
+      padding: 20px;
+      border-radius: 10px;
+      border: 1px solid gray;
+      background: linear-gradient(279deg, rgb(241, 243, 247) 0%, rgb(252, 253, 254) 100%);
+      .card-pro-body{
+        .group-cont{
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        .smallhead{
+          margin-bottom: 0;
+          font-weight: 500;
+        }
+        .mainhead{
+          margin-bottom: 0;
+          font-weight: 500;
+        }
+        .small-main{
+          font-size: 14px;
+        }
+      }
+
+      .project-group{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        h2{
+          font-size: 20px;
+        }
+        .projectmemGrp{
+          display:flex;
+          margin-bottom: 10px;
+          .projectmem{
+
+          }
+          .card-small{
+            border: 1px solid;
+            border-radius: 5px;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;;
+            &.lit-blue{
+              background: #d2f0ff;
+            }
+            &.lit-orange{
+              background:#fabcb5;
+            }
+            &.lit-voilent{
+              background:#e5c7e0;
+            }
+            &.lit-yel{
+              background:#ffe075;
+            }
+          }
+        }
+        .desc-last{
+          p{
+            // color:#1a4aef;
+            text-align: center;
+            margin-bottom: 0;
+          }
+        }
+        .app-grp{
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          p{
+            margin-bottom: 0;
+          }
+        }
+      }
+      .timegrp{
+        display: flex;
+        background: #d1d7e8;
+        padding: 0 10px;
+        border-radius: 50px;
+        align-items: center;
+        margin-bottom: 5px;
+        span{
+          margin-right: 5px;
+          display: flex;
+        }
+        p{
+          margin-bottom: 0px;
+        }
+      }
+    }
+  }
+
+  // Department
+
+  .departmentBlock{
+    .department-main{
+      .depart-box{
+        border: 1px solid gray;
+        padding: 20px;
+        background: linear-gradient(to right, #f9f9f9, #fefefe);
+        border-radius: 10px;
+        display: flex;
+        justify-content: space-between;
+        .depart{
+          display: flex;
+          justify-content: space-between;
+        }
+        .custom-select-wrapper {
+          position: relative;
+          width: 250px;
+        }
+
+        .custom-select-wrapper select {
+          padding-right: 2.5rem;
+        }
+
+        .dropdown-icon {
+          position: absolute;
+          top: 50%;
+          right: 10px;
+          pointer-events: none;
+          transform: translateY(-50%);
+          color: #6c757d;
+          transition: transform 0.2s ease;
+        }
+
+        .rotate-up {
+          transform: translateY(-50%) rotate(180deg);
+        }
+        .badge-count{
+          padding: 5px 10px;
+          border: 1px solid;
+          border-radius: 5px;
+          background: #072aee;
+          color: #fff;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+    }
+
+
+  }
+
+
+  .table-container {
+    padding: 1rem;
+    overflow-x: auto;
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: $head-thikse-font2;
+
+      thead {
+        // background-color: #d7e7f7;
+
+        th {
+          padding: 10px;
+          text-align: left;
+          font-weight:500;
+          font-size: 18px;
+          // border-bottom: 2px solid #ccc;
+        }
+      }
+
+      tbody {
+        tr {
+          border-bottom: 2px solid #e7e7e7;
+          &:hover {
+           background-color: #f9f9f9;
+          }
+          td {
+            padding: 10px;
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+
+// Chart
+
+.org-chart-container {
+  display: flex;
+  // justify-content: center; /* Center the chart on the page */
+  padding: 20px;
+  overflow-x: auto; /* Allow horizontal scrolling if chart is wide */
+}
+
+.org-chart-root {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex; /* If multiple root elements, arrange them */
+  /* For a single root, flex is not strictly necessary but good for consistency */
+  flex-direction: column; /* If roots should stack or if only one root */
+  align-items: center; /* Center the single root or the column of roots */
+}
+
+/* Style the first-level node-container (direct children of org-chart-root > li)
+   to ensure it doesn't have padding for an incoming connector from a non-existent parent. */
+.org-chart-root > li > app-tree-node > .node-container {
+  padding-top: 0;
+}
+/* Hide the upward connector line for the very root nodes */
+.org-chart-root > li > app-tree-node > .node-container > .node-card::before {
+  display: none; /* If you had an upward connector defined */
+}

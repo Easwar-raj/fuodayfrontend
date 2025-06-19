@@ -1,0 +1,285 @@
+<section class="organization-block">
+  <div class="organization">
+    <div class="row gy-4">
+      <div class="col-lg-12">
+        <div class="organization-box" [ngStyle]="{'background-image': backgroundStyle, 'background-size': 'cover'}">
+          <div class="img-block">
+            <img
+              src="{{ ofc_logo }}"
+              alt="Organization Images"
+            />
+          </div>
+        </div>
+      </div>
+      <!-- Nav Tab -->
+      <div class="organization-tab">
+        <!-- Nav Tabs -->
+        <ul class="nav nav-tabs custom-tab">
+          <li class="nav-item">
+            <a class="nav-link active" data-bs-toggle="tab" href="#about"
+              >About Us</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#services"
+              >Services</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#industries"
+              >Industries</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#client"> Client</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#team"> Our Team</a>
+          </li>
+        </ul>
+
+        <!-- Tab Content -->
+        <div class="tab-content">
+          <div class="tab-pane fade show active" id="about">
+            <div class="about-block">
+              <div class="aboutmain">
+                <main class="about-start">
+                  <h2 class="headlevel-two-head">About Us</h2>
+                  <p class="intro">
+                    {{ aboutDescription }}
+                  </p>
+
+                  <div class="cards row">
+                    <div class="col-lg-6 col-md-6">
+                      <div class="card">
+                        <h3 class="headlevel-three-h">Achievements</h3>
+                        <div class="card-body">
+                          <div
+                            class="overall-detail"
+                            *ngFor="let item of achievements"
+                          >
+                            <div class="first-letter">
+                              <span class="circle">🎖️</span>
+                            </div>
+                            <div class="desc">
+                              <div class="detail text-left">
+                                <p class="box-title">{{ item.achievement }}</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                      <div class="card">
+                        <h3 class="headlevel-three-h">Our Values</h3>
+                        <div class="card-body">
+                          <div
+                            class="overall-detail"
+                            *ngFor="let item of achievements"
+                          >
+                            <div class="first-letter">
+                              <span class="circle">🎖️</span>
+                            </div>
+                            <div class="desc">
+                              <div class="detail text-left">
+                                <p class="box-title">{{ item.values }}</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </main>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="services">
+            <div class="service-block">
+              <section class="services-section">
+                <div class="service-main">
+                  <h2 class="section-title headlevel-two-head">Our Services</h2>
+                  <p class="section-description">
+                    {{ servicesDescription }}
+                  </p>
+                </div>
+
+                <div class="services-grid">
+                  <div class="service-card" *ngFor="let service of services">
+                    <div class="service-icon">🔷</div>
+                    <h3 class="headlevel-two">{{ service.name }}</h3>
+                    <p>{{ service.description }}</p>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="industries">
+            <div class="industries-block">
+              <section class="industries-section">
+                <h2 class="industries-title headlevel-two-head">Industries We Serve</h2>
+                <p class="industries-subtitle">
+                  {{ industriesDescription }}
+                </p>
+
+                <div class="industries-grid">
+                  <!-- Cards -->
+                  <div
+                    class="industry-card"
+                    *ngFor="let industry of industries"
+                  >
+                    <div class="icon">💙</div>
+                    <h3 class="headlevel-two">{{ industry.name }}</h3>
+                    <p>{{ industry.description }}</p>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="client">
+            <div class="client-block">
+              <section class="client-section">
+                <div class="client-main">
+                  <h2 class="headlevel-two-head">Client</h2>
+                  <p>{{ clientsDescription }}</p>
+                </div>
+                <!-- Client Slide -->
+                <!-- Upcoming Client -->
+                <section id="businesspartner" class="businesspartner py-30px">
+                  <div class="container">
+                    <div class="w-100 mt-3">
+                      <div class="">
+                        <div
+                          id="carouselExampleAutoplayingone"
+                          class="carousel slide mainBlock"
+                          data-bs-ride="carousel"
+                          data-bs-interval="500"
+                        >
+                          <div class="carousel-inner h-100 d-flex">
+                            <div
+                              class="carousel-item blockPlace"
+                              *ngFor="let client of clients; let i = index"
+                              [class.active]="i === 0"
+                            >
+                              <img
+                                src="{{ client.logo }}"
+                                class="d-block img-1"
+                                alt="..."
+                                width="150px"
+                                draggable="false"
+                              />
+                              <!-- <div class="client-header">
+                                <h2 class="headlevel-three">
+                                  {{ client.name }}
+                                </h2>
+                              </div> -->
+                            </div>
+                          </div>
+                          <button
+                            class="carousel-control-prev"
+                            type="button"
+                            data-bs-target="#carouselExampleAutoplayingone"
+                            data-bs-slide="prev"
+                          >
+                            <span
+                              class="carousel-control-prev-icon"
+                              aria-hidden="true"
+                            ></span>
+                            <span class="visually-hidden">Previous</span>
+                          </button>
+                          <button
+                            class="carousel-control-next"
+                            type="button"
+                            data-bs-target="#carouselExampleAutoplayingone"
+                            data-bs-slide="next"
+                          >
+                            <span
+                              class="carousel-control-next-icon"
+                              aria-hidden="true"
+                            ></span>
+                            <span class="visually-hidden">Next</span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+                <!-- Upcoming Client End -->
+                <!-- Client Slide End -->
+              </section>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="team">
+            <div class="team-block">
+              <div class="teammain">
+                <main class="team-start">
+                  <h2 class="headlevel-two-head">Our Team</h2>
+                  <p class="intro">
+                    {{ teamDescription }}
+                  </p>
+
+                  <div class="row gy-4">
+                    <div
+                      class="col-lg-6 col-md-6"
+                      *ngFor="let department of teamByDepartment | keyvalue"
+                    >
+                      <div class="cards">
+                        <div class="card">
+                          <h3 class="headlevel-three-h">
+                            {{ department.key }}
+                          </h3>
+                          <div class="card-body">
+                            <div
+                              class="overall-detail"
+                              *ngFor="let emp of department.value"
+                            >
+                              <div class="first-letter">
+                                <span class="circle">{{
+                                  emp.name.slice(0, 1)
+                                }}</span>
+                              </div>
+                              <div class="desc">
+                                <div class="detail text-left">
+                                  <p class="box-title">{{ emp.name }}</p>
+                                  <p class="box-title-small">
+                                    {{ emp.designation }}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </main>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<!-- <h2>Clients</h2>
+<p>{{ clientsDescription }}</p>
+<div class="clients">
+  <div *ngFor="let client of clients">
+    <img [src]="'http://your-laravel-domain/storage/' + client.logo" alt="{{ client.name }}" width="100" />
+    <p>{{ client.name }}</p>
+  </div>
+</div>-->
+
+<!-- <h2>Team</h2>
+<p>{{ teamDescription }}</p>
+<div *ngFor="let department of teamByDepartment | keyvalue">
+  <h3>{{ department.key }}</h3>
+  <ul>
+    <li *ngFor="let emp of department.value">
+      {{ emp.name }} - {{ emp.designation }} ({{ emp.role }})
+    </li>
+  </ul>
+</div> -->

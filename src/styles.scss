@@ -1,0 +1,1798 @@
+// Basic Common Style
+
+// Gap Style
+
+.rw-gp-20px {
+  row-gap: 1.25rem;
+}
+
+// Space
+
+.rt-sp-5 {
+  margin-right: 5px;
+}
+
+// Icon-sizes
+
+.icon-16 {
+  width: 1rem;
+  height: 1rem;
+}
+.icon-18 {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+.icon-20 {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+.icon-28 {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+.cusor-pointer {
+  cursor: pointer;
+}
+
+
+// Dont Remove
+
+.table>:not(caption)>*>* {
+  background: unset;
+  color: unset;
+}
+
+
+
+// Common Style of Fuoday
+
+// text-Colors
+
+$primary-thikse-color: #0046f3;
+$secondary-thikse-color-lite:#ebfaff;
+$danger-thikse-color:#dc3545;
+$white-color: #ffffff;
+// Common Font Style
+
+$descFon-thikse-login: "Rajdhani", sans-serif;
+$labelFont-thikse-login: "Rajdhani", sans-serif;
+$headFont-thikse-login: "Rajdhani", sans-serif;
+
+// thikse Light Theme
+$boxShadow-login-thikse-light: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+  rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+
+// thikse BG Variable
+$logonbg-thikse-light: #002040;
+$loginGd-thikse-light: linear-gradient(
+  131deg,
+  rgb(0, 0, 0) 2%,
+  rgb(15, 132, 245) 38%,
+  rgb(0, 0, 0) 100%
+);
+$theme-bg-light: #ffffff;
+$text-color-light: #000;
+$gradient-colorMain-sbg-thikse-light: #000;;
+$gradient-colorMain-bg-thikse-light:linear-gradient(90deg, #000 2%, #0f84f5 38%, #000);
+$gradient-colorSide-bg-thikse-light:linear-gradient(168deg, #000 9%, #0f84f5 51%, #000);;
+
+$gradient-cardMain-sbg-thikse-light: $primary-thikse-color;
+$gradient-cardMain-bg-thikse-light: linear-gradient(-60deg, #d4f0ff, #a6d7ff 15%, #69b3ff 30%, #77a8ed 45%, #71adf1 60%, #8bb5ef 75%, #a6d7ff 90%, #d4f0ff);
+
+
+$gradient-navTab-bg-thikse-light:linear-gradient(-60deg, #d4f0ff, #a6d7ff 15%, #69b3ff 30%, #3689ff 45%, #1565c0 60%, #3689ff 75%, #a6d7ff 90%, #d4f0ff);
+
+// thikse Border
+$border-navTab-thikse:1px solid #bcd9ff;
+
+
+// thikse Box Shadow
+$boxShadow-navTab-thikse:2px 2px 0.5em rgba(30, 80, 180, 0.45), inset 1px 1px 0 rgba(255, 255, 255, 0.8), inset -1px -1px 0 rgba(0, 0, 0, 0.2);
+
+// thikse Button Color
+
+$gradient-button-bg-thikse-light:radial-gradient(75% 50% at 50% 0%, #f6f4ff, transparent), radial-gradient(75% 35% at 50% 85%, #4d2ff5, transparent);
+$gradient-button-boxShadow-thikse-light: inset 0 -2px 4px 1px rgb(17 55 231 / 60%), inset 0 -4px 4px 1px #2f64f5, inset 0 0 2px 1px rgba(255, 255, 255, 0.2), 0 1px 4px 1px rgb(17 67 231 / 20%), 0 1px 4px 1px rgba(0, 0, 0, 0.1);
+
+
+//thikse Dark Theme
+
+$theme-bg-dark: #000;
+$text-color-dark: #fff;
+$gradient-colorMain-sbg-thikse-dark: #000;
+$gradient-colorMain-bg-thikse-drak: linear-gradient(
+  131deg,
+  #000 2%,
+  #f5840f 38%,
+  #000
+);
+$gradient-colorSide-bg-thikse-dark: linear-gradient(
+  131deg,
+  #000 2%,
+  #f5840f 38%,
+  #000
+);
+$gradient-cardMain-sbg-thikse-dark: hsla(333, 100%, 53%, 1);
+$gradient-cardMain-bg-thikse-dark: linear-gradient(90deg, hsla(333, 100%, 53%, 1) 0%, hsla(33, 94%, 57%, 1) 100%);
+
+// All h2 Font style common
+$head-thikse-font2: "Rajdhani", sans-serif;
+
+
+:root{
+  --primary-thikse: #{$primary-thikse-color};
+}
+
+
+
+// Background Color
+
+$navGd: linear-gradient(
+  252deg,
+  rgba(18, 134, 245, 1) 0%,
+  rgba(233, 249, 255, 1) 100%
+);
+
+// Box-Shadow
+
+$boxShadow-2: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+
+$card-block-bg: #000;
+$card-block-bgm: linear-gradient(131deg, #ebebeb 2%, #0f84f582 38%, #0000003d);
+
+// Font-color
+
+$grayLow-color: #434343;
+$input-color: #b5b4b4;
+
+// Cursor Style
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+// Light Theme Work
+
+.thikse {
+  &.light-theme {
+    font-family: $head-thikse-font2;
+    height: fit-content;
+    background-color: $theme-bg-light;
+    --primary: #{$primary-thikse-color};
+    .closeicon{
+      border-radius: 50px;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: $white-color;
+      border: 1px solid gray;
+      font-size: 16px;
+      transition: 0.7ms;
+      padding: unset;
+      font-family: $head-thikse-font2;
+    &:hover{
+      background: $danger-thikse-color;
+      color: $white-color;
+      border: unset;
+    }
+    }
+    .top-nav {
+      background: $gradient-colorMain-sbg-thikse-light;
+      background: $gradient-colorMain-bg-thikse-light;
+    }
+    .side-nav {
+      background: $gradient-colorMain-sbg-thikse-light;
+      background: $gradient-colorSide-bg-thikse-light;
+    }
+    .headlevel-one-w {
+      font-size: 1.9rem;
+      color: $white-color;
+      font-family: $head-thikse-font2;
+      font-weight: 600;
+    }
+    // Common Style
+    .primary-color{
+      color: $primary-thikse-color !important;
+    }
+
+
+    // HeadLevels
+
+    .headlevel-two{
+      color: $primary-thikse-color;
+    }
+
+
+
+    .headlevel-one-w {
+      font-size: 1.9rem;
+      color: $white-color;
+      font-family: $head-thikse-font2;
+      font-weight: 600;
+    }
+    .headlevel-one-b {
+      font-size: 1.9rem;
+      color: $text-color-light;
+      font-family: $head-thikse-font2;
+      font-weight: 600;
+    }
+
+    .headlevel-two {
+      font-size: 1.5rem;
+      color: $primary-thikse-color;
+      font-family: $head-thikse-font2;
+      font-weight: 700;
+    }
+    .headlevel-two-head {
+      font-size: 2rem;
+      color: $primary-thikse-color;
+      font-family: $head-thikse-font2;
+      font-weight: 700;
+    }
+
+
+    .headlevel-three-normal {
+      font-size: 1.25rem;
+      color: $text-color-light;
+      font-family: $head-thikse-font2;
+      font-weight: 600;
+    }
+    .headlevel-three {
+      font-size: 1.25rem;
+      color: $primary-thikse-color;
+      font-family: $head-thikse-font2;
+      font-weight: 600;
+    }
+    // Home Team , about
+
+    .headlevel-three-h {
+      padding: 0.625rem;
+      font-size: 1rem;
+      font-family: $head-thikse-font2;
+      text-align: left;
+      border-bottom: 1px solid;
+      margin-bottom: 0;
+    }
+    .box-title {
+      margin-bottom: 5px;
+      font-size: 1rem;
+      font-family: $head-thikse-font2;
+    }
+    .box-title-small {
+      font-size: 0.875rem;
+      font-family: $head-thikse-font2;
+      margin-bottom: 0;
+    }
+    .box-title-gray {
+      font-size: 0.875rem;
+      font-family: $head-thikse-font2;
+      margin-bottom: 0;
+    }
+
+    // Home Style
+.custom-tab{
+.nav-link{
+  &.active{
+    box-shadow: $boxShadow-navTab-thikse;
+    border: $border-navTab-thikse;
+    background:$gradient-navTab-bg-thikse-light;
+  }
+}
+}
+
+.top-links{
+  .top-btn{
+    &.active{
+      color: $primary-thikse-color !important;
+    }
+  }
+}
+
+.eventBlock{
+.headblock{
+  .eventicon{
+    span{
+    background: #3712f5;
+    background: linear-gradient(252deg, rgb(18 56 245) 0%, rgb(233, 249, 255) 100%);
+ }
+}
+
+}
+}
+
+    .project-card{
+      .card-pro-body{
+
+        .smallhead{
+          color: $primary-thikse-color;
+        }
+
+        .small-main{
+          color: $primary-thikse-color;
+
+        }
+      }
+      .desc-last{
+        p{
+color: $primary-thikse-color;
+        }
+      }
+    }
+  // Card Design Organization
+
+  .card-common-bg{
+      background: $gradient-cardMain-sbg-thikse-light;
+      background: $gradient-cardMain-bg-thikse-light;
+  }
+   .regonisation {
+        .reg-card {
+          background: $gradient-cardMain-sbg-thikse-light;
+          background: $gradient-cardMain-bg-thikse-light;
+        }
+      }
+  .generalBlock{
+    .checkbox{
+      background: $gradient-cardMain-sbg-thikse-light;
+      background: $gradient-cardMain-bg-thikse-light;
+    }
+  }
+
+  .table-container{
+    table{
+      thead{
+    background-color: $primary-thikse-color;
+    color: $white-color;
+}
+    }
+  }
+
+  .badge-cover{
+    .badge-site{
+      background: $primary-thikse-color;
+      border:1px solid $primary-thikse-color;
+    }
+  }
+
+  .node-container{
+    .node-card{
+    background-color: $white-color;
+    border: 2px solid $primary-thikse-color;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    &.has-children{
+      ::after{
+        background-color: $primary-thikse-color;
+      }
+       .toggler{
+      background: $primary-thikse-color;
+      border: 1px solid $white-color;
+      color:$white-color;
+      &::after{
+        background-color: $primary-thikse-color;
+      }
+    }
+    }
+    }
+    .profile-pic{
+      border: 3px solid $primary-thikse-color;
+    }
+    .children-list{
+      &::before{
+        background-color: $primary-thikse-color;
+      }
+      li{
+        &::before{
+           background-color: $primary-thikse-color;
+        }
+      }
+    }
+
+
+  }
+
+  // Profile
+
+  .profile-detBlock{
+    .card{
+      background: $secondary-thikse-color-lite;
+    }
+  }
+  .referral-box{
+    background: $primary-thikse-color;
+  }
+  .quote{
+    color:$primary-thikse-color;
+  }
+
+  // Attendance
+
+  .weather-card{
+    background:$secondary-thikse-color-lite;
+  }
+
+  .stats-card{
+    background:$secondary-thikse-color-lite;
+  }
+
+  .attend-sub{
+    svg{
+      fill:$primary-thikse-color;
+    }
+  }
+
+  .table-container {
+    background-color:white;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    .pagination-wrapper{
+      display: flex;
+      justify-content: center;
+    }
+    .ngx-pagination{
+      .current{
+        background:$primary-thikse-color ;
+        color: $white-color;
+      }
+    }
+}
+
+// Time Tracker
+
+.blue-slot{
+  background-color: $primary-thikse-color;
+  color: $white-color;
+}
+.leave-slot{
+  background-color: $danger-thikse-color;
+  color: $white-color;
+}
+.welhead{
+  color: $primary-thikse-color;
+}
+.time{
+  .time-box{
+    background:$primary-thikse-color;
+    color: $white-color;
+  }
+}
+// HR
+.hr-box{
+  .card{
+    border: 1px solid #80808059;
+     .section-header{
+    background: $primary-thikse-color;
+    color: $white-color;
+  }
+  }
+
+}
+  // Leave Block
+
+  .leave-blockSub{
+    .card{
+      background:$secondary-thikse-color-lite;
+    }
+  }
+
+
+  .cards {
+    .card {
+      flex: 1 1 300px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      background-color: #fff;
+      padding: 0;
+      .card-body {
+        padding: 0 !important;
+        max-height: 300px;
+        overflow: auto;
+      }
+    }
+  }
+  .leave-color{
+  stroke: $primary-thikse-color;
+}
+
+  // Organizational
+
+.organization-tab{
+  .industry-card{
+    background: $secondary-thikse-color-lite;
+  }
+}
+// Client
+
+.businesspartner{
+  .mainBlock{
+     background: $secondary-thikse-color-lite;
+  }
+}
+.carousel-control-next-icon, .carousel-control-prev-icon{
+  background-color: $primary-thikse-color;
+}
+
+// Feed
+.task{
+  border-left: 3px solid $primary-thikse-color;
+  border-top-left-radius: unset;
+  border-bottom-left-radius: unset;
+  .task-badge{
+    border-radius: 10px;
+    color:$white-color;
+    background: $primary-thikse-color;
+    padding: 1px 5px;
+  }
+}
+
+.box{
+h2{
+      color: $primary-thikse-color;
+    }
+}
+// Payslip
+
+.employee-info-card{
+  .header{
+    background: $primary-thikse-color;
+    color: $white-color;
+  }
+}
+
+.net-pay-card{
+.title{
+  color: $primary-thikse-color;
+}
+.amount{
+  color: $primary-thikse-color;
+}
+.days{
+color:$primary-thikse-color;
+}
+}
+
+.overviewall-block{
+  background: $secondary-thikse-color-lite;
+}
+
+// Performance
+
+.cards{
+  .card{
+    background: $secondary-thikse-color-lite;
+  }
+}
+.progress-table{
+  th{
+    background: $primary-thikse-color;
+    color: $white-color;
+  }
+}
+.payable-table{
+  thead{
+    background: $primary-thikse-color;
+    color: $white-color;
+  }
+  tbody{
+   background: $secondary-thikse-color-lite;
+  }
+}
+.feedbackavatar-reply{
+  background-color: $primary-thikse-color;
+  color: $white-color;
+}
+.text-prim-color{
+  color: $primary-thikse-color;
+}
+.dateBadge{
+  background: $secondary-thikse-color-lite;
+  padding: 0 10px;
+  border-radius: 10px;
+}
+.popup-header {
+  .rateSlide-Block{
+    .rate-header{
+      .headerOverall{
+        background-color: $primary-thikse-color;
+      }
+    }
+  }
+}
+
+.feedPop-body{
+  padding: 16px;
+  .covered-allBlock{
+    .number{
+        background: $secondary-thikse-color-lite;
+    }
+  }
+}
+
+// Support
+
+.section-title-blue{
+  color: $primary-thikse-color;
+}
+.assign-btn{
+color:$primary-thikse-color;
+background: none;
+border: none;
+
+}
+
+.ticket-raise{
+  p{
+    font-size: 14px;
+    .ticket-color{
+      color: $primary-thikse-color;
+    }
+  }
+}
+
+  // Backround Gradient
+
+  // Basics Class
+  // $nav-font:$head-thikse-font2;
+  .primary-font {
+    font-family: $head-thikse-font2;
+  }
+
+  // Fontcolor
+  .prime-color {
+    color: $primary-thikse-color;
+  }
+
+  // Description
+
+  .desc-one-w {
+    font-family: $head-thikse-font2;
+    font-size: 1.25rem;
+    color: $white-color;
+    margin-bottom: 0;
+  }
+  .desc-one-b {
+    font-family: $head-thikse-font2;
+    font-size: 1.25rem;
+    color: $text-color-light;
+    margin-bottom: 0;
+  }
+
+  // Name , emp , mail
+  .profile-name-w {
+    font-family: $head-thikse-font2;
+    font-size: 1.25rem;
+    color: $white-color;
+  }
+  .profile-name-b {
+    font-family: $head-thikse-font2;
+    font-size: 1.25rem;
+    color: $text-color-light;
+  }
+  .profile-popName-b {
+    font-family: $head-thikse-font2;
+    font-size: 1rem;
+    color: $text-color-light;
+  }
+
+  .profile-smfont-w {
+    font-family: $head-thikse-font2;
+    font-size: 1rem;
+    color: $white-color;
+  }
+  .profile-smfont-b {
+    font-family: $head-thikse-font2;
+    font-size: 1rem;
+    color: $text-color-light;
+  }
+
+  // Box Title
+
+  .box-head {
+    margin-bottom: 10px;
+    font-size: 1.125rem;
+    font-family: $head-thikse-font2;
+    color: #9b9b9c;
+  }
+  .box-sm-title {
+    font-size: 1.063rem;
+    font-family: $head-thikse-font2;
+    color: $primary-thikse-color;
+  }
+
+  .box-header {
+    background: $primary-thikse-color;
+    color: $white-color;
+    padding: 10px 15px;
+    border-radius: 5px 5px 0 0;
+    font-size: 1rem;
+  }
+
+  // Award
+
+  .award {
+    font-family: $head-thikse-font2;
+    font-size: 1.125rem;
+  }
+
+  // Btn Design
+
+  .gradientBtn {
+    border: 1px solid $primary-thikse-color;
+    border-radius: 50px;
+    padding: 8px 1rem;
+    min-width: 8em;
+    background-color: $primary-thikse-color;
+    background-image: $gradient-button-bg-thikse-light;
+    box-shadow: $gradient-button-boxShadow-thikse-light;
+    color: $white-color;
+    text-align: center;
+    text-shadow: 0 1px 1px $primary-thikse-color;
+    transition-property: border-color, transform, background-color;
+    transition-duration: 0.2s;
+    cursor: pointer;
+    &.custom {
+      display: flex;
+      gap: 10px;
+      align-content: center;
+      justify-content: center;
+      align-items: center;
+    }
+    span {
+      border-radius: 50px;
+      background: #fff;
+      width: 1.25rem;
+      height: 1.25rem;
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      align-items: center;
+      svg {
+        width: 12px;
+        height: 12px;
+        fill: $primary-thikse-color;
+      }
+    }
+    &.small{
+      padding: 2px 5px;
+      font-size: 12px;
+    }
+  }
+
+    .cancel-btn {
+      border: unset;
+      padding: 5px 20px;
+      border-radius: 50px;
+      background: rgba(128, 128, 128, 0.431372549);
+      transition: 0.7ms;
+      cursor: pointer;
+      &:hover {
+        background: #dc3545;
+        color: $white-color;
+      }
+      &.small{
+        padding: 2px 5px;
+        font-size: 12px;
+      }
+    }
+
+
+  .button{
+    cursor: pointer;
+  }
+}
+
+// Common table
+
+.common-table{
+      width: 100%;
+   thead {
+    background-color: $primary-thikse-color;
+    color: $white-color;
+  }
+  th{
+    color: $white-color;
+    padding: 10px;
+    text-align: center;
+    font-weight: 500;
+  }
+  td{
+    padding: 12px 10px;
+    text-align: center;
+    border-bottom: 1px solid #e5e7eb;
+  }
+}
+
+  // Custom Scroll Bar
+
+  .custom-scroll-1 {
+    &::-webkit-scrollbar {
+      width: 3px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+      background: #8192f4;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      background: #072aee;
+      border-radius: 10px;
+    }
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+  }
+  .font-weight-600{
+    font-weight: 600;
+  }
+  .font-size-16{
+    font-size: 16px;
+  }
+  .btn-gruop-gap{
+    display: flex;
+    column-gap: 10px;
+    justify-content: center;
+  }
+
+  // icon color
+
+  .icon-col-prim{
+    fill:$primary-thikse-color;
+  }
+
+  // Border-radius common style
+
+  .br-5{
+    border-radius: 5px;
+  }
+
+  // Input common  styles
+
+  .input-basic{
+    border: 1px solid #767676;
+    outline: unset;
+    border-radius: 5px;
+    &:focus{
+      border: 1px solid $primary-thikse-color;
+    }
+  }
+
+  .input-date{
+     border: 1px solid #767676;
+    outline: unset;
+    border-radius: 5px;
+    width: 180px;
+    padding: 2px;
+    &:focus{
+      border: 1px solid $primary-thikse-color;
+    }
+  }
+
+
+    // Table Common Style
+
+  .table-container{
+    .pagination-wrapper {
+    display: flex;
+    justify-content: center;
+    }
+  }
+
+  // Badge Warning Block
+  .warning-block{
+        padding: 5px 10px;
+    margin: 20px;
+    background-color: #dc3545;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    p{
+      margin-bottom: 0;
+      color:$white-color;
+
+    }
+  }
+   .error-block{
+        padding: 5px 10px;
+    margin: 20px;
+    background-color: #dc3545;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    p{
+      margin-bottom: 0;
+      color:$white-color;
+
+    }
+  }
+}
+
+
+
+
+// AREG Only Use this style
+
+// Common Font Style
+
+$descFon-areg-login: "Rajdhani", sans-serif;
+$labelFont-areg-login: "Rajdhani", sans-serif;
+$headFont-areg-login: "Rajdhani", sans-serif;
+
+// AREG Light Theme
+$boxShadow-login-areg-light: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+  rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+
+// AREG BG Variable
+$logonbg-areg-light: #002040;
+$loginGd-areg-light: linear-gradient(
+  131deg,
+  rgb(0, 0, 0) 2%,
+  rgb(15, 132, 245) 38%,
+  rgb(0, 0, 0) 100%
+);
+$theme-bg-light: #ffffff;
+$text-color-light: #000;
+$gradient-colorMain-sbg-areg-light: hsla(333, 100%, 53%, 1);
+$gradient-colorMain-bg-areg-light: linear-gradient(131deg, #272626 16%, #ebce98 39%, #c95401);
+$gradient-colorSide-bg-areg-light:linear-gradient(163deg, #272626 14%, #ebce98 39%, #c95401);
+
+$gradient-cardMain-sbg-areg-light: #f47c20;
+$gradient-cardMain-bg-areg-light: linear-gradient(131deg, #f1b869 2%, rgba(245, 100, 15, 0.5098039216) 38%, rgb(227 136 56 / 24%));
+
+
+$gradient-navTab-bg-areg-light:linear-gradient(-60deg, #fff1d4, #ffe4a6 15%, #ffbc69 30%, #ffba36 45%, #c08315 60%, #ffa436 75%, #ffe4a6 90%, #ffe6d4);
+
+// AREG Border
+$border-navTab-areg:1px solid #ffe0bc;
+
+
+// AREG Box Shadow
+$boxShadow-navTab-areg:2px 2px 0.5em rgb(180 138 30 / 45%), inset 1px 1px 0 rgba(255, 255, 255, 0.8), inset -1px -1px 0 rgba(0, 0, 0, 0.2);
+
+// AREG Button Color
+
+$gradient-button-bg-areg-light:radial-gradient(75% 50% at 50% 0%, #fffaf4, transparent), radial-gradient(75% 35% at 50% 85%, #f5922f, transparent);
+$gradient-button-boxShadow-areg-light:inset 0 -2px 4px 1px rgb(231 124 17 / 60%), inset 0 -4px 4px 1px #f59b2f, inset 0 0 2px 1px rgba(255, 255, 255, 0.2), 0 1px 4px 1px rgb(231 102 17 / 20%), 0 1px 4px 1px rgba(0, 0, 0, 0.1);
+
+//AREG Dark Theme
+
+$theme-bg-dark: #000;
+$text-color-dark: #fff;
+$gradient-colorMain-sbg-areg-dark: #000;
+$gradient-colorMain-bg-areg-drak: linear-gradient(
+  131deg,
+  #000 2%,
+  #f5840f 38%,
+  #000
+);
+$gradient-colorSide-bg-areg-dark: linear-gradient(
+  131deg,
+  #000 2%,
+  #f5840f 38%,
+  #000
+);
+$gradient-cardMain-sbg-areg-dark: hsla(333, 100%, 53%, 1);
+$gradient-cardMain-bg-areg-dark: linear-gradient(90deg, hsla(333, 100%, 53%, 1) 0%, hsla(33, 94%, 57%, 1) 100%);
+
+// All h2 Font style common
+$head-areg-font2: "Rajdhani", sans-serif;
+
+// text-Colors
+
+$primary-areg-color: #f47c20;
+$secondary-areg-color-lite:#fef2ea;
+$danger-areg-color:#dc3545;
+$white-color: #ffffff;
+
+
+:root{
+  --primary-areg: #{$primary-areg-color};
+}
+
+// Background Color
+
+$navGd: linear-gradient(
+  252deg,
+  rgba(18, 134, 245, 1) 0%,
+  rgba(233, 249, 255, 1) 100%
+);
+
+// Box-Shadow
+
+$boxShadow-2: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+
+$card-block-bg: #000;
+$card-block-bgm: linear-gradient(131deg, #ebebeb 2%, #0f84f582 38%, #0000003d);
+
+// Font-color
+
+$grayLow-color: #434343;
+$input-color: #b5b4b4;
+
+// Cursor Style
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+// Light Theme Work
+
+.ar {
+  &.light-theme {
+    font-family: $head-areg-font2;
+    height: fit-content;
+    background-color: $theme-bg-light;
+    --primary-areg: #{$primary-areg-color};
+    .closeicon{
+      border-radius: 50px;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: $white-color;
+      border: 1px solid gray;
+      font-size: 16px;
+      transition: 0.7ms;
+      padding: unset;
+      font-family: $head-areg-font2;
+    &:hover{
+      background: $danger-areg-color;
+      color: $white-color;
+      border: unset;
+    }
+    }
+    .top-nav {
+      background: $gradient-colorMain-sbg-areg-light;
+      background: $gradient-colorMain-bg-areg-light;
+    }
+    .side-nav {
+      background: $gradient-colorMain-sbg-areg-light;
+      background: $gradient-colorSide-bg-areg-light;
+    }
+    .headlevel-one-w {
+      font-size: 1.9rem;
+      color: $white-color;
+      font-family: $head-areg-font2;
+      font-weight: 600;
+    }
+    // Common Style
+    .primary-color{
+      color: $primary-areg-color !important;
+    }
+
+
+    // HeadLevels
+
+    .headlevel-two{
+      color: $primary-areg-color;
+    }
+
+
+
+    .headlevel-one-w {
+      font-size: 1.9rem;
+      color: $white-color;
+      font-family: $head-areg-font2;
+      font-weight: 600;
+    }
+    .headlevel-one-b {
+      font-size: 1.9rem;
+      color: $text-color-light;
+      font-family: $head-areg-font2;
+      font-weight: 600;
+    }
+
+    .headlevel-two {
+      font-size: 1.5rem;
+      color: $primary-areg-color;
+      font-family: $head-areg-font2;
+      font-weight: 700;
+    }
+    .headlevel-two-head {
+      font-size: 2rem;
+      color: $primary-areg-color;
+      font-family: $head-areg-font2;
+      font-weight: 700;
+    }
+
+
+    .headlevel-three-normal {
+      font-size: 1.25rem;
+      color: $text-color-light;
+      font-family: $head-areg-font2;
+      font-weight: 600;
+    }
+    .headlevel-three {
+      font-size: 1.25rem;
+      color: $primary-areg-color;
+      font-family: $head-areg-font2;
+      font-weight: 600;
+    }
+    // Home Team , about
+
+    .headlevel-three-h {
+      padding: 0.625rem;
+      font-size: 1rem;
+      font-family: $head-areg-font2;
+      text-align: left;
+      border-bottom: 1px solid;
+      margin-bottom: 0;
+    }
+    .box-title {
+      margin-bottom: 5px;
+      font-size: 1rem;
+      font-family: $head-areg-font2;
+    }
+    .box-title-small {
+      font-size: 0.875rem;
+      font-family: $head-areg-font2;
+      margin-bottom: 0;
+    }
+    .box-title-gray {
+      font-size: 0.875rem;
+      font-family: $head-areg-font2;
+      margin-bottom: 0;
+    }
+
+    // Home Style
+.custom-tab{
+.nav-link{
+  &.active{
+    box-shadow: $boxShadow-navTab-areg;
+    border: $border-navTab-areg;
+    background:$gradient-navTab-bg-areg-light;
+  }
+}
+}
+
+.top-links{
+  .top-btn{
+    &.active{
+      color: $primary-areg-color !important;
+    }
+  }
+}
+
+.eventBlock{
+.headblock{
+  .eventicon{
+    span{
+    background: #f57012;
+    background: linear-gradient(252deg, rgb(245 144 18) 0%, rgb(233, 249, 255) 100%);
+ }
+}
+
+}
+}
+
+    .project-card{
+      .card-pro-body{
+
+        .smallhead{
+          color: $primary-areg-color;
+        }
+
+        .small-main{
+          color: $primary-areg-color;
+
+        }
+      }
+      .desc-last{
+        p{
+color: $primary-areg-color;
+        }
+      }
+    }
+  // Card Design Organization
+
+  .card-common-bg{
+      background: $gradient-cardMain-sbg-areg-light;
+      background: $gradient-cardMain-bg-areg-light;
+  }
+   .regonisation {
+        .reg-card {
+          background: $gradient-cardMain-sbg-areg-light;
+          background: $gradient-cardMain-bg-areg-light;
+        }
+      }
+  .generalBlock{
+    .checkbox{
+      background: $gradient-cardMain-sbg-areg-light;
+      background: $gradient-cardMain-bg-areg-light;
+    }
+  }
+
+  .table-container{
+    table{
+      thead{
+    background-color: $primary-areg-color;
+    color: $white-color;
+}
+    }
+  }
+
+  .badge-cover{
+    .badge-site{
+      background: $primary-areg-color;
+      border:1px solid $primary-areg-color;
+    }
+  }
+
+  .node-container{
+    .node-card{
+    background-color: $white-color;
+    border: 2px solid $primary-areg-color;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    &.has-children{
+      ::after{
+        background-color: $primary-areg-color;
+      }
+       .toggler{
+      background: $primary-areg-color;
+      border: 1px solid $white-color;
+      color:$white-color;
+      &::after{
+        background-color: $primary-areg-color;
+      }
+    }
+    }
+    }
+    .profile-pic{
+      border: 3px solid $primary-areg-color;
+    }
+    .children-list{
+      &::before{
+        background-color: $primary-areg-color;
+      }
+      li{
+        &::before{
+           background-color: $primary-areg-color;
+        }
+      }
+    }
+
+
+  }
+
+  // Profile
+
+  .profile-detBlock{
+    .card{
+      background: #fef2ea;
+    }
+  }
+  .referral-box{
+    background: $primary-areg-color;
+  }
+  .quote{
+    color:$primary-areg-color;
+  }
+
+  // Attendance
+
+  .weather-card{
+    background:$secondary-areg-color-lite;
+  }
+
+  .stats-card{
+    background:$secondary-areg-color-lite;
+  }
+
+  .attend-sub{
+    svg{
+      fill:$primary-areg-color;
+    }
+  }
+
+  .table-container {
+    background-color:white;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    .pagination-wrapper{
+      display: flex;
+      justify-content: center;
+    }
+    .ngx-pagination{
+      .current{
+        background:$primary-areg-color ;
+        color: $white-color;
+      }
+    }
+}
+
+// Time Tracker
+
+.blue-slot{
+  background-color: $primary-areg-color;
+  color: $white-color;
+}
+.leave-slot{
+  background-color: $danger-areg-color;
+  color: $white-color;
+}
+.welhead{
+  color: $primary-areg-color;
+}
+.time{
+  .time-box{
+    background:$primary-areg-color;
+    color: $white-color;
+  }
+}
+// HR
+.hr-box{
+  .card{
+    border: 1px solid #80808059;
+     .section-header{
+    background: $primary-areg-color;
+    color: $white-color;
+  }
+  }
+
+}
+  // Leave Block
+
+  .leave-blockSub{
+    .card{
+      background:$secondary-areg-color-lite;
+    }
+  }
+
+
+  .cards {
+    .card {
+      flex: 1 1 300px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      background-color: #fff;
+      padding: 0;
+      .card-body {
+        padding: 0 !important;
+        max-height: 300px;
+        overflow: auto;
+      }
+    }
+  }
+
+.leave-color{
+  stroke: $primary-areg-color;
+}
+
+  // Organizational
+
+.organization-tab{
+  .industry-card{
+    background: $secondary-areg-color-lite;
+  }
+}
+// Client
+
+.businesspartner{
+  .mainBlock{
+     background: $secondary-areg-color-lite;
+  }
+}
+.carousel-control-next-icon, .carousel-control-prev-icon{
+  background-color: $primary-areg-color;
+}
+
+// Feed
+.task{
+  border-left: 3px solid $primary-areg-color;
+  border-top-left-radius: unset;
+  border-bottom-left-radius: unset;
+  .task-badge{
+    border-radius: 10px;
+    color:$white-color;
+    background: $primary-areg-color;
+    padding: 1px 5px;
+  }
+}
+
+.box{
+h2{
+      color: $primary-areg-color;
+    }
+}
+// Payslip
+
+.employee-info-card{
+  .header{
+    background: $primary-areg-color;
+    color: $white-color;
+  }
+}
+
+.net-pay-card{
+.title{
+  color: #e38000;
+}
+.amount{
+  color: $primary-areg-color;
+}
+.days{
+color:#e38000;
+}
+}
+
+.overviewall-block{
+  background: $secondary-areg-color-lite;
+}
+
+// Performance
+
+.cards{
+  .card{
+    background: $secondary-areg-color-lite;
+  }
+}
+.progress-table{
+  th{
+    background: $primary-areg-color;
+    color: $white-color;
+  }
+}
+.payable-table{
+  thead{
+    background: $primary-areg-color;
+    color: $white-color;
+  }
+  tbody{
+   background: $secondary-areg-color-lite;
+  }
+}
+
+.feedbackavatar-reply{
+  background-color: $primary-areg-color;
+  color: $white-color;
+}
+.text-prim-color{
+  color: $primary-areg-color;
+}
+.dateBadge{
+  background: $secondary-areg-color-lite;
+  padding: 0 10px;
+  border-radius: 10px;
+}
+
+.popup-header {
+  .rateSlide-Block{
+    .rate-header{
+      .headerOverall{
+        background-color: $primary-areg-color;
+      }
+    }
+  }
+}
+
+.feedPop-body{
+  padding: 16px;
+  .covered-allBlock{
+    .number{
+        background: $secondary-areg-color-lite;
+    }
+  }
+}
+
+// Support
+
+.section-title-blue{
+  color: $primary-areg-color;
+}
+.assign-btn{
+color:$primary-areg-color;
+background: none;
+border: none;
+
+}
+
+.ticket-raise{
+  p{
+    font-size: 14px;
+    .ticket-color{
+      color: $primary-areg-color;
+    }
+  }
+}
+  // Backround Gradient
+
+  // Basics Class
+  // $nav-font:$head-areg-font2;
+  .primary-font {
+    font-family: $head-areg-font2;
+  }
+
+  // Fontcolor
+  .prime-color {
+    color: $primary-areg-color;
+  }
+
+  // Description
+
+  .desc-one-w {
+    font-family: $head-areg-font2;
+    font-size: 1.25rem;
+    color: $white-color;
+    margin-bottom: 0;
+  }
+  .desc-one-b {
+    font-family: $head-areg-font2;
+    font-size: 1.25rem;
+    color: $text-color-light;
+    margin-bottom: 0;
+  }
+
+  // Name , emp , mail
+  .profile-name-w {
+    font-family: $head-areg-font2;
+    font-size: 1.25rem;
+    color: $white-color;
+  }
+  .profile-name-b {
+    font-family: $head-areg-font2;
+    font-size: 1.25rem;
+    color: $text-color-light;
+  }
+  .profile-popName-b {
+    font-family: $head-areg-font2;
+    font-size: 1rem;
+    color: $text-color-light;
+  }
+
+  .profile-smfont-w {
+    font-family: $head-areg-font2;
+    font-size: 1rem;
+    color: $white-color;
+  }
+  .profile-smfont-b {
+    font-family: $head-areg-font2;
+    font-size: 1rem;
+    color: $text-color-light;
+  }
+
+  // Box Title
+
+  .box-head {
+    margin-bottom: 10px;
+    font-size: 1.125rem;
+    font-family: $head-areg-font2;
+    color: #9b9b9c;
+  }
+  .box-sm-title {
+    font-size: 1.063rem;
+    font-family: $head-areg-font2;
+    color: $primary-areg-color;
+  }
+
+  .box-header {
+    background: $primary-areg-color;
+    color: $white-color;
+    padding: 10px 15px;
+    border-radius: 5px 5px 0 0;
+    font-size: 1rem;
+  }
+
+  // Award
+
+  .award {
+    font-family: $head-areg-font2;
+    font-size: 1.125rem;
+  }
+
+  // Btn Design
+
+  .gradientBtn {
+    border: 1px solid $primary-areg-color;
+    border-radius: 50px;
+    padding: 8px 1rem;
+    min-width: 8em;
+    background-color: $primary-areg-color;
+    background-image: $gradient-button-bg-areg-light;
+    box-shadow: $gradient-button-boxShadow-areg-light;
+    color: $white-color;
+    text-align: center;
+    text-shadow: 0 1px 1px $primary-areg-color;
+    transition-property: border-color, transform, background-color;
+    transition-duration: 0.2s;
+    cursor: pointer;
+    &.custom {
+      display: flex;
+      gap: 10px;
+      align-content: center;
+      justify-content: center;
+      align-items: center;
+    }
+    span {
+      border-radius: 50px;
+      background: #fff;
+      width: 1.25rem;
+      height: 1.25rem;
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      align-items: center;
+      svg {
+        width: 12px;
+        height: 12px;
+        fill: $primary-areg-color;
+      }
+    }
+    &.small{
+      padding: 2px 5px;
+      font-size: 12px;
+    }
+  }
+
+    .cancel-btn {
+      border: unset;
+      padding: 5px 20px;
+      border-radius: 50px;
+      background: rgba(128, 128, 128, 0.431372549);
+      transition: 0.7ms;
+      cursor: pointer;
+      &:hover {
+        background: #dc3545;
+        color: $white-color;
+      }
+      &.small{
+        padding: 2px 5px;
+        font-size: 12px;
+      }
+    }
+
+
+  .button{
+    cursor: pointer;
+  }
+}
+
+// Common table
+
+.common-table{
+      width: 100%;
+   thead {
+    background-color: $primary-areg-color;
+    color: $white-color;
+  }
+  th{
+    color: $white-color;
+    padding: 10px;
+    text-align: center;
+    font-weight: 500;
+  }
+  td{
+    padding: 12px 10px;
+    text-align: center;
+    border-bottom: 1px solid #e5e7eb;
+  }
+}
+
+  // Custom Scroll Bar
+
+  .custom-scroll-1 {
+    &::-webkit-scrollbar {
+      width: 3px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+      background: #8192f4;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      background: #072aee;
+      border-radius: 10px;
+    }
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+  }
+  .font-weight-600{
+    font-weight: 600;
+  }
+  .font-size-16{
+    font-size: 16px;
+  }
+  .btn-gruop-gap{
+    display: flex;
+    column-gap: 10px;
+    justify-content: center;
+  }
+
+
+   // icon color
+
+  .icon-col-prim{
+    fill:$primary-areg-color;
+  }
+
+ // Border-radius common style
+
+  .br-5{
+    border-radius: 5px;
+  }
+
+  // Input common  styles
+
+  .input-basic{
+    border: 1px solid #767676;
+    outline: unset;
+    border-radius: 5px;
+    &:focus{
+      border: 1px solid $primary-areg-color;
+    }
+  }
+
+  .input-date{
+     border: 1px solid #767676;
+    outline: unset;
+    border-radius: 5px;
+    width: 180px;
+    padding: 2px;
+    &:focus{
+      border: 1px solid $primary-areg-color;
+    }
+  }
+
+  // Table Common Style
+
+  .table-container{
+    .pagination-wrapper {
+    display: flex;
+    justify-content: center;
+    }
+  }
+
+
+  // Badge Warning Block
+  .warning-block{
+        padding: 5px 10px;
+    margin: 20px;
+    background-color: #dc3545;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    p{
+      margin-bottom: 0;
+      color:$white-color;
+
+    }
+  }
+   .error-block{
+        padding: 5px 10px;
+    margin: 20px;
+    background-color: #e37449;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    p{
+      margin-bottom: 0;
+      color:$white-color;
+
+    }
+  }
+}
+
+
+.btn-group-gap{
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+}
+
+
+

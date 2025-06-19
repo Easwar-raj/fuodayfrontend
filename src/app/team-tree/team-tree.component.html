@@ -1,0 +1,13 @@
+<div class="team-tree-wrapper">
+  <h2>Company Org Chart</h2>
+  <div *ngIf="teamTree.length > 0; else noData">
+    <app-tree-node
+      *ngFor="let rootNode of teamTree"
+      [node]="rootNode"
+      [level]="0"
+    ></app-tree-node>
+  </div>
+  <ng-template #noData>
+    <p>No team data available.</p>
+  </ng-template>
+</div>

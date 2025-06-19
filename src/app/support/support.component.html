@@ -1,0 +1,248 @@
+<div class="supportBlock" *ngIf="ticketData && (ticketData | keyvalue).length >   0;">
+  <!-- else noData -->
+    <header class="header">
+        <h1 class="title headlevel-three">Tickets</h1>
+        <div>
+          <button class="gradientBtn custom w-100 justify-content-between" (click)="showPopup = true">
+          Ticket
+          <span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="#000000" height="18" width="18" viewBox="0 0 330 330">
+              <path d="M250.606,154.389l-150-149.996c-5.857-5.858-15.355-5.858-21.213,0.001c-5.857,5.858-5.857,15.355,0.001,21.213l139.393,139.39L79.393,304.394c-5.857,5.858-5.857,15.355,0.001,21.213C82.322,328.536,86.161,330,90,330s7.678-1.464,10.607-4.394l149.999-150.004c2.814-2.813,4.394-6.628,4.394-10.606C255,161.018,253.42,157.202,250.606,154.389z"/>
+            </svg>
+          </span>
+        </button>
+        </div>
+        <!-- Custom Popup -->
+<div class="popup-overlay" *ngIf="showPopup">
+  <div class="popup-content">
+    <div class="popup-header">
+      <h3 class="headlevel-three mb-0">Create Ticket</h3>
+      <button class="closeicon" (click)="showPopup = false">&times;</button>
+    </div>
+
+    <form [formGroup]="ticketForm" (ngSubmit)="submitTicket()" class="popup-body">
+ <label>Date:</label>
+      <input type="date" formControlName="date" />
+
+          <label>Priority Level:</label>
+          <select formControlName="priority">
+            <option value="">Select</option>
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+          </select>
+          <label>Assign To (optional):</label>
+          <input type="text" formControlName="assigned_to" placeholder="Name">
+          <input type="number" formControlName="assigned_to_id" placeholder="User ID">
+
+          <label>Category:</label>
+          <input type="text" formControlName="category" placeholder="Bug / Task / etc.">
+
+          <label>Ticket:</label>
+          <textarea formControlName="ticket" placeholder="Describe the issue"></textarea>
+      <div class="popup-actions">
+        <button type="button" (click)="showPopup = false">Cancel</button>
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
+    </header>
+
+    <div class="filters">
+        <div class="filter-dropdown">
+            <select>
+                <option>All Department</option>
+            </select>
+        </div>
+        <div class="filter-dropdown">
+            <select>
+                <option>All Category</option>
+            </select>
+        </div>
+        <div class="search-container">
+            <input type="text" placeholder="Search">
+            <span class="search-icon">🔍</span>
+            <span class="filter-icon">≡</span>
+        </div>
+    </div>
+
+    <section class="ticket-section" *ngFor="let group of groupedTicket | keyvalue" class="ticket-group">
+        <h2 class="section-title "><span class="section-title-blue">{{ getKeyAsString(group.key) | titlecase }} </span></h2>
+        <div class="ticket-container">
+            <div class="ticket-card" *ngFor="let ticket of group.value">
+                <div class="ticket-header">
+                    <div class="priority high">{{ ticket.priority }} Priority</div>
+                    <div class="issue-type network">Network Issue</div>
+                </div>
+                <div class="ticket-assignee">
+                    <div class="avatar blue">
+                      <span>{{ ticket.emp_name.slice(0,1) }}</span>
+                    </div>
+                    <div class="assignee-info">
+                        <div class="name">{{ ticket.emp_name }}</div>
+                        <div class="date">{{ ticket.date | date:'mediumDate' }}</div>
+                    </div>
+                </div>
+                <div class="ticket-raise">
+                    <p class="mb-0">
+                        <span class="ticket-color">
+                            Ticket :
+                        </span>
+                        {{ticket.ticket}}
+                    </p>
+                </div>
+                <div class="ticket-footer">
+                    <button class="assign-btn">+ Assign</button>
+                    <div class="department">Networking</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- <section class="ticket-section">
+        <h2 class="section-title"><span class="section-title-yellow">In Progress</span></h2>
+        <div class="ticket-container">
+            <div class="ticket-card">
+                <div class="ticket-header">
+                    <div class="priority medium">Medium Priority</div>
+                    <div class="issue-type">Email Access Issue</div>
+                </div>
+                <div class="ticket-assignee">
+                    <div class="avatar blue">J</div>
+                    <div class="assignee-info">
+                        <div class="name">John</div>
+                        <div class="date">On July 1</div>
+                    </div>
+                </div>
+                <div class="ticket-footer">
+                    <div class="avatar dark">B</div>
+                    <div class="department">Email Domain</div>
+                </div>
+            </div>
+
+            <div class="ticket-card">
+                <div class="ticket-header">
+                    <div class="priority low">Low priority</div>
+                    <div class="issue-type">Printer Setup</div>
+                </div>
+                <div class="ticket-assignee">
+                    <div class="avatar blue">J</div>
+                    <div class="assignee-info">
+                        <div class="name">John</div>
+                        <div class="date">On July 1</div>
+                    </div>
+                </div>
+                <div class="ticket-footer">
+                    <div class="avatar red">S</div>
+                    <div class="department">Hardware Support</div>
+                </div>
+            </div>
+
+            <div class="ticket-card">
+                <div class="ticket-header">
+                    <div class="priority high">High priority</div>
+                    <div class="issue-type">Server Downtime</div>
+                </div>
+                <div class="ticket-assignee">
+                    <div class="avatar blue">J</div>
+                    <div class="assignee-info">
+                        <div class="name">John</div>
+                        <div class="date">On July 1</div>
+                    </div>
+                </div>
+                <div class="ticket-footer">
+                    <div class="avatar purple">E</div>
+                    <div class="department">Server Management</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ticket-section">
+        <h2 class="section-title"><span class="section-title-green">Completed</span></h2>
+        <div class="ticket-container">
+            <div class="ticket-card">
+                <div class="ticket-header">
+                    <div class="priority medium">Medium Priority</div>
+                    <div class="issue-type">System Update</div>
+                </div>
+                <div class="ticket-assignee">
+                    <div class="avatar blue">J</div>
+                    <div class="assignee-info">
+                        <div class="name">John</div>
+                        <div class="date">On July 1</div>
+                    </div>
+                </div>
+                <div class="ticket-footer">
+                    <div class="avatar purple">V</div>
+                    <div class="department">IT Maintenance</div>
+                </div>
+            </div>
+
+            <div class="ticket-card">
+                <div class="ticket-header">
+                    <div class="priority low">Low priority</div>
+                    <div class="issue-type">Printer Setup</div>
+                </div>
+                <div class="ticket-assignee">
+                    <div class="avatar blue">J</div>
+                    <div class="assignee-info">
+                        <div class="name">John</div>
+                        <div class="date">On July 25</div>
+                    </div>
+                </div>
+                <div class="ticket-footer">
+                    <div class="avatar teal">H</div>
+                    <div class="department">Hardware Support</div>
+                </div>
+            </div>
+
+            <div class="ticket-card">
+                <div class="ticket-header">
+                    <div class="priority high">High priority</div>
+                    <div class="issue-type">Server Downtime</div>
+                </div>
+                <div class="ticket-assignee">
+                    <div class="avatar blue">J</div>
+                    <div class="assignee-info">
+                        <div class="name">John</div>
+                        <div class="date">On July 17</div>
+                    </div>
+                </div>
+                <div class="ticket-footer">
+                    <div class="avatar brown">G</div>
+                    <div class="department">Server Management</div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+    </div>
+
+    <!-- Data
+    <div class="support-container" *ngIf="ticketData && (ticketData | keyvalue).length > 0; else noData">
+      <div *ngFor="let group of ticketData | keyvalue" class="ticket-group">
+        <h3>{{ getKeyAsString(group.key) | titlecase }} Tickets</h3>
+
+        <ul>
+          <li *ngFor="let ticket of group.value" class="ticket-card">
+            <strong>{{ ticket.ticket }}</strong><br>
+            Category: {{ ticket.category || 'N/A' }}<br>
+            Priority: {{ ticket.priority }}<br>
+            Assigned To: {{ ticket.assigned_to || 'Unassigned' }}<br>
+            Date: {{ ticket.date | date:'mediumDate' }}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <ng-template #noData>
+      <p>No tickets found.</p>
+    </ng-template> -->
+
+
+
+
+
+
+

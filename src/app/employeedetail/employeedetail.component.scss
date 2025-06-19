@@ -1,0 +1,16 @@
+.bg {
+  background: linear-gradient(to right, #7fa0dc, #eaf7f5);
+}
+ul {
+  list-style: none;
+  padding: 0;
+}
+.nav-item {
+  padding: 10px;
+  border-radius: 5px;
+  color: black;
+}
+.nav-item:hover {
+  background: #fff;
+  color: black;
+}

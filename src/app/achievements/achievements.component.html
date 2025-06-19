@@ -1,0 +1,33 @@
+<div class="container mb-5">
+  <div class="mb-4">
+    <h1 class="h3">Achievements & Values
+    </h1>
+  </div>
+
+  <form (ngSubmit)="submit()">
+    <div class="mb-3">
+      <label class="form-label">Achievement:</label>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="achievementText"
+        name="achievement"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Values:</label>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="valuesText"
+        name="values"
+      />
+    </div>
+    <div *ngIf="successAchievementMessage" class="success-message">
+        {{ successAchievementMessage }}
+    </div>
+    <button type="submit" class="btn btn-primary">Save Achievement</button>
+  </form>
+</div>
+
