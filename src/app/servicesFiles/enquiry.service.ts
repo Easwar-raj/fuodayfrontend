@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class EnquiryService {
-  private baseUrl = 'http://127.0.0.1:8000/api/hrms/enquiry'; // replace with your actual domain
+  private baseUrl = 'https://backend.fuoday.com/api/hrms/enquiry'; // replace with your actual domain
   private apiUrl = 'https://ai.fuoday.com/api/send-email'; // replace with your actual domain
 
   constructor(private http: HttpClient) {}

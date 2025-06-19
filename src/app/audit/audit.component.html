@@ -1,46 +1,88 @@
 <div class="audit-wrapper">
   <h2 class="headlevel-three"><i class="icon-user"></i> Employee Information</h2>
   <div class="info-card">
-    <p><span>Employee Name:</span> {{ profileData.name }}</p>
-    <p><span>Emp ID:</span> {{ profileData.emp_id }}</p>
-    <p><span>Department:</span> {{ profileData.department }}</p>
-    <p><span>Designation:</span> {{ profileData.designation }}</p>
-    <p><span>Reporting Manager:</span> {{ profileData.reporting_manager_name }}</p>
-    <p><span>Date of Joining:</span> {{ profileData.date_of_joining }}</p>
-    <p><span>Attendance Summary:</span> {{ profileData.attendance }}</p>
-    <p><span>Payroll (May 2025):</span> {{ profileData.payroll }}</p>
+    <p><span>Employee Name:</span> {{ employee.name }}</p>
+    <p><span>Emp ID:</span> {{ employee.empId }}</p>
+    <p><span>Department:</span> {{ employee.department }}</p>
+    <p><span>Designation:</span> {{ employee.designation }}</p>
+    <p><span>Reporting Manager:</span> {{ employee.manager }}</p>
+    <p><span>Date of Joining:</span> {{ employee.doj }}</p>
+    <p><span>Attendance Summary:</span> {{ employee.attendance }}</p>
+    <p><span>Payroll (May 2025):</span> {{ employee.payroll }}</p>
   </div>
 
   <form [formGroup]="auditForm" (ngSubmit)="submitForm()" enctype="multipart/form-data" class="audit-form">
-    <h2 class="headlevel-three"><i class="icon-edit"></i> Self Filling Form</h2>
+    <h2 class="headlevel-three"><i class="icon-edit"></i> Section 1: Task & Project Summary</h2>
     <div class="form-card">
-      <label>Project / Task Highlights</label>
-      <textarea formControlName="taskHighlights" placeholder="Project / Task Highlights"></textarea>
+      <label>Key Responsibilities</label>
+      <textarea formControlName="keyResponsibilities" placeholder="Maintained and updated backend APIs for ResumeHub Module."></textarea>
 
-      <label>Challenges</label>
-      <textarea formControlName="challenges" placeholder="Challenges"></textarea>
+      <label>Top 3 Accomplishments</label>
+      <textarea formControlName="topAccomplishments" placeholder="1. Integrated Mistral AI
+2. Refactored Flask API
+3. Dockerized services"></textarea>
 
-      <label>Support Needed</label>
-      <textarea formControlName="supportNeeded" placeholder="Support Needed"></textarea>
-
-      <label>Self-Rating (1–5)</label>
-      <input type="number" formControlName="selfRating" placeholder="1–5" />
-
-      <label>Additional Comments</label>
-      <textarea formControlName="comments" placeholder="Comments (optional)"></textarea>
-
-      <label>Month Report Upload</label>
-      <input type="file" (change)="onFileSelected($event)" />
+      <label>Project(s) Worked On</label>
+      <input type="text" formControlName="projectsWorkedOn" placeholder="ResumeHub, HRChatbot, ATS Analyzer" />
     </div>
 
-    <div *ngIf="profileData?.designation === 'Reporting Manager'">
+    <h2 class="headlevel-three"><i class="icon-edit"></i> Section 2: Challenges & Support</h2>
+    <div class="form-card">
+      <label>Challenges Faced</label>
+      <textarea formControlName="challengesFaced" placeholder="Delayed dependencies from frontend team."></textarea>
+
+      <label>Support Required</label>
+      <textarea formControlName="supportRequired" placeholder="Need DevOps help with CI/CD pipeline fixes."></textarea>
+    </div>
+
+    <h2 class="headlevel-three"><i class="icon-edit"></i> Section 3: Goals & Growth</h2>
+    <div class="form-card">
+      <label>Previous Month's Goals</label>
+      <textarea formControlName="previousGoals" placeholder="Complete ResumeHub integration by 25th May."></textarea>
+
+      <label>Goal Completion Status</label>
+      <select formControlName="goalCompletionStatus">
+        <option value="completed">✅ Completed</option>
+        <option value="not_completed">❌ Not Completed</option>
+      </select>
+
+      <label>Goals for Next Month</label>
+      <textarea formControlName="nextMonthGoals" placeholder="Deploy V2.0, improve response time by 30%."></textarea>
+
+      <label>Learning/Upskilling Done</label>
+      <textarea formControlName="learningDone" placeholder="Completed Docker & MongoDB optimization course."></textarea>
+    </div>
+
+    <h2 class="headlevel-three"><i class="icon-edit"></i> Section 4: Self-Rating & Reflection</h2>
+    <div class="form-card">
+      <label>Self-Rating (1–5)</label>
+      <input type="number" min="1" max="5" formControlName="selfRating" placeholder="4" />
+
+      <label>Areas to Improve</label>
+      <textarea formControlName="areasToImprove" placeholder="Time management, cross-team sync."></textarea>
+
+      <label>Personal Highlights</label>
+      <textarea formControlName="personalHighlights" placeholder="Handled critical bug fix during off-hours."></textarea>
+
+      <label>Feedback/Suggestions</label>
+      <textarea formControlName="feedbackSuggestions" placeholder="Would like a shared documentation portal."></textarea>
+    </div>
+
+    <h2 class="headlevel-three"><i class="icon-edit"></i> Section 5: Uploads (Optional)</h2>
+    <div class="form-card">
+      <label>Attach Evidence/Docs</label>
+      <input type="file" (change)="onFileSelected($event)" />
+      <small>Monthly report, screenshots, KPI chart</small>
+    </div>
+
+    <div *ngIf="employee.designation === 'Reporting Manager'">
       <h2 class="headlevel-three"><i class="icon-briefcase"></i> Manager Review</h2>
       <div class="form-card">
         <label>Work Justification</label>
         <textarea formControlName="workJustification" placeholder="Justify the work"></textarea>
 
         <label>Manager Rating (1–5)</label>
-        <input type="number" formControlName="managerRating" placeholder="1–5" />
+        <input type="text" formControlName="managerRating" placeholder="1–5" />
 
         <label>Final Remarks</label>
         <textarea formControlName="finalRemarks" placeholder="Final Remarks"></textarea>

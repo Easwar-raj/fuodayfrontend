@@ -20,7 +20,7 @@ const angularApp = new AngularNodeAppEngine();
  *
  * Example:
  * ```ts
- * app.get('http://127.0.0.1:8000/api/**', (req, res) => {
+ * app.get('https://backend.fuoday.com/api/**', (req, res) => {
  *   // Handle API request
  * });
  * ```

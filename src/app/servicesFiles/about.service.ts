@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AboutService {
-  private baseUrl = 'http://127.0.0.1:8000/api/admin-users'; // adjust this URL
+  private baseUrl = 'https://backend.fuoday.com/api/admin-users'; // adjust this URL
 
   constructor(private http: HttpClient) {}
 

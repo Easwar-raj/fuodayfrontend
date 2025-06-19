@@ -839,6 +839,13 @@ border: none;
     justify-content: center;
   }
 
+  // icon-size
+
+  .icon-24{
+width: 24px;
+height: 24px;
+  }
+
   // icon color
 
   .icon-col-prim{
@@ -1716,6 +1723,13 @@ border: none;
 
   .icon-col-prim{
     fill:$primary-areg-color;
+  }
+
+    // icon-size
+
+  .icon-24{
+width: 24px;
+height: 24px;
   }
 
  // Border-radius common style

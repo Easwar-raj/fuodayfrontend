@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class PayrollViewService {
-  private apiUrl = 'http://127.0.0.1:8000/api/hrms/payroll/getpayroll'; // Replace with actual URL
+  private apiUrl = 'https://backend.fuoday.com/api/hrms/payroll/getpayroll'; // Replace with actual URL
 
   constructor(private http: HttpClient) {}
 

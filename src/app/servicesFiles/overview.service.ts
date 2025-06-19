@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class OverviewService {
-  private baseUrl = 'http://127.0.0.1:8000/api/hrms/payroll'; // Replace with actual base URL
+  private baseUrl = 'https://backend.fuoday.com/api/hrms/payroll'; // Replace with actual base URL
 
   constructor(private http: HttpClient) {}
 

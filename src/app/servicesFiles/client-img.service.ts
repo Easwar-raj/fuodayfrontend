@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ClientimgService {
-  private apiUrl = 'http://127.0.0.1:8000/api/admin-users/save/client';
+  private apiUrl = 'https://backend.fuoday.com/api/admin-users/save/client';
 
   constructor(private http: HttpClient) {}
 

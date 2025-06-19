@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class FeedassignService {
-  private baseUrl = 'http://127.0.0.1:8000/api/hrms/home'; // Replace with your actual API base
+  private baseUrl = 'https://backend.fuoday.com/api/hrms/home'; // Replace with your actual API base
 
   constructor(private http: HttpClient) {}
 

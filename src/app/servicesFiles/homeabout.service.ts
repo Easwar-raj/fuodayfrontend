@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class HomeAboutService {
-  private baseUrl = 'http://127.0.0.1:8000/api/hrms/home'; // Replace with actual URL
+  private baseUrl = 'https://backend.fuoday.com/api/hrms/home'; // Replace with actual URL
 
   constructor(private http: HttpClient) {}
 

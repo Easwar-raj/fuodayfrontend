@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ProjectteamService {
-  private apiUrl = 'http://127.0.0.1:8000/api/admin-users/save/projects';
+  private apiUrl = 'https://backend.fuoday.com/api/admin-users/save/projects';
 
   constructor(private http: HttpClient) {}
 

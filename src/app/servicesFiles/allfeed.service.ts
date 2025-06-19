@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AllFeedService {
-  private baseUrl = 'http://127.0.0.1:8000/api/hrms/performance';
+  private baseUrl = 'https://backend.fuoday.com/api/hrms/performance';
 
   constructor(private http: HttpClient) {}
 

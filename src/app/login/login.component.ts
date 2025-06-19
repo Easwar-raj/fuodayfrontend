@@ -78,7 +78,7 @@ onSubmit() {
     role: this.selectedTab === 'recruiter' ? 'recruiter' : 'employee',
   };
 
-  this.http.post<any>('http://127.0.0.1:8000/api/web-users/login', loginPayload).subscribe({
+  this.http.post<any>('https://backend.fuoday.com/api/web-users/login', loginPayload).subscribe({
     next: (response) => {
       localStorage.setItem('token', response.token);
       localStorage.setItem('userData', JSON.stringify(response.data));

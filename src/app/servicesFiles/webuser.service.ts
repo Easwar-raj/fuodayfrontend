@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class WebuserService {
-  private baseUrl = 'http://127.0.0.1:8000/api/web-users';
+  private baseUrl = 'https://backend.fuoday.com/api/web-users';
 
   constructor(private http: HttpClient) {}
 

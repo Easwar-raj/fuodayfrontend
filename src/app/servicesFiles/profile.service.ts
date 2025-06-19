@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProfileService {
-  private baseUrl = 'http://127.0.0.1:8000/api/hrms/profile'; // replace with your backend URL
+  private baseUrl = 'https://backend.fuoday.com/api/hrms/profile'; // replace with your backend URL
 
   constructor(private http: HttpClient) {}
 
@@ -44,7 +44,7 @@ export class ProfileService {
 }
 
 
-   private profileUrl = 'http://127.0.0.1:8000/api/web-users';
+   private profileUrl = 'https://backend.fuoday.com/api/web-users';
 
    updateProfileImage(id: number, data: FormData): Observable<any> {
     const token = typeof window !== 'undefined' ? localStorage.getItem('token') : '';

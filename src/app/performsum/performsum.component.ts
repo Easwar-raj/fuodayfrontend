@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { PerformanceService } from '../servicesFiles/performance.service';
 import { AuthService } from '../servicesFiles/auth.service';
+import { PerformegoalService } from '../servicesFiles/performegoal.service';
 
 @Component({
   selector: 'app-performsum',
@@ -13,14 +14,34 @@ export class PerformsumComponent {
   UserName:string = '';
   performanceData: any = null;
 performance_score: any;
-loading = true;
-errorMessage = '';
+
+  tasks: any[] = [];
+  totalCompleted = 0;
+  totalPending = 0;
+  totalInProgress = 0;
+  completedProject = 0;
+  upcommingProject= 0 ;
+  loading = true;
+  errorMessage = '';
+
 greeting: string = '';
 radius = 30;
 circumference = 2 * Math.PI * this.radius;
+showPerformancePopup = false;
+showGoalProgressPopup = false;
+showRatingProgressPopup = false;
+showMontlyAttendancePopup = false;
+showCompleteTaskPopup = false;
+showCompleteProjectPopup = false;
+showPendingGoalPopup = false;
+showUpcammingProjectPopup = false;
+
+
+
    constructor(
       private performanceService: PerformanceService,
-      private authService: AuthService
+      private authService: AuthService,
+      private performegoalService: PerformegoalService,
     ) {}
 
     ngOnInit(): void {
@@ -43,6 +64,26 @@ circumference = 2 * Math.PI * this.radius;
       }
     });
       }
+
+      this.performegoalService.getGoal(this.userId).subscribe({
+  next: (response) => {
+    if (response.status === 'Success') {
+        this.tasks = response.data.tasks;
+        this.totalCompleted = response.data.total_completed;
+        this.totalPending = response.data.total_pending;
+        this.totalInProgress = response.data.total_in_progress;
+        this.completedProject = response.data.completed_project;
+        this.upcommingProject = response.data.upcomming_project;
+
+        this.loading = false;
+  }
+      },
+      error: (error) => {
+        this.errorMessage = 'Failed to load user goals.';
+        console.error(error);
+        this.loading = false;
+      }
+    });
       this.setGreeting();
     }
     setGreeting(): void {
@@ -73,6 +114,62 @@ getOffset(value: unknown): number {
   return this.circumference * (1 - percent / 100);
 }
 
+openPerformancePopup() {
+  this.showPerformancePopup = true;
 }
 
+closePerformancePopup() {
+  this.showPerformancePopup = false;
+}
 
+openGoalProgressPopup() {
+  this.showGoalProgressPopup = true; // ✅ fixed
+}
+
+closeGoalProgressPopup() {
+  this.showGoalProgressPopup = false; // ✅ fixed
+}
+openRatingProgressPopup() {
+  this.showRatingProgressPopup = true; // ✅ fixed
+}
+
+closeRatingProgressPopup() {
+  this.showRatingProgressPopup = false; // ✅ fixed
+}
+openMontlyAttendancePopup() {
+  this.showMontlyAttendancePopup = true; // ✅ fixed
+}
+
+closeMontlyAttendancePopup() {
+  this.showMontlyAttendancePopup = false; // ✅ fixed
+}
+openCompleteTaskPopup() {
+  this.showCompleteTaskPopup = true; // ✅ fixed
+}
+
+closeCompleteTaskPopup() {
+  this.showCompleteTaskPopup = false; // ✅ fixed
+}
+openCompleteProjectPopup() {
+  this.showCompleteProjectPopup = true; // ✅ fixed
+}
+
+closeCompleteProjectPopup() {
+  this.showCompleteProjectPopup = false; // ✅ fixed
+}
+openPendingGoalPopup() {
+  this.showPendingGoalPopup = true; // ✅ fixed
+}
+
+closePendingGoalPopup() {
+  this.showPendingGoalPopup = false; // ✅ fixed
+}
+openUpcammingProjectPopup() {
+  this.showUpcammingProjectPopup = true; // ✅ fixed
+}
+
+closeUpcammingProjectPopup() {
+  this.showUpcammingProjectPopup = false; // ✅ fixed
+}
+
+}

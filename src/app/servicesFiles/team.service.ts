@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class TeamService {
 
-  private baseUrl = 'http://127.0.0.1:8000/api/hrms/home'; // Replace with actual API base
+  private baseUrl = 'https://backend.fuoday.com/api/hrms/home'; // Replace with actual API base
 
   constructor(private http: HttpClient) {}
 

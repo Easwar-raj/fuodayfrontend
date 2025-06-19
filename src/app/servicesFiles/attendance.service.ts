@@ -10,7 +10,7 @@ export class AttendanceService {
     throw new Error('Method not implemented.');
   }
 
-  private baseUrl = 'http://127.0.0.1:8000/api/hrms/attendance'; // Make sure this is your correct API URL
+  private baseUrl = 'https://backend.fuoday.com/api/hrms/attendance'; // Make sure this is your correct API URL
 
   constructor(private http: HttpClient) {}
 

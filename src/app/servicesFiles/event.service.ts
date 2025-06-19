@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class EventService {
-  private baseUrl = 'http://127.0.0.1:8000/api/admin-users/save/event';
+  private baseUrl = 'https://backend.fuoday.com/api/admin-users/save/event';
 
   constructor(private http: HttpClient) {}
 

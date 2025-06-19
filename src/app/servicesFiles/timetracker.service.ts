@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class TimetrackService {
-  private baseUrl = 'http://127.0.0.1:8000/api/hrms/timetracker';
+  private baseUrl = 'https://backend.fuoday.com/api/hrms/timetracker';
 
   constructor(private http: HttpClient) {}
 

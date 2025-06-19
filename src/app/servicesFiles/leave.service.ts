@@ -9,7 +9,7 @@ export class LeaveService {
   addLeave(payload: { web_user_id: number; type: string; from: string; to: string; reason: string; }) {
     throw new Error('Method not implemented.');
   }
-  private baseUrl = 'http://127.0.0.1:8000/api/hrms/leave'; // Update with actual backend API URL
+  private baseUrl = 'https://backend.fuoday.com/api/hrms/leave'; // Update with actual backend API URL
 
   constructor(private http: HttpClient) {}
 

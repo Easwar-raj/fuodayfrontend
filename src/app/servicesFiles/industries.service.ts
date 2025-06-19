@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class IndustriesService {
-  private apiUrl = 'http://127.0.0.1:8000/api/admin-users/save/industry';
+  private apiUrl = 'https://backend.fuoday.com/api/admin-users/save/industry';
 
   constructor(private http: HttpClient) {}
 

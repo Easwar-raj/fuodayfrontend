@@ -18,7 +18,7 @@ export class AdminUserService {
       }
       return null;
     }
-  private baseUrl = 'http://127.0.0.1:8000/api/admin-users'; // replace with your backend URL
+  private baseUrl = 'https://backend.fuoday.com/api/admin-users'; // replace with your backend URL
 
     login(email: string, password: string): Observable<any> {
       const body = { email, password};

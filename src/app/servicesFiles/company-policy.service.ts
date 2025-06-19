@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CompanyPolicyService {
-  private baseUrl = 'http://127.0.0.1:8000/api/admin-users';
+  private baseUrl = 'https://backend.fuoday.com/api/admin-users';
 
   constructor(private http: HttpClient) {}
 

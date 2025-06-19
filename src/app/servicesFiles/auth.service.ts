@@ -26,7 +26,7 @@ export class AuthService {
     return null;
   }
 
-  private baseUrl = 'http://127.0.0.1:8000/api/web-users'; // Replace with your actual backend URL
+  private baseUrl = 'https://backend.fuoday.com/api/web-users'; // Replace with your actual backend URL
 
 
   login(email: string, password: string, role: string): Observable<any> {
@@ -47,7 +47,7 @@ export class AuthService {
       Authorization: `Bearer ${token}`
     });
 
-    return this.http.post('http://127.0.0.1:8000/api/web-users/logout', {}, { headers }).pipe(
+    return this.http.post('https://backend.fuoday.com/api/web-users/logout', {}, { headers }).pipe(
       tap(() => {
         this.clearSession();
       })

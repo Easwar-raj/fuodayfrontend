@@ -8,7 +8,7 @@ import { TeamMember } from '../models/team-member.model';
 })
 export class TeamMainDataService {
 
-  private baseUrl = 'http://127.0.0.1:8000/api/hrms/home/getreportees';
+  private baseUrl = 'https://backend.fuoday.com/api/hrms/home/getreportees';
 
   constructor(private http: HttpClient) {}
 

@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class TotalleaveService {
-  private baseUrl = 'http://127.0.0.1:8000/api/admin-users/save/totalleaves';
+  private baseUrl = 'https://backend.fuoday.com/api/admin-users/save/totalleaves';
 
   constructor(private http: HttpClient) {}
 

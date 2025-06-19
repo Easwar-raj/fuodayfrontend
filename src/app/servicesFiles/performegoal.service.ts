@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class PerformegoalService {
-  private baseUrl = 'http://127.0.0.1:8000/api/hrms/performance'; // replace with your backend URL
+  private baseUrl = 'https://backend.fuoday.com/api/hrms/performance'; // replace with your backend URL
   constructor(private http: HttpClient) {}
   getGoal(id: number): Observable<any> {
     const token = typeof window !== 'undefined' ? localStorage.getItem('token') : '';

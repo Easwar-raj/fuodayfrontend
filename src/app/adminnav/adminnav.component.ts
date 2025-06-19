@@ -32,7 +32,7 @@ export class AdminnavComponent {
   }
 
   logout() {
-    this.http.post('http://127.0.0.1:8000/api/admin-users/logout', {}).subscribe({
+    this.http.post('https://backend.fuoday.com/api/admin-users/logout', {}).subscribe({
       next: (res: any) => {
         localStorage.removeItem('token');
         this.router.navigate(['/adminlogin']);
