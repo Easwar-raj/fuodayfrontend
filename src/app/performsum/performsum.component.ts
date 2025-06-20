@@ -23,6 +23,8 @@ performance_score: any;
   upcommingProject= 0 ;
   loading = true;
   errorMessage = '';
+  currentPage = 1;
+  itemsPerPage = 7;
 
 greeting: string = '';
 radius = 30;

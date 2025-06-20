@@ -307,6 +307,8 @@
                     <table class="table table-bordered table-striped">
                       <thead>
                         <tr>
+            <th>S.No</th>
+            <th>Date</th>
             <th>Task</th>
             <th>Deadline</th>
             <th>Status</th>
@@ -315,7 +317,10 @@
           </tr>
                       </thead>
                       <tbody *ngIf="!loading && tasks.length">
-          <tr *ngFor="let task of tasks">
+          <tr *ngFor="let task of tasks| paginate
+                    : { itemsPerPage: itemsPerPage, currentPage: currentPage };let i = index">
+                    <td>{{ i + 1 }}.</td>
+            <td>{{ task.date }}</td>
             <td>{{ task.description }}</td>
             <td>{{ task.deadline }}</td>
             <td>{{ task.status }}</td>
@@ -325,6 +330,12 @@
         </tbody>
                     </table>
                   </div>
+                   <!-- Pagination controls -->
+                      <div class="pagination-wrapper mt-3">
+                        <pagination-controls
+                          (pageChange)="currentPage = $event"
+                        ></pagination-controls>
+                      </div>
                 </div>
               </div>
             </div>
@@ -553,20 +564,25 @@
       </div>
     </section>
 
-    <section class="progress-tracking">
+    <section class="progress-tracking table-container">
       <h2 class="headlevel-three">Goal Progress Tracking</h2>
       <table class="progress-table">
-        <thead class="thead-col">
-          <tr>
+        <thead>
+                        <tr>
+            <th>S.No</th>
+            <th>Date</th>
             <th>Task</th>
             <th>Deadline</th>
             <th>Status</th>
             <th>Progress Note</th>
             <th>Next Step</th>
           </tr>
-        </thead>
-        <tbody *ngIf="!loading && tasks.length">
-          <tr *ngFor="let task of tasks">
+                      </thead>
+                      <tbody *ngIf="!loading && tasks.length">
+          <tr *ngFor="let task of tasks| paginate
+                    : { itemsPerPage: itemsPerPage, currentPage: currentPage };let i = index">
+                    <td>{{ i + 1 }}.</td>
+            <td>{{ task.date }}</td>
             <td>{{ task.description }}</td>
             <td>{{ task.deadline }}</td>
             <td>{{ task.status }}</td>
@@ -575,6 +591,12 @@
           </tr>
         </tbody>
       </table>
+       <!-- Pagination controls -->
+                      <div class="pagination-wrapper mt-3">
+                        <pagination-controls
+                          (pageChange)="currentPage = $event"
+                        ></pagination-controls>
+                      </div>
     </section>
   </div>
 </div>

@@ -100,13 +100,13 @@
       >
         Performance Summary
       </button>
-      <!-- <button
+      <button
         class="top-btn"
         routerLink="/performance/goal"
         routerLinkActive="active"
       >
         Goals and Objectives
-      </button> -->
+      </button>
 
       <!-- <button class="top-btn" routerLink="/performance/feedreview" routerLinkActive="active">Feedback and Reviews</button> -->
       <!-- <button class="top-btn" routerLink="/performance/grades" routerLinkActive="active">Grades</button> -->
@@ -117,8 +117,9 @@
       >
         Audit Form
       </button>
+      
        <button
-       *ngIf="designation === 'Reporting Manager'"
+       *ngIf="designation === 'Assistant Manager-IT'"
         class="top-btn"
         routerLink="/performance/empaudit"
         routerLinkActive="active"

@@ -839,6 +839,27 @@ border: none;
     justify-content: center;
   }
 
+  // Font-weight
+
+  .font-weight-600{
+    font-weight: 600;
+  }
+
+  // Input Focus style
+
+  input{
+    &:focus{
+      border: 1px solid $primary-thikse-color !important;
+      box-shadow: unset !important;
+    }
+  }
+  textarea{
+    &:focus{
+      border: 1px solid $primary-thikse-color !important;
+      box-shadow: unset !important;
+    }
+  }
+
   // icon-size
 
   .icon-24{

@@ -13,30 +13,335 @@
                 <th>Employee ID</th>
                 <th>Name</th>
                 <th>Self Status</th>
-                <th>Manager Status</th>
-                <th>Edit / Update</th>
+                <!-- <th>Manager Status</th> -->
+                <th>Preview Audit Form</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
-                <td>1005</td>
-                <td>Saravanan S</td>
-                <td>Completed</td>
-                <td>Pending</td>
+              <tr *ngFor="let item of auditReport.data; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ item.emp_id }}</td>
+                <td>{{ item.emp_name }}</td>
+                <td>{{ item.status }}</td>
                 <td>
                   <div>
                     <button
-              class="small gradientBtn"
-
-            >
-              <i class="bi bi-pencil-square"></i> Edit
-            </button>
+                      class="small gradientBtn"
+                      (click)="onEdit(item.web_user_id)"
+                      *ngIf="item.status !== 'Not Submitted'"
+                    >
+                      <i class="bi bi-pencil-square"></i> Review
+                    </button>
                   </div>
                 </td>
               </tr>
+
+              <tr *ngIf="!auditReport || !auditReport.data">
+                <td colspan="6">No data available</td>
+              </tr>
             </tbody>
           </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div *ngIf="selectedAudit" class="modal-overlay">
+      <div class="modal-card">
+        <button class="close-btn" (click)="selectedAudit = null">&times;</button>
+        <h3>Edit Audit Entry</h3>
+        <form [formGroup]="editForm">
+          <div class="form-group">
+            <label>Audit Month</label>
+            <input type="text" formControlName="audit_month" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label>Key Responsibilities</label>
+            <input type="text" formControlName="task_highlight" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label>Challenges</label>
+            <input type="text" formControlName="challenges" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label>Support</label>
+            <input type="text" formControlName="support" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label>Self Rating</label>
+            <input type="text" formControlName="self_rating" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label>Comment</label>
+            <input type="text" formControlName="comment" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label>Employee ID</label>
+            <input type="text" formControlName="emp_id" class="form-control" [disabled]="true"  />
+          </div>
+          <div class="form-group">
+            <label>Employee Name</label>
+            <input type="text" formControlName="emp_name" class="form-control" [disabled]="true" />
+          </div>
+
+        </form>
+      </div>
+    </div> -->
+    <div *ngIf="selectedAudit" class="modal-overlay">
+      <div class="modal-card">
+        <div class="modal-content">
+          <div
+            class="modal-header d-flex justify-content-between align-items-center"
+          >
+            <div>
+              <h2 class="headlevel-three">
+                Employee Audit Details & Manager Review
+              </h2>
+            </div>
+            <button class="closeicon" (click)="selectedAudit = null">x</button>
+          </div>
+        </div>
+
+        <div class="model-body">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- 🔍 LEFT: Employee Full Audit Data (Readonly View) -->
+            <div class="space-y-4 border-r pr-4">
+              <h4 class="headlevel-three">Employee Review</h4>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label>Employee Name</label>
+                  <p>{{ selectedAudit?.emp_name }}</p>
+                </div>
+                <div>
+                  <label>Employee ID</label>
+                  <p>{{ selectedAudit?.emp_id }}</p>
+                </div>
+                <!-- <div><label>Designation</label><p>{{ selectedAudit?.designation }}</p></div>
+              <div><label>Department</label><p>{{ selectedAudit?.department }}</p></div> -->
+                <div>
+                  <label>Review Period</label>
+                  <p>{{ selectedAudit?.review_period }}</p>
+                </div>
+                <!-- <div><label>Reporting Manager</label><p>{{ selectedAudit?.reportingManager }}</p></div> -->
+                <!-- <div><label>Date of Joining</label><p>{{ selectedAudit?.dateOfJoining }}</p></div> -->
+                <div>
+                  <label>Attendance %</label>
+                  <p>{{ selectedAudit?.attendance_percentage }}</p>
+                </div>
+                <div>
+                  <label>Audit Cycle Type</label>
+                  <p>{{ selectedAudit?.audit_cycle_type }}</p>
+                </div>
+                <!-- <div><label>Working Mode</label><p>{{ selectedAudit?.workingMode }}</p></div> -->
+              </div>
+
+              <hr class="my-4" />
+
+              <div class="mb-3">
+                <label>Self-Rating</label>
+                <p>{{ selectedAudit?.self_rating }}</p>
+              </div>
+              <div class="mb-3">
+                <label>Technical Skills Used</label>
+                <p>{{ selectedAudit?.technical_skills_used }}</p>
+              </div>
+
+              <div class="mb-3">
+                <label>Communication & Collaboration</label>
+                <p>
+                  {{ selectedAudit?.communication_collaboration }}
+                  <!-- <span *ngIf="selectedAudit?.communication_collaboration?.dailyStandups">Daily Standups, </span>
+                <span *ngIf="selectedAudit?.communication_collaboration?.clientMeetings">Client Meetings, </span>
+                <span *ngIf="selectedAudit?.communication_collaboration?.slack">Slack</span> -->
+                </p>
+              </div>
+
+              <div class="mb-3">
+                <label>Cross-Functional Involvement</label>
+                <p>
+                  {{ selectedAudit?.cross_functional_involvement }}
+                  <!-- <span *ngIf="selectedAudit?.crossFunctionalInvolvement?.techSupport">Tech Support, </span>
+                <span *ngIf="selectedAudit?.crossFunctionalInvolvement?.bdSupport">BD Support</span> -->
+                </p>
+              </div>
+
+              <div class="mb-3">
+                <label>Monthly Task Highlights</label>
+                <p>{{ selectedAudit?.task_highlight }}</p>
+              </div>
+              <div class="mb-3">
+                <label>Personal Highlights</label>
+                <p>{{ selectedAudit?.personal_highlight }}</p>
+              </div>
+              <div class="mb-3">
+                <label>Areas to Improve</label>
+                <p>{{ selectedAudit?.areas_to_improve }}</p>
+              </div>
+
+              <div class="mb-3">
+                <label>Initiatives Taken</label>
+                <p>
+                  {{ selectedAudit?.initiative_taken }}
+                  <!-- <span *ngIf="selectedAudit?.initiativeTaken?.processSuggestion">Process Suggestion, </span>
+                <span *ngIf="selectedAudit?.initiativeTaken?.documentation">Documentation</span> -->
+                </p>
+              </div>
+
+              <div class="mb-3">
+                <label>Learning/Certifications Done</label>
+                <p>{{ selectedAudit?.learnings_certifications }}</p>
+              </div>
+              <div class="mb-3">
+                <label>Suggestions to Company</label>
+                <p>{{ selectedAudit?.suggestions_to_company }}</p>
+              </div>
+
+              <hr class="my-4" />
+
+              <div class="mb-3">
+                <label>Previous Cycle Goals</label>
+                <p>{{ selectedAudit?.previous_cycle_goals }}</p>
+              </div>
+              <div class="mb-3">
+                <label>Goal Achievement %</label>
+                <p>{{ selectedAudit?.goal_achievement }}%</p>
+              </div>
+              <div class="mb-3">
+                <label>Projects Worked On</label>
+                <p>{{ selectedAudit?.projects_worked }}</p>
+              </div>
+              <div class="mb-3">
+                <label>Tasks/Modules Completed</label>
+                <p>{{ selectedAudit?.tasks_modules_completed }}</p>
+              </div>
+              <!-- <div><label>Final Remarks</label><p>{{ selectedAudit?.final_remarks }}</p></div> -->
+            </div>
+
+            <!-- 🧑‍💼 RIGHT: Manager Review Form -->
+            <form
+              [formGroup]="managerForm"
+              (ngSubmit)="submitManagerReview()"
+              class="form-card space-y-4"
+            >
+              <h4 class="headlevel-three">Manager Review</h4>
+
+              <div class="mb-3">
+                <label>Manager Review Comments</label>
+                <textarea
+                  formControlName="manager_review_comments"
+                  class="form-control"
+                  placeholder="Consistent performer, proactive in tech issues"
+                ></textarea>
+              </div>
+
+              <div class="mb-3">
+                <label>Rating on Execution</label>
+                <div class="flex gap-2">
+                  <label *ngFor="let val of [1, 2, 3, 4, 5]">
+                    <input
+                      type="radio"
+                      formControlName="rating_execution"
+                      [value]="val"
+                    />
+                    {{ val }}
+                  </label>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label>Rating on Innovation</label>
+                <div class="flex gap-2">
+                  <label *ngFor="let val of [1, 2, 3, 4, 5]">
+                    <input
+                      type="radio"
+                      formControlName="rating_innovation"
+                      [value]="val"
+                    />
+                    {{ val }}
+                  </label>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label>Attendance & Discipline Score</label>
+                <input
+                  type="text"
+                  formControlName="attendance_discipline_score"
+                  class="form-control"
+                  placeholder="9/10"
+                />
+              </div>
+
+              <div class="mb-3">
+                <label>Quality of Delivery</label>
+                <div class="flex gap-2">
+                  <label
+                    *ngFor="let opt of ['Poor', 'Average', 'Good', 'Excellent']"
+                  >
+                    <input
+                      type="radio"
+                      formControlName="quality_of_delivery"
+                      [value]="opt"
+                    />
+                    {{ opt }}
+                  </label>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label>Ownership & Initiative</label>
+                <div class="flex gap-2">
+                  <label *ngFor="let opt of ['Low', 'Moderate', 'High']">
+                    <input
+                      type="radio"
+                      formControlName="ownership_initiative"
+                      [value]="opt"
+                    />
+                    {{ opt }}
+                  </label>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label>Contribution to Team Growth</label>
+                <div class="flex gap-2">
+                  <label *ngFor="let opt of ['Low', 'Moderate', 'High']">
+                    <input
+                      type="radio"
+                      formControlName="team_growth_contribution"
+                      [value]="opt"
+                    />
+                    {{ opt }}
+                  </label>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label>Promotion/Action Suggested</label>
+                <select
+                  formControlName="promotion_action_suggested"
+                  class="form-control"
+                >
+                  <option value="Retain">Retain</option>
+                  <option value="Promote">Promote</option>
+                  <option value="PIP">PIP</option>
+                  <option value="Training Plan">Training Plan</option>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label>Final Remarks</label>
+                <textarea
+                  formControlName="final_remarks"
+                  class="form-control"
+                  placeholder="Final Remarks"
+                ></textarea>
+              </div>
+              <button type="submit" class="btn gradientBtn mt-4">
+                Submit Review
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     </div>
