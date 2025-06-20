@@ -16,6 +16,8 @@ export class EmpAuditComponent implements OnInit {
 
   editForm: FormGroup;
   managerForm: FormGroup;
+  selectedAuditItem: any; // keep track of the clicked item
+
 
   constructor(private http: HttpClient, private fb: FormBuilder) {
     this.editForm = this.fb.group({
@@ -63,7 +65,6 @@ export class EmpAuditComponent implements OnInit {
     this.http.get(`https://backend.fuoday.com/api/hrms/performance/getauditreportingteam/${webUserId}`).subscribe({
       next: (data: any) => {
         this.auditReport = data;
-        console.log(this.auditReport);
       },
       error: (err) => {
         this.errorMessage = 'Failed to fetch audit report.';
@@ -71,12 +72,13 @@ export class EmpAuditComponent implements OnInit {
     });
   }
 
-  onEdit(webUserId: number) {
+  onEdit(webUserId: number,item: any) {
     this.selectedAudit = null; // Clear previous state
     this.managerForm.reset();  // Reset the form
-  
+    this.selectedAuditItem = item;
+
     const apiUrl = `https://backend.fuoday.com/api/hrms/performance/getauditreport/${webUserId}`;
-    
+
     this.http.get(apiUrl).subscribe({
       next: (response: any) => {
         if (response?.status === 'Success' && response?.data) {
@@ -92,7 +94,7 @@ export class EmpAuditComponent implements OnInit {
       }
     });
   }
-  
+
 
   submitManagerReview() {
     if (this.managerForm.valid && this.selectedAuditId) {
@@ -113,18 +115,21 @@ export class EmpAuditComponent implements OnInit {
       const apiUrl = `https://backend.fuoday.com/api/hrms/performance/updateaudit/${this.selectedAuditId}`;
 
       this.http.post(apiUrl, payload).subscribe({
-        next: (res) => {
-          alert('Review submitted successfully!');
-          this.selectedAudit = null;
-        },
-        error: (err) => {
-          console.error('Error:', err);
-          alert('Failed to submit review.');
+      next: (res) => {
+        alert('Review submitted successfully!');
+        if (this.selectedAuditItem) {
+          this.selectedAuditItem.reviewCompleted = true; // change button text to Completed
         }
-      });
-    } else {
-      alert('Please complete the form or missing audit ID');
-    }
+        this.selectedAudit = null;
+        this.selectedAuditId = null;
+      },
+      error: (err) => {
+        console.error('Error:', err);
+        alert('Failed to submit review.');
+      }
+    });
+  } else {
+    alert('Please complete the form or missing audit ID');
   }
 }
-
+}

@@ -25,7 +25,7 @@ export class AuditComponent {
   webUserId: number | null = null;
   hoveredRating = 0; // To store the rating on hover
   isLoading = false; // FIXED: Added missing 'isLoading' property
-  selectedFiles: { [key: string]: string } = {}; 
+  selectedFiles: { [key: string]: string } = {};
   selfRating: number = 0;
   auditReportList: any[] = [];
   selectedAudit: any = null;
@@ -70,24 +70,24 @@ export class AuditComponent {
       finalRemarks: [''],
       acknowledgement: [false],
       attachments: [null]
-    }); 
+    });
   }
 
-  
+
 
   stars = [1, 2, 3, 4, 5];
   // selfRating: number = 0;
   // hoveredRating: number = 0;
-  
+
   rate(rating: number): void {
     this.selfRating = rating;
     this.auditForm.patchValue({ selfRating: rating });
   }
-  
+
   onStarHover(rating: number): void {
     this.hoveredRating = rating;
   }
-  
+
   onStarLeave(): void {
     this.hoveredRating = 0;
   }
@@ -97,9 +97,9 @@ export class AuditComponent {
       console.error('web_user_id is missing');
       return;
     }
-  
+
     const url = `https://backend.fuoday.com/api/hrms/performance/getallauditreport/${this.webUserId}`;
-  
+
     this.http.get<any>(url).subscribe({
       next: (response) => {
         if (response && response.status === 'Success') {
@@ -113,8 +113,8 @@ export class AuditComponent {
       }
     });
   }
-  
-  
+
+
   // -------------------------
 
   ngOnInit(): void {
@@ -135,7 +135,7 @@ export class AuditComponent {
       return;
     }
 
-    this.getAllAuditReports(); 
+    this.getAllAuditReports();
 
     this.performanceService.getEmployeeAudit(this.webUserId).subscribe({
       next: (response) => {
@@ -170,7 +170,7 @@ export class AuditComponent {
     });
   }
 
-  
+
 
   // onFileSelected(event: any) {
   //   this.selectedFile = event.target.files[0];
@@ -190,61 +190,73 @@ export class AuditComponent {
     }
   }
 
-  submitForm() {
-    const monthNames = [
-      'January', 'February', 'March', 'April', 'May', 'June',
-      'July', 'August', 'September', 'October', 'November', 'December'
-    ];
-    const currentMonth = monthNames[new Date().getMonth()];
-    const payload: any = {
-      web_user_id: this.webUserId,
-      audit_cycle_type: this.auditForm.value.audit_cycle_type,
-      review_period: this.auditForm.value.review_period,
-      audit_month: currentMonth,
-      self_rating: String(this.auditForm.value.selfRating),
-      technical_skills_used: Array.isArray(this.auditForm.value.technicalSkillsUsed) ? this.auditForm.value.technicalSkillsUsed.join(', ') : String(this.auditForm.value.technicalSkillsUsed),
-      communication_collaboration: typeof this.auditForm.value.communicationCollaboration === 'object' ? Object.keys(this.auditForm.value.communicationCollaboration).filter(k => this.auditForm.value.communicationCollaboration[k]).join(', ') : String(this.auditForm.value.communicationCollaboration),
-      cross_functional_involvement: typeof this.auditForm.value.crossFunctionalInvolvement === 'object' ? Object.keys(this.auditForm.value.crossFunctionalInvolvement).filter(k => this.auditForm.value.crossFunctionalInvolvement[k]).join(', ') : String(this.auditForm.value.crossFunctionalInvolvement),
-      task_highlight: this.auditForm.value.monthlyTaskHighlights,
-      personal_highlight: this.auditForm.value.personalHighlights,
-      areas_to_improve: this.auditForm.value.areasToImprove,
-      initiative_taken: typeof this.auditForm.value.initiativeTaken === 'object' ? Object.keys(this.auditForm.value.initiativeTaken).filter(k => this.auditForm.value.initiativeTaken[k]).join(', ') : String(this.auditForm.value.initiativeTaken),
-      learnings_certifications: this.auditForm.value.learningCertificationsDone,
-      suggestions_to_company: this.auditForm.value.suggestionsToCompany,
-      previous_cycle_goals: this.auditForm.value.previousCycleGoals,
-      goal_achievement: String(this.auditForm.value.goalAchievementPercentage),
-      kpi_metrics: this.auditForm.value.kpiMetricsFile,
-      projects_worked: this.auditForm.value.projectsWorkedOn,
-      tasks_modules_completed: this.auditForm.value.tasksModulesCompleted,
-      performance_evidences: this.auditForm.value.performanceEvidencesFile,
-      final_remarks: this.auditForm.value.finalRemarks,
-      acknowledgement: this.auditForm.value.acknowledgement,
-      attachments: this.auditForm.value.attachments
-    };
+ submitForm() {
+  const monthNames = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ];
+  const currentMonth = monthNames[new Date().getMonth()];
 
-    let requestBody: any;
-    let headers: any = {};
-    if (this.selectedFile) {
-      requestBody = new FormData();
-      Object.entries(payload).forEach(([key, value]) => {
-        requestBody.append(key, value);
-      });
-      requestBody.append('file', this.selectedFile, this.selectedFile.name);
-    } else {
-      requestBody = payload;
-      headers = { 'Content-Type': 'application/json' };
-    }
+  const payload: any = {
+    web_user_id: this.webUserId,
+    audit_cycle_type: this.auditForm.value.audit_cycle_type,
+    review_period: this.auditForm.value.review_period,
+    audit_month: currentMonth,
+    self_rating: String(this.auditForm.value.selfRating),
+    technical_skills_used: Array.isArray(this.auditForm.value.technicalSkillsUsed)
+      ? this.auditForm.value.technicalSkillsUsed.join(', ')
+      : String(this.auditForm.value.technicalSkillsUsed),
+    communication_collaboration: typeof this.auditForm.value.communicationCollaboration === 'object'
+      ? Object.keys(this.auditForm.value.communicationCollaboration).filter(k => this.auditForm.value.communicationCollaboration[k]).join(', ')
+      : String(this.auditForm.value.communicationCollaboration),
+    cross_functional_involvement: typeof this.auditForm.value.crossFunctionalInvolvement === 'object'
+      ? Object.keys(this.auditForm.value.crossFunctionalInvolvement).filter(k => this.auditForm.value.crossFunctionalInvolvement[k]).join(', ')
+      : String(this.auditForm.value.crossFunctionalInvolvement),
+    task_highlight: this.auditForm.value.monthlyTaskHighlights,
+    personal_highlight: this.auditForm.value.personalHighlights,
+    areas_to_improve: this.auditForm.value.areasToImprove,
+    initiative_taken: typeof this.auditForm.value.initiativeTaken === 'object'
+      ? Object.keys(this.auditForm.value.initiativeTaken).filter(k => this.auditForm.value.initiativeTaken[k]).join(', ')
+      : String(this.auditForm.value.initiativeTaken),
+    learnings_certifications: this.auditForm.value.learningCertificationsDone,
+    suggestions_to_company: this.auditForm.value.suggestionsToCompany,
+    previous_cycle_goals: this.auditForm.value.previousCycleGoals,
+    goal_achievement: String(this.auditForm.value.goalAchievementPercentage),
+    kpi_metrics: this.auditForm.value.kpiMetricsFile,
+    projects_worked: this.auditForm.value.projectsWorkedOn,
+    tasks_modules_completed: this.auditForm.value.tasksModulesCompleted,
+    performance_evidences: this.auditForm.value.performanceEvidencesFile,
+    final_remarks: this.auditForm.value.finalRemarks,
+    acknowledgement: this.auditForm.value.acknowledgement,
+    attachments: this.auditForm.value.attachments
+  };
 
-    this.http.post('https://backend.fuoday.com/api/hrms/performance/addaudit', requestBody, { headers }).subscribe({
-      next: (res) => {
-        console.log('Form submitted:', res);
-        this.submitted = true;
-        this.auditForm.reset();
-        this.selectedFile = null;
-      },
-      error: (err) => {
-        console.error('Submission failed', err);
-      }
+  let requestBody: any;
+  let headers: any = {};
+  if (this.selectedFile) {
+    requestBody = new FormData();
+    Object.entries(payload).forEach(([key, value]) => {
+      requestBody.append(key, value);
     });
+    requestBody.append('file', this.selectedFile, this.selectedFile.name);
+  } else {
+    requestBody = payload;
+    headers = { 'Content-Type': 'application/json' };
   }
-} 
+
+  this.http.post('https://backend.fuoday.com/api/hrms/performance/addaudit', requestBody, { headers }).subscribe({
+    next: (res) => {
+      console.log('Form submitted:', res);
+      alert('Employee Audit Form submitted successfully!');
+      this.submitted = true;
+      this.auditForm.reset();
+      this.selectedFile = null;
+    },
+    error: (err) => {
+      console.error('Submission failed', err);
+      alert('Submission failed. Please try again later.');
+    }
+  });
+}
+
+}

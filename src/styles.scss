@@ -233,6 +233,13 @@ $input-color: #b5b4b4;
       font-weight: 700;
     }
 
+    .headlevel-three-normal-white{
+  font-size: 1.25rem;
+      color: $white-color;
+      font-family: $head-thikse-font2;
+      font-weight: 600;
+}
+
 
     .headlevel-three-normal {
       font-size: 1.25rem;
@@ -879,7 +886,31 @@ height: 24px;
     border-radius: 5px;
   }
 
+    // Multi-select styling
+select[multiple] {
+
+
+  option {
+    &:checked{
+      background-color: unset !important;
+      color: $primary-thikse-color;
+    }
+
+
+    &:hover {
+      color: $primary-thikse-color;
+    }
+  }
+}
+
   // Input common  styles
+
+  .font-weight-700{
+    font-weight: 700 !important;
+  }
+  .font-size-16px{
+    font-size: 16px;
+  }
 
   .input-basic{
     border: 1px solid #767676;
@@ -1130,7 +1161,12 @@ $input-color: #b5b4b4;
       font-family: $head-areg-font2;
       font-weight: 700;
     }
-
+.headlevel-three-normal-white{
+  font-size: 1.25rem;
+      color: $white-color;
+      font-family: $head-areg-font2;
+      font-weight: 600;
+}
 
     .headlevel-three-normal {
       font-size: 1.25rem;
@@ -1759,7 +1795,33 @@ height: 24px;
     border-radius: 5px;
   }
 
+  // Multi-select styling
+select[multiple] {
+
+
+  option {
+    &:checked{
+        color: $primary-areg-color;
+        background-color: unset !important;
+    }
+
+
+    &:hover {
+      color: $primary-areg-color;
+    }
+  }
+}
+select:-internal-list-box option:checked {
+  background-color: unset;
+}
+
   // Input common  styles
+    .font-weight-700{
+    font-weight: 700 !important;
+  }
+  .font-size-17px{
+    font-size: 17px;
+  }
 
   .input-basic{
     border: 1px solid #767676;

@@ -161,16 +161,24 @@
       <div class="form-card">
         <div class="form-grid">
           <div class="form-field">
-            <label>Employee Name</label>{{ employee.name }}
+            <label>Employee Name</label><span class="font-size-17px">
+              {{ employee.name }}
+            </span>
           </div>
           <div class="form-field">
-            <label>Employee ID</label>{{ employee.empId }}
+            <label>Employee ID</label><span class="font-size-17px">
+              {{ employee.empId }}
+            </span>
           </div>
           <div class="form-field">
-            <label>Designation</label>{{ employee.designation }}
+            <label>Designation</label><span class="font-size-17px">
+              {{ employee.designation }}
+            </span>
           </div>
           <div class="form-field">
-            <label>Department</label>{{ employee.department }}
+            <label>Department</label><span class="font-size-17px">
+              {{ employee.department }}
+            </span>
           </div>
           <div class="form-field">
             <label>Review Period</label
@@ -182,20 +190,27 @@
             </select>
           </div>
           <div class="form-field">
-            <label>Reporting Manager</label>{{ employee.manager }}
+            <label>Reporting Manager</label>
+            <span class="font-size-16px">
+              {{ employee.manager }}
+            </span>
           </div>
           <div class="form-field">
-            <label>Date of Joining</label>{{ employee.doj }}
+            <label>Date of Joining</label><span class="font-size-16px">
+              {{ employee.doj }}
+            </span>
           </div>
           <div class="form-field">
-            <label>Attendance %</label>{{ employee.attendance_percentage }}
+            <label>Attendance %</label><span class="font-size-16px">
+              {{ employee.attendance_percentage }}
+            </span>
           </div>
           <div class="form-field">
             <label>Working Mode</label>
-            <p>{{ employee.working_mode }}</p>
+            <p class="work-mode">{{ employee.working_mode }}</p>
           </div>
           <div class="form-field radio-group">
-            <label class="form-label font-weight-bold">Audit Cycle Type</label>
+            <label class="form-label font-weight-700">Audit Cycle Type</label>
             <div>
               <div class="mr-10px">
                 <input
@@ -256,8 +271,8 @@
 
         <!-- <div class="form-field"><label>Self-Rating (1 to 5)</label><div class="star-rating"><input type="radio" id="star5" formControlName="selfRating" value="5" /><label for="star5">★</label><input type="radio" id="star4" formControlName="selfRating" value="4" /><label for="star4">★</label><input type="radio" id="star3" formControlName="selfRating" value="3" /><label for="star3">★</label><input type="radio" id="star2" formControlName="selfRating" value="2" /><label for="star2">★</label><input type="radio" id="star1" formControlName="selfRating" value="1" /><label for="star1">★</label></div></div> -->
         <div class="form-field">
-          <label>Technical Skills Used</label
-          ><select formControlName="technicalSkillsUsed" multiple>
+          <label>Technical Skills Used (Hold Ctl + click)</label
+          ><select class="techselect" formControlName="technicalSkillsUsed" multiple>
             <option value="python">Python</option>
             <option value="docker">Docker</option>
             <option value="mongodb">MongoDB</option>
@@ -269,7 +284,7 @@
           class="form-field checkbox-group"
           formGroupName="communicationCollaboration"
         >
-          <label class="">Communication & Collaboration</label>
+          <label class="font-weight-700">Communication & Collaboration</label>
           <div class="com-group">
             <div class="mr-10px">
               <input
@@ -287,10 +302,10 @@
               />
               <label for="comm2">Client Meetings</label>
             </div>
-            <div class="mr-10px">
+            <!-- <div class="mr-10px">
               <input type="checkbox" id="comm3" formControlName="slack" />
               <label for="comm3">Slack</label>
-            </div>
+            </div> -->
           </div>
         </div>
         <!-- ADDED: Cross-Functional Involvement -->
@@ -298,7 +313,7 @@
           class="form-field checkbox-group"
           formGroupName="crossFunctionalInvolvement"
         >
-          <label>Cross-Functional Involvement</label>
+          <label class="font-weight-700">Cross-Functional Involvement</label>
           <div>
             <div class="mr-10px">
               <input
@@ -338,7 +353,7 @@
         </div>
         <!-- ADDED: Initiative Taken -->
         <div class="form-field checkbox-group" formGroupName="initiativeTaken">
-          <label>Initiative Taken</label>
+          <label class="font-weight-700">Initiative Taken</label>
           <div>
             <div class="mr-10px">
               <input
@@ -400,13 +415,13 @@
           <label>KPI Metrics</label>
           <div class="file-upload">
             <input
-              type="file"
+              type="file" class="file-uploadBlock"
               (change)="onFileSelected($event, 'kpiMetricsFile')"
             />
-            <div class="file-upload-label">
-              <i class="fas fa-cloud-upload-alt file-upload-icon"></i
+            <div class="gradientBtn smallBlock">
+              <i class="fas fa-cloud-upload-alt file-upload-icon mr-20px"></i
               ><span>{{
-                selectedFiles["kpiMetricsFile"] || "Upload KPI Metrics"
+                selectedFiles["kpiMetricsFile"] || "Upload"
               }}</span>
             </div>
           </div>
@@ -432,14 +447,14 @@
           <label>Performance Evidences</label>
           <div class="file-upload">
             <input
-              type="file"
+              type="file" class="file-uploadBlock"
               (change)="onFileSelected($event, 'performanceEvidencesFile')"
             />
-            <div class="file-upload-label">
-              <i class="fas fa-file-alt file-upload-icon"></i
+            <div class="gradientBtn smallBlock">
+              <i class="fas fa-file-alt file-upload-icon mr-20px"></i
               ><span>{{
                 selectedFiles["performanceEvidencesFile"] ||
-                  "Upload Evidence Files"
+                  "Upload"
               }}</span>
             </div>
           </div>
@@ -456,14 +471,14 @@
           <label>Additional Attachments</label>
           <div class="file-upload">
             <input
-              type="file"
+              type="file" class="file-uploadBlock"
               (change)="onFileSelected($event, 'attachments', true)"
               multiple
             />
-            <div class="file-upload-label">
-              <i class="fas fa-paperclip file-upload-icon"></i
+            <div class="gradientBtn smallBlock">
+              <i class="fas fa-paperclip file-upload-icon mr-20px"></i
               ><span>{{
-                selectedFiles["attachments"] || "Upload Multiple Files"
+                selectedFiles["attachments"] || "Upload"
               }}</span>
             </div>
           </div>
@@ -564,7 +579,7 @@
               <p>{{ selectedAudit?.attendance_percentage }}</p>
             </div>
             <div>
-              <label>Audit Cycle Type</label>
+              <label class="font-weight-700">Audit Cycle Type</label>
               <p>{{ selectedAudit?.audit_cycle_type }}</p>
             </div>
           </div>
