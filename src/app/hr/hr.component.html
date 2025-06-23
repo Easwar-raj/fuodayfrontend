@@ -320,6 +320,234 @@
           </div>
         </div>
       </div>
+      <div class="col-md-4">
+        <div class="card stats-card">
+          <div class="stats-number">2</div>
+          <div class="stats-label">Total Audit Process</div>
+          <div class="cover">
+            <!-- <div class="status-indicator status-green"></div> -->
+            <!-- <span class="small"
+              >{{ stats.permissionChangePercentage }} this week</span
+            > -->
+          </div>
+          <div class="d-flex justify-content-end" (click)="openAuditPopup()">
+            <span class="small gradientBtn">View Audit Process</span>
+          </div>
+          <div class="stats-icon text-primary">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              id="Layer_1"
+              data-name="Layer 1"
+              width="27"
+              height="30"
+              viewBox="0 0 27 30"
+              class="icon-col-prim icon-24"
+            >
+              <path
+                d="m27,30l-27-.2V0h17.7l9.3,8.4v21.6Zm-25-2.2l23,.2V9.3l-8-7.3H2v25.8Z"
+              ></path>
+              <polygon
+                points="25.3 10.2 15.9 10.2 15.9 1.9 17.9 1.9 17.9 8.2 25.3 8.2 25.3 10.2"
+              ></polygon>
+            </svg>
+          </div>
+        </div>
+        <!-- Audit Popup -->
+        <div class="popup-overlay" *ngIf="showAuditPopup">
+          <div class="popup-content">
+            <div
+              class="d-flex align-items-center justify-content-between popupHeader"
+            >
+              <div>
+                <h3 class="headlevel-three mb-0">Aduit Complete List</h3>
+              </div>
+              <button
+                type="button"
+                class="closeicon"
+                (click)="closeAuditPopup()"
+              >
+                <span>X</span>
+              </button>
+            </div>
+
+            <div class="popup-body">
+              <div class="table-container">
+                <div class="table-responsive">
+                  <table class="leave-table common-table">
+                    <thead>
+                      <tr>
+                        <th>S.No</th>
+                        <th>Employee Id</th>
+                        <th>Name</th>
+                        <th>Designation</th>
+                        <th>Team</th>
+                        <th>Status</th>
+                        <th>Viewed</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>1</td>
+                        <td>1005</td>
+                        <td>Saravanan</td>
+                        <td>Assistant Manager</td>
+                        <td>Tech Team</td>
+                        <td>Verified</td>
+                        <td>
+                          <div>
+                            <button type="button" class="small gradientBtn">
+                              Viewed
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- Pagination controls -->
+                <div class="pagination-wrapper mt-3">
+                  <pagination-controls
+                    (pageChange)="currentPage = $event"
+                  ></pagination-controls>
+                </div>
+              </div>
+            </div>
+
+            <ng-template #noData>
+              <div class="warning-block">
+                <p>No leave reports available.</p>
+              </div>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card stats-card">
+          <div class="stats-number">{{ stats.permissionChange }}</div>
+          <div class="stats-label">Events</div>
+          <div class="cover">
+            <!-- <div class="status-indicator status-green"></div>
+            <span class="small"
+              >{{ stats.permissionChangePercentage }} this week</span
+            > -->
+          </div>
+          <div class="d-flex justify-content-end" (click)="openEventPopup()">
+            <span class="small gradientBtn">Add Event</span>
+          </div>
+          <div class="stats-icon text-primary">
+            <svg
+              class="icon-col-prim icon-22"
+              xmlns="http://www.w3.org/2000/svg"
+              id="Layer_2"
+              data-name="Layer 2"
+              width="28"
+              height="28"
+              viewBox="0 0 28 28"
+            >
+              <path d="m28,28H0V0h28v28Zm-26.6-1.4h25.1V1.4H1.4v25.2Z" />
+              <rect x=".6" y="6.3" width="26.9" height="1.4" />
+              <rect x="9.7" y="2.3" width="1.4" height="3.1" />
+              <rect x="5.5" y="2.3" width="1.4" height="3.1" />
+              <rect x="2.7" y=".7" width="1.4" height="6.3" />
+            </svg>
+          </div>
+        </div>
+        <!-- Audit Popup -->
+        <div class="popup-overlay" *ngIf="showEventPopup">
+          <div class="popup-content">
+            <div
+              class="d-flex align-items-center justify-content-between popupHeader"
+            >
+              <div>
+                <h3 class="headlevel-three mb-0">Add Events</h3>
+              </div>
+              <button
+                type="button"
+                class="closeicon"
+                (click)="closeEventPopup()"
+              >
+                <span>X</span>
+              </button>
+            </div>
+
+            <div class="popup-body">
+              <div>
+                <!--  Event  -->
+
+                <form
+                  [formGroup]="eventForm"
+                  (ngSubmit)="onSubmit()"
+                  class="form-layout"
+                >
+                  <div>
+                    <div class="form-field mb-3">
+                      <label class="font-weight-600">Event Type</label>
+                      <select formControlName="event" class="form-control">
+                        <option value="" disabled selected>Select Type</option>
+                        <option
+                          *ngFor="let option of eventOptions"
+                          [value]="option"
+                        >
+                          {{ option }}
+                        </option>
+                      </select>
+                    </div>
+
+                    <div class="form-field mb-3">
+                      <label class="font-weight-600">Title</label>
+                      <input
+                        type="text"
+                        formControlName="title"
+                        class="form-control"
+                      />
+                    </div>
+
+                    <div class="form-field mb-3">
+                      <label class="font-weight-600">Date</label>
+                      <input
+                        type="date"
+                        formControlName="date"
+                        class="form-control"
+                        [min]="today"
+                        (focus)="openDatePicker($event)"
+                        #dateInput
+                      />
+                    </div>
+
+                    <div class="form-field mb-3">
+                      <label class="font-weight-600">Description</label>
+                      <textarea
+                        formControlName="description"
+                        class="form-control"
+                      ></textarea>
+                    </div>
+                  </div>
+                  <p
+                    *ngIf="successMessage"
+                    style="color: green; font-weight: bold"
+                  >
+                    {{ successMessage }}
+                  </p>
+
+                  <div class="d-flex justify-content-end">
+                    <button type="submit" class="gradientBtn">
+                      {{ isEditMode ? "Update" : "Create" }} Event
+                    </button>
+                  </div>
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    (click)="resetForm()"
+                    *ngIf="isEditMode"
+                  >
+                    Cancel
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <!-- Total Attendance View -->
       <!-- <div class="col-md-4">
         <div class="card stats-card">

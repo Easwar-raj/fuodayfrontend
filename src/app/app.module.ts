@@ -74,6 +74,7 @@ import { AtsInterviewComponent } from './atsPack/ats-interview/ats-interview.com
 import { AtsHiringComponent } from './atsPack/ats-hiring/ats-hiring.component';
 import { AuditComponent } from './audit/audit.component';
 import { EmpAuditComponent } from './emp-audit/emp-audit.component';
+import { ManagementDashboardComponent } from './management-dashboard/management-dashboard.component';
 
 
 @NgModule({
@@ -144,6 +145,7 @@ import { EmpAuditComponent } from './emp-audit/emp-audit.component';
     AtsHiringComponent,
     AuditComponent,
     EmpAuditComponent,
+    ManagementDashboardComponent,
 
   ],
   imports: [

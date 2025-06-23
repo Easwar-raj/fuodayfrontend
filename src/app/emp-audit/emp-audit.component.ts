@@ -64,7 +64,9 @@ export class EmpAuditComponent implements OnInit {
 
     this.http.get(`https://backend.fuoday.com/api/hrms/performance/getauditreportingteam/${webUserId}`).subscribe({
       next: (data: any) => {
+        console.log("123 : ",data);
         this.auditReport = data;
+        console.log("123 : ",this.auditReport);
       },
       error: (err) => {
         this.errorMessage = 'Failed to fetch audit report.';

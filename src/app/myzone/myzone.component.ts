@@ -3,6 +3,7 @@ import { isPlatformBrowser , PlatformLocation } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { AttendanceService } from '../servicesFiles/attendance.service';
 import { Router } from '@angular/router';
+import { EventService } from '../servicesFiles/event.service';
 
 @Component({
   selector: 'app-myzone',
@@ -16,10 +17,13 @@ export class MyzoneComponent implements OnInit, OnDestroy {
     private http: HttpClient,
     private platformLocation: PlatformLocation,
     private attendanceService: AttendanceService,
+    private eventService: EventService,
     private router: Router
   ) {}
-
+  announcements: any[] = [];
+  selectedType: string = 'Announcement'; // default tab
   userId!: number;
+  webUserId!: number;
   userName!: string;
   profilePhoto!: string | null;
   styleName:string='';
@@ -27,7 +31,10 @@ backgroundStyle: string = '';
   isHovered = false;
   isLoggedIn = false;
   checkinTime:string='';
-showPopup = false;
+// Popup flags
+showAnnouncePopup = false;
+showCelebrationPopup = false;
+showOperationsPopup = false;
 
   activeSideTab: string = 'general';
   activeTopTab: string = 'activities';
@@ -54,6 +61,7 @@ showPopup = false;
   if (userData) {
     const user = JSON.parse(userData);
     this.userId = user.id;
+    this.webUserId = user.admin_user_id;
     this.userName = user.name;
     this.profilePhoto = user.profile_photo;
     this.styleName = user.admin_user?.company_word || '';
@@ -62,6 +70,8 @@ showPopup = false;
       this.styleName === 'ar'
         ? 'url("/assets/images/fuoday/bg/welbg-areg.png")'
         : 'url("/assets/images/fuoday/bg/welbg.png")';
+        this.loadAnnouncements('Announcement');
+
   }
 
   // Confirm check-in status from backend
@@ -105,19 +115,47 @@ showPopup = false;
   });
 }
 
+loadAnnouncements(type: string): void {
+    this.selectedType = type;
+
+    this.eventService.getAnnouncements(this.webUserId, type).subscribe({
+      next: (res) => {
+        this.announcements = res.data || [];
+      },
+      error: (err) => {
+        console.error('Error loading announcements', err);
+      },
+    });
+  }
+
 // Announcement Popup
+openAnnouncePopup() {
+  this.showAnnouncePopup = true;
+}
+closeAnnouncePopup() {
+  this.showAnnouncePopup = false;
+}
+
+// Celebrations Popup
+openCelebrationPopup() {
+  this.showCelebrationPopup = true;
+}
+closeCelebrationPopup() {
+  this.showCelebrationPopup = false;
+}
+
+// Operations Popup
+openOperationsPopup() {
+  this.showOperationsPopup = true;
+}
+closeOperationsPopup() {
+  this.showOperationsPopup = false;
+}
 
 
-  openPopup() {
-    this.showPopup = true;
-  }
-
-  closePopup() {
-    this.showPopup = false;
-  }
 
   goToAuditForm() {
-    this.closePopup(); // optional
+    this.closeAnnouncePopup(); // optional
     this.router.navigate(['/performance/audit']);
   }
 

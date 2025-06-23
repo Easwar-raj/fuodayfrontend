@@ -531,6 +531,7 @@ color: $primary-thikse-color;
     color:$white-color;
     background: $primary-thikse-color;
     padding: 1px 5px;
+    font-size: 14px;
   }
 }
 
@@ -904,6 +905,7 @@ select[multiple] {
 }
 
   // Input common  styles
+
 
   .font-weight-700{
     font-weight: 700 !important;
@@ -1459,6 +1461,7 @@ color: $primary-areg-color;
     color:$white-color;
     background: $primary-areg-color;
     padding: 1px 5px;
+    font-size: 14px;
   }
 }
 
@@ -1815,7 +1818,161 @@ select:-internal-list-box option:checked {
   background-color: unset;
 }
 
+
+// Model Popup Design
+
+// Model popup
+
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  .modal-content {
+  background: #fff;
+  border-radius: 10px;
+  width: 500px;
+  position: relative;
+}
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.3490196078);
+}
+}
+
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  padding: 16px;
+  .same-line{
+    display: flex;
+    gap: 20px;
+  }
+  .leaveReq-grp-btn{
+    display: flex;
+    justify-content: end;
+    column-gap: 10px;
+    margin-top: 10px;
+    .cancel-btn{
+      border: unset;
+      padding: 5px 20px;
+      border-radius: 50px;
+      background: #8080806e;
+      transition: 0.7ms;
+      &:hover{
+        background-color: #dc3545;
+        color: #fff;
+      }
+  }
+  }
+
+
+}
+
+.modal-body label {
+  font-weight: bold;
+  margin-top: 10px;
+  max-width: 200px;
+  width: 100%;
+}
+
+.modal-body input,
+.modal-body select,
+.modal-body textarea {
+  margin-top: 5px;
+  margin-bottom: 10px;
+  padding: 8px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+// Model Popup
+
+// Model popup
+
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  .modal-content {
+  background: #fff;
+  border-radius: 10px;
+  width: 500px;
+  position: relative;
+}
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.3490196078);
+}
+}
+
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  padding: 16px;
+  .same-line{
+    display: flex;
+    gap: 20px;
+  }
+  .leaveReq-grp-btn{
+    display: flex;
+    justify-content: end;
+    column-gap: 10px;
+    margin-top: 10px;
+    .cancel-btn{
+      border: unset;
+      padding: 5px 20px;
+      border-radius: 50px;
+      background: #8080806e;
+      transition: 0.7ms;
+      &:hover{
+        background-color: #dc3545;
+        color: #fff;
+      }
+  }
+  }
+
+
+}
+
+.modal-body label {
+  font-weight: bold;
+  margin-top: 10px;
+  max-width: 200px;
+  width: 100%;
+}
+
+.modal-body input,
+.modal-body select,
+.modal-body textarea {
+  margin-top: 5px;
+  margin-bottom: 10px;
+  padding: 8px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
   // Input common  styles
+
     .font-weight-700{
     font-weight: 700 !important;
   }

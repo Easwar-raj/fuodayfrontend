@@ -44,6 +44,16 @@ export class AdminUserService {
       return this.http.post(`${this.baseUrl}/save/achievement`, payload, { headers });
     }
 
+    // events
+
+    saveEvent(data: any) {
+      const token = localStorage.getItem('token'); // or whatever your token key is
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      });
+    return this.http.post(`${this.baseUrl}/save/event`, data,{ headers });
+  }
 
   }
 

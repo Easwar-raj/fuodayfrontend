@@ -5,6 +5,9 @@ import { HrService } from '../servicesFiles/hr.service';
 import { AuthService } from '../servicesFiles/auth.service';
 import { EnquiryService } from '../servicesFiles/enquiry.service';
 import { LeaveService } from '../servicesFiles/leave.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AdminUserService } from '../servicesFiles/admin-user.service';
+
 
 @Component({
   selector: 'app-hr',
@@ -14,7 +17,9 @@ import { LeaveService } from '../servicesFiles/leave.service';
 })
 export class HrComponent implements OnInit {
   userId!: number;
+  admin_userId!: number;
   stats: any;
+  today: string = '';
 
   attendanceToday: any;
   employeeChart: any;
@@ -29,16 +34,23 @@ export class HrComponent implements OnInit {
   enquiries: any[] = [];
   loading: boolean = false;
   error: string = '';
+  successMessage!: string | null
   leaveData: any;
   leaveReport: any;
   showLeavePopup = false;
   showEmployeePopup = false;
+  showAuditPopup = false;
   showEnquiryPopup = false;
+  showEventPopup = false;
   styleName:string='';
   backgroundStyle: string = '';
   errorMessage: string = '';
   currentPage = 1;
   itemsPerPage = 10;
+  eventForm!: FormGroup;
+  isEditMode = false;
+  selectedEventId: number | null = null;
+  eventOptions = ['Celebration', 'Operation', 'Announcement'];
 
   webUsers: any;
 
@@ -46,15 +58,25 @@ export class HrComponent implements OnInit {
 
 
   constructor(
+    private fb: FormBuilder,
     private hrService: HrService,
     private authService: AuthService,
     @Inject(PLATFORM_ID) private platformId: Object,
     private http: HttpClient,
     private enquiryService: EnquiryService,
-    private leaveService: LeaveService
+    private leaveService: LeaveService,
+    private adminUserService: AdminUserService,
   ) {}
 
   ngOnInit(): void {
+    const currentDate = new Date();
+  this.today = currentDate.toISOString().split('T')[0];
+    this.eventForm = this.fb.group({
+      event: [''],
+      title: ['', Validators.required],
+      date: ['', Validators.required],
+      description: [''],
+    });
     this.isBrowser = isPlatformBrowser(this.platformId);
 
     if (this.isBrowser) {
@@ -62,6 +84,7 @@ export class HrComponent implements OnInit {
       if (userData) {
         const user = JSON.parse(userData);
         this.userId = user.id;
+        this.admin_userId = user.admin_user_id;
         this.userName = user.name;
         this.userRole = user.role;
         this.empId = user.emp_id;
@@ -88,6 +111,10 @@ export class HrComponent implements OnInit {
 
 
   }
+  openDatePicker(event: Event): void {
+  const input = event.target as HTMLInputElement;
+  input.showPicker?.(); // Modern browsers only
+}
 
   loadDashboard(): void {
     this.hrService.getHrDashboard(this.userId).subscribe({
@@ -185,6 +212,58 @@ export class HrComponent implements OnInit {
     }
     return color;
   }
+
+//  Event Add
+
+onSubmit(): void {
+    if (this.eventForm.invalid) return;
+
+    const payload: any = {
+      admin_user_id: this.admin_userId, // Replace with actual admin_user_id logic
+      ...this.eventForm.value,
+      action: this.isEditMode ? 'update' : 'create',
+    };
+
+    if (this.isEditMode && this.selectedEventId) {
+      payload.id = this.selectedEventId;
+    }
+
+    this.adminUserService.saveEvent(payload).subscribe({
+      next: () => {
+        this.successMessage = this.isEditMode
+          ? 'Event updated successfully.'
+          : 'Event created successfully.';
+        this.resetForm();
+        // Clear message after 3 seconds
+        setTimeout(() => (this.successMessage = null), 3000);
+      },
+      error: (err) => {
+        console.error('Error saving event:', err?.error?.message || err.message);
+      },
+    });
+  }
+
+  editEvent(event: any): void {
+    this.eventForm.patchValue({
+      event: event.event,
+      title: event.title,
+      date: event.date,
+      description: event.description,
+    });
+    this.selectedEventId = event.id;
+    this.isEditMode = true;
+  }
+
+  resetForm(): void {
+    this.eventForm.reset();
+    this.selectedEventId = null;
+    this.isEditMode = false;
+  }
+
+
+
+
+
 openEmployeePopup(): void {
     this.showEmployeePopup = true; // only if needed on open
   }
@@ -200,6 +279,20 @@ closeEmployeePopup(): void {
     this.showLeavePopup = false;
   }
 
+  openAuditPopup(): void {
+    this.showAuditPopup = true;
+  }
+
+  closeAuditPopup(): void {
+    this.showAuditPopup = false;
+  }
+  openEventPopup(): void {
+    this.showEventPopup = true;
+  }
+
+  closeEventPopup(): void {
+    this.showEventPopup = false;
+  }
   openEnquiryPopup(): void {
     this.showEnquiryPopup = true;
   }

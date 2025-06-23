@@ -1,0 +1,1050 @@
+<div class="body" *ngIf="stats">
+  <!-- Profile Header -->
+  <div
+    class="profile-header"
+    [ngStyle]="{
+      'background-image': backgroundStyle,
+      'background-size': 'cover'
+    }"
+  >
+    <div class="d-flex align-items-center justify-content-start">
+      <div class="profile-img-container me-3">
+        <img src="{{ profilePhoto }}" class="profile-img" alt="Profile" />
+      </div>
+      <div class="profile-info">
+        <div class="profile-name-w">{{ userName }}</div>
+        <div class="profile-smfont-w mb-1">Employee Id: {{ empId }}</div>
+
+        <div class="profile-smfont-w">{{ designation }}</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="mt-4">
+    <div class="row">
+      <!-- Welcome Card -->
+      <div class="col-md-4">
+        <div class="card stats-card">
+          <div class="stats-number">{{ stats.totalEmployees }}</div>
+          <div class="stats-label">Total Employees</div>
+          <div class="cover d-flex justify-content-between">
+            <div class="cover-block d-flex align-items-center">
+              <div class="status-indicator status-green"></div>
+              <span class="small"
+                >{{ stats.totalEmployeesPercentage }} this week</span
+              >
+            </div>
+            <div class="request-block" (click)="openEmployeePopup()">
+              <span class="small gradientBtn">View Employees</span>
+            </div>
+          </div>
+          <div class="stats-icon text-primary">
+            <svg
+              class="icon-col-prim icon-22"
+              xmlns="http://www.w3.org/2000/svg"
+              id="Layer_1"
+              data-name="Layer 1"
+              width="29"
+              height="21.98"
+              viewBox="0 0 29 21.98"
+            >
+              <g>
+                <path
+                  d="M11.56,15.8A5.47,5.47,0,0,1,6,10.41,5.47,5.47,0,0,1,11.56,5a5.48,5.48,0,0,1,5.54,5.4A5.48,5.48,0,0,1,11.56,15.8Zm0-9.79A4.47,4.47,0,0,0,7,10.41a4.47,4.47,0,0,0,4.54,4.39,4.47,4.47,0,0,0,4.54-4.39A4.48,4.48,0,0,0,11.56,6Z"
+                  transform="translate(-1.5 -5.01)"
+                />
+                <path
+                  d="M21.8,26.7H1.5V24.3a3.26,3.26,0,0,1,1.1-1.93c1-1.05,3.64-2.76,9.05-2.78,7.48,0,10,3.79,10.07,3.95l.08.12Zm-19.3-1H20.8V24c-.45-.58-2.95-3.36-9.15-3.38h-.08c-7.2,0-9,3.22-9.07,3.71Z"
+                  transform="translate(-1.5 -5.01)"
+                />
+                <path
+                  d="M21.28,15.92a9,9,0,0,1-3.42-.74l-.22-.09-.14-.48.14-.22a6.36,6.36,0,0,0,0-7.79l-.15-.2.11-.51.26-.12c3.89-1.6,6.09-.36,7.25,1a5.82,5.82,0,0,1,.48,6.84A4.79,4.79,0,0,1,21.28,15.92Zm-2.5-1.45c1.27.44,4.38,1.19,6-1.42a4.84,4.84,0,0,0-.38-5.67c-1.28-1.45-3.15-1.76-5.57-.9A7.32,7.32,0,0,1,18.78,14.47Z"
+                  transform="translate(-1.5 -5.01)"
+                />
+                <path
+                  d="M30.19,27H23.88l.1-.58c.85-5.33-1.74-6.85-1.85-6.91l-1.76-1,2,0c3.36.09,5.73,1,7,2.82a6.49,6.49,0,0,1,.87,5.25Zm-5.14-1h4.36a5.39,5.39,0,0,0-.81-4c-.93-1.27-2.56-2-4.86-2.3C24.56,20.7,25.45,22.65,25.05,26Z"
+                  transform="translate(-1.5 -5.01)"
+                />
+              </g>
+            </svg>
+          </div>
+        </div>
+        <!-- Leave Request Popup -->
+        <div class="popup-overlay" *ngIf="showEmployeePopup">
+          <div class="popup-content">
+            <div
+              class="d-flex align-items-center justify-content-between popupHeader"
+            >
+              <div>
+                <h3 class="headlevel-three mb-0">Total Employees Details</h3>
+              </div>
+              <button
+                type="button"
+                class="closeicon"
+                (click)="closeEmployeePopup()"
+              >
+                <span>X</span>
+              </button>
+            </div>
+
+            <div class="popup-body" *ngIf="webUsers.length > 0">
+              <div class="table-container">
+                <div class="table-responsive">
+                  <table class="leave-table common-table">
+                    <thead>
+                      <tr>
+                        <th>S.No</th>
+                        <th>Employee Id</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr
+                        *ngFor="
+                          let user of webUsers
+                            | paginate
+                              : {
+                                  itemsPerPage: itemsPerPage,
+                                  currentPage: currentPage
+                                };
+                          let i = index
+                        "
+                      >
+                        <td>{{ i + 1 }}.</td>
+                        <td>{{ user.emp_id }}</td>
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.role }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- Pagination controls -->
+                <div class="pagination-wrapper mt-3">
+                  <pagination-controls
+                    (pageChange)="currentPage = $event"
+                  ></pagination-controls>
+                </div>
+              </div>
+            </div>
+
+            <div class="error-block" *ngIf="errorMessage" class="error">
+              <p>Error : {{ errorMessage }}</p>
+            </div>
+
+            <div
+              class="warning-block"
+              *ngIf="webUsers.length === 0 && !errorMessage"
+            >
+              <p>No users found.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card stats-card">
+          <div class="stats-number">{{ stats.totalLeaveRequests }}</div>
+          <div class="stats-label">Total Leave</div>
+          <div class="cover d-flex justify-content-between">
+            <div class="cover-block d-flex align-items-center">
+              <div class="status-indicator status-green"></div>
+              <span class="small"
+                >{{ stats.totalLeaveRequestsPercentage }} This week</span
+              >
+            </div>
+            <div class="request-block" (click)="openLeavePopup()">
+              <span class="small gradientBtn">View Report</span>
+            </div>
+          </div>
+          <div class="stats-icon text-primary">
+            <svg
+              class="icon-col-prim icon-22"
+              xmlns="http://www.w3.org/2000/svg"
+              id="Layer_3"
+              data-name="Layer 3"
+              width="28"
+              height="28"
+              viewBox="0 0 28 28"
+            >
+              <path
+                d="m14,28C6.3,28,0,21.7,0,14S6.3,0,14,0s14,6.3,14,14-6.3,14-14,14Zm0-26.1C7.3,1.9,1.9,7.3,1.9,14s5.4,12.1,12.1,12.1,12.1-5.4,12.1-12.1S20.7,1.9,14,1.9Z"
+              />
+              <rect x="12.4" y="5.9" width="1.9" height="8.7" />
+              <rect
+                x="12.5"
+                y="10.3"
+                width="6.2"
+                height="1.9"
+                transform="translate(-3.2 15.5) rotate(-48.5)"
+              />
+            </svg>
+          </div>
+        </div>
+        <!-- Leave Request Popup -->
+        <!-- Leave Request Popup -->
+        <div class="popup-overlay" *ngIf="showLeavePopup">
+          <div class="popup-content">
+            <div
+              class="d-flex align-items-center justify-content-between popupHeader"
+            >
+              <div>
+                <h3 class="headlevel-three mb-0">Leave Request Details</h3>
+              </div>
+              <button
+                type="button"
+                class="closeicon"
+                (click)="closeLeavePopup()"
+              >
+                <span>X</span>
+              </button>
+            </div>
+
+            <div
+              class="popup-body"
+              *ngIf="leaveReport && leaveReport.length > 0; else noData"
+            >
+              <div class="table-container">
+                <div class="table-responsive">
+                  <table class="leave-table common-table">
+                    <thead>
+                      <tr>
+                        <th>S.No</th>
+                        <th>Employee Id</th>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>From</th>
+                        <th>To</th>
+
+                        <th>Status</th>
+                        <th>Leave Determination</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr
+                        *ngFor="
+                          let report of leaveReport
+                            | paginate
+                              : {
+                                  itemsPerPage: itemsPerPage,
+                                  currentPage: currentPage
+                                };
+                          let i = index
+                        "
+                      >
+                        <td>{{ i + 1 }}.</td>
+                        <td>{{ report.emp_id }}</td>
+                        <td>{{ report.emp_name }}</td>
+                        <td>{{ report.type }}</td>
+                        <td>{{ report.from | date : "shortDate" }}</td>
+                        <td>{{ report.to | date : "shortDate" }}</td>
+                        <td>
+                          <span
+                            [ngClass]="{
+                              'status-pending': report.status === 'Pending',
+                              'status-approved': report.status === 'Approved',
+                              'status-rejected': report.status === 'Rejected',
+                                }"
+                            >{{ report.status }}</span
+                          >
+                        </td>
+                        <td>
+                          <div class="leaveRequest-block">
+                            <div class="leave-request">
+                              <button
+                                class="cancel-btn small"
+                                (click)="updateStatus(report.id, 'Rejected')"
+                              >
+                                Reject
+                              </button>
+                              <button
+                                class="gradientBtn small"
+                                (click)="updateStatus(report.id, 'Approved')"
+                              >
+                                Approve
+                              </button>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- Pagination controls -->
+                <div class="pagination-wrapper mt-3">
+                  <pagination-controls
+                    (pageChange)="currentPage = $event"
+                  ></pagination-controls>
+                </div>
+              </div>
+            </div>
+
+            <ng-template #noData>
+              <div class="warning-block">
+                <p>No leave reports available.</p>
+              </div>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card stats-card">
+          <div class="stats-number">2</div>
+          <div class="stats-label">Today Late Arrival</div>
+          <div class="cover">
+            <!-- <div class="status-indicator status-green"></div> -->
+            <!-- <span class="small"
+              >{{ stats.permissionChangePercentage }} this week</span
+            > -->
+          </div>
+          <div class="d-flex justify-content-end" (click)="openLatePopup()">
+            <span class="small gradientBtn">View Report</span>
+          </div>
+          <div class="stats-icon text-primary">
+            <svg
+              class="icon-col-prim icon-22"
+              xmlns="http://www.w3.org/2000/svg"
+              id="Layer_2"
+              data-name="Layer 2"
+              width="28"
+              height="28"
+              viewBox="0 0 28 28"
+            >
+              <path d="m28,28H0V0h28v28Zm-26.6-1.4h25.1V1.4H1.4v25.2Z" />
+              <rect x=".6" y="6.3" width="26.9" height="1.4" />
+              <rect x="9.7" y="2.3" width="1.4" height="3.1" />
+              <rect x="5.5" y="2.3" width="1.4" height="3.1" />
+              <rect x="2.7" y=".7" width="1.4" height="6.3" />
+            </svg>
+          </div>
+        </div>
+        <!-- Leave Request Popup -->
+        <div class="popup-overlay" *ngIf="showLatePopup">
+          <div class="popup-content">
+            <div
+              class="d-flex align-items-center justify-content-between popupHeader"
+            >
+              <div>
+                <h3 class="headlevel-three mb-0">Late Arrival</h3>
+              </div>
+              <button
+                type="button"
+                class="closeicon"
+                (click)="closeLatePopup()"
+              >
+                <span>X</span>
+              </button>
+            </div>
+
+            <div class="popup-body">
+              <div class="table-container">
+                <div class="table-responsive">
+                  <table class="leave-table common-table">
+                    <thead>
+                      <tr>
+                        <th>S.No</th>
+                        <th>Employee Id</th>
+                        <th>Name</th>
+                        <th>Designation</th>
+                        <th>Team</th>
+                        <th>Status</th>
+                        <th>Viewed</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>1</td>
+                        <td>1005</td>
+                        <td>Saravanan</td>
+                        <td>Assistant Manager</td>
+                        <td>Tech Team</td>
+                        <td>Verified</td>
+                        <td>
+                          <div>
+                            <button type="button" class="small gradientBtn">
+                              Viewed
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- Pagination controls -->
+                <div class="pagination-wrapper mt-3">
+                  <pagination-controls
+                    (pageChange)="currentPage = $event"
+                  ></pagination-controls>
+                </div>
+              </div>
+            </div>
+
+            <ng-template #noData>
+              <div class="warning-block">
+                <p>No leave reports available.</p>
+              </div>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card stats-card">
+          <div class="stats-number">2</div>
+          <div class="stats-label">Total Audit Process</div>
+          <div class="cover">
+            <!-- <div class="status-indicator status-green"></div> -->
+            <!-- <span class="small"
+              >{{ stats.permissionChangePercentage }} this week</span
+            > -->
+          </div>
+          <div class="d-flex justify-content-end" (click)="openAuditPopup()">
+            <span class="small gradientBtn">View Audit Process</span>
+          </div>
+          <div class="stats-icon text-primary">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              id="Layer_1"
+              data-name="Layer 1"
+              width="27"
+              height="30"
+              viewBox="0 0 27 30"
+              class="icon-col-prim icon-24"
+            >
+              <path
+                d="m27,30l-27-.2V0h17.7l9.3,8.4v21.6Zm-25-2.2l23,.2V9.3l-8-7.3H2v25.8Z"
+              ></path>
+              <polygon
+                points="25.3 10.2 15.9 10.2 15.9 1.9 17.9 1.9 17.9 8.2 25.3 8.2 25.3 10.2"
+              ></polygon>
+            </svg>
+          </div>
+        </div>
+        <!-- Leave Request Popup -->
+        <div class="popup-overlay" *ngIf="showAuditPopup">
+          <div class="popup-content">
+            <div
+              class="d-flex align-items-center justify-content-between popupHeader"
+            >
+              <div>
+                <h3 class="headlevel-three mb-0">Aduit Complete List</h3>
+              </div>
+              <button
+                type="button"
+                class="closeicon"
+                (click)="closeAuditPopup()"
+              >
+                <span>X</span>
+              </button>
+            </div>
+
+            <div class="popup-body scroll-height">
+              <!-- Audit -->
+
+              <div *ngIf="loading">Loading...</div>
+
+              <div *ngIf="!loading && groupedEmployees.length">
+                <div
+                  *ngFor="let group of groupedEmployees"
+                  class="manager-group"
+                >
+                  <h5 class="headlevel-three">{{ group.manager_name }}</h5>
+                  <div class="table-container">
+                    <div class="table-responsive">
+                      <table class="leave-table common-table">
+                        <thead>
+                          <tr>
+                            <th>S.No</th>
+                            <th>Employee Id</th>
+                            <th>Name</th>
+                            <th>Date of join</th>
+                            <th>Designation</th>
+                            <th>Status</th>
+                            <th>Viewed</th>
+                            <th>Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr
+                            *ngFor="let emp of group.employees; let i = index"
+                          >
+                            <td>{{ i + 1 }}</td>
+                            <td>{{ emp.emp_id }}</td>
+                            <td>{{ emp.emp_name }}</td>
+                            <td>{{ emp.doj }}</td>
+                            <td>{{ emp.designation }}</td>
+                            <td>
+                              <span
+                                [ngClass]="{
+                                  'text-success': emp.status === 'Submitted',
+                                  'text-danger': emp.status === 'Not Submitted'
+                                }"
+                              >
+                                {{ emp.status }}
+                              </span>
+                            </td>
+                            <td>
+                              <div>
+                                <!-- <button type="button" class="small gradientBtn" (click)="openAuditViewPopup()"> -->
+                                <ng-container
+                                  *ngIf="
+                                    emp.status === 'Submitted';
+                                    else noView
+                                  "
+                                >
+                                  <button
+                                    type="button"
+                                    class="small gradientBtn"
+                                    (click)="openAuditViewPopup(emp.emp_id)"
+                                  >
+                                    View
+                                  </button>
+                                </ng-container>
+
+                                <ng-template #noView> - </ng-template>
+                              </div>
+                              <!-- Leave Request Popup -->
+                              <!-- <div class="popup-overlay" *ngIf="showAuditViewPopup">
+                                <div class="popup-content">
+                                  <div
+                                    class="d-flex align-items-center justify-content-between popupHeader"
+                                  >
+                                    <div>
+                                      <h3 class="headlevel-three mb-0">
+                                        Aduit Complete List
+                                      </h3>
+                                    </div>
+                                    <button
+                                      type="button"
+                                      class="closeicon"
+                                      (click)="closeAuditViewPopup()"
+                                    >
+                                      <span>X</span>
+                                    </button>
+                                  </div>
+
+                                  <div class="popup-body scroll-height">
+                                    
+                                     
+                                  </div>
+                                </div>
+                              </div> -->
+                              <div
+                                class="popup-overlay"
+                                *ngIf="showAuditViewPopup"
+                              >
+                                <div class="popup-content auditView">
+                                  <!-- Header -->
+                                  <div
+                                    class="d-flex align-items-center justify-content-between popupHeader"
+                                  >
+                                    <div>
+                                      <h3 class="headlevel-three mb-0">
+                                        Employee Audit View
+                                      </h3>
+                                    </div>
+                                    <button
+                                      type="button"
+                                      class="closeicon"
+                                      (click)="closeAuditViewPopup()"
+                                    >
+                                      <span>X</span>
+                                    </button>
+                                  </div>
+
+                                  <!-- Scrollable Body with Audit Details -->
+                                  <div class="popup-body scroll-height">
+                                    <div
+                                      class="grid grid-cols-1 md:grid-cols-2 gap-6"
+                                    >
+                                      <!-- 🔍 LEFT: Employee Full Audit Data -->
+                                      <div class="space-y-4 border-r pr-4">
+                                        <h4 class="headlevel-three">
+                                          <i class="icon-briefcase"></i>
+                                          Employee Review
+                                        </h4>
+
+                                        <div
+                                          class="grid grid-cols-1 md:grid-cols-2 gap-4"
+                                        >
+                                          <div>
+                                            <label class="audit-label"
+                                              >Employee Name</label
+                                            >
+                                            <p class="audit-desc">
+                                              {{ selectedAudit?.emp_name }}
+                                            </p>
+                                          </div>
+                                          <div>
+                                            <label class="audit-label"
+                                              >Employee ID</label
+                                            >
+                                            <p class="audit-desc">
+                                              {{ selectedAudit?.emp_id }}
+                                            </p>
+                                          </div>
+                                          <div>
+                                            <label class="audit-label"
+                                              >Review Period</label
+                                            >
+                                            <p class="audit-desc">
+                                              {{ selectedAudit?.review_period }}
+                                            </p>
+                                          </div>
+                                          <div>
+                                            <label class="audit-label"
+                                              >Attendance %</label
+                                            >
+                                            <p class="audit-desc">
+                                              {{
+                                                selectedAudit?.attendance_percentage
+                                              }}
+                                            </p>
+                                          </div>
+                                          <div>
+                                            <label class="font-weight-700"
+                                              >Audit Cycle Type</label
+                                            >
+                                            <p class="audit-desc">
+                                              {{
+                                                selectedAudit?.audit_cycle_type
+                                              }}
+                                            </p>
+                                          </div>
+                                        </div>
+
+                                        <hr class="my-4" />
+
+                                        <div class="mb-3">
+                                          <label class="audit-label"
+                                            >Self-Rating</label
+                                          >
+                                          <p class="audit-desc">
+                                            {{ selectedAudit?.self_rating }}
+                                          </p>
+                                        </div>
+                                        <div class="mb-3">
+                                          <label class="audit-label"
+                                            >Technical Skills Used</label
+                                          >
+                                          <p class="audit-desc">
+                                            {{
+                                              selectedAudit?.technical_skills_used
+                                            }}
+                                          </p>
+                                        </div>
+                                        <div class="mb-3">
+                                          <label class="audit-label"
+                                            >Communication &
+                                            Collaboration</label
+                                          >
+                                          <p class="audit-desc">
+                                            {{
+                                              selectedAudit?.communication_collaboration
+                                            }}
+                                          </p>
+                                        </div>
+                                        <div class="mb-3">
+                                          <label class="audit-label"
+                                            >Cross-Functional Involvement</label
+                                          >
+                                          <p class="audit-desc">
+                                            {{
+                                              selectedAudit?.cross_functional_involvement
+                                            }}
+                                          </p>
+                                        </div>
+                                        <div class="mb-3">
+                                          <label class="audit-label"
+                                            >Monthly Task Highlights</label
+                                          >
+                                          <p class="audit-desc">
+                                            {{ selectedAudit?.task_highlight }}
+                                          </p>
+                                        </div>
+                                        <div class="mb-3">
+                                          <label class="audit-label"
+                                            >Personal Highlights</label
+                                          >
+                                          <p class="audit-desc">
+                                            {{
+                                              selectedAudit?.personal_highlight
+                                            }}
+                                          </p>
+                                        </div>
+                                        <div class="mb-3">
+                                          <label class="audit-label"
+                                            >Areas to Improve</label
+                                          >
+                                          <p class="audit-desc">
+                                            {{
+                                              selectedAudit?.areas_to_improve
+                                            }}
+                                          </p>
+                                        </div>
+                                        <div class="mb-3">
+                                          <label class="audit-label"
+                                            >Initiatives Taken</label
+                                          >
+                                          <p class="audit-desc">
+                                            {{
+                                              selectedAudit?.initiative_taken
+                                            }}
+                                          </p>
+                                        </div>
+                                        <div class="mb-3">
+                                          <label class="audit-label"
+                                            >Learning/Certifications Done</label
+                                          >
+                                          <p class="audit-desc">
+                                            {{
+                                              selectedAudit?.learnings_certifications
+                                            }}
+                                          </p>
+                                        </div>
+                                        <div class="mb-3">
+                                          <label class="audit-label"
+                                            >Suggestions to Company</label
+                                          >
+                                          <p class="audit-desc">
+                                            {{
+                                              selectedAudit?.suggestions_to_company
+                                            }}
+                                          </p>
+                                        </div>
+
+                                        <hr class="my-4" />
+
+                                        <div class="mb-3">
+                                          <label class="audit-label"
+                                            >Previous Cycle Goals</label
+                                          >
+                                          <p class="audit-desc">
+                                            {{
+                                              selectedAudit?.previous_cycle_goals
+                                            }}
+                                          </p>
+                                        </div>
+                                        <div class="mb-3">
+                                          <label class="audit-label"
+                                            >Goal Achievement %</label
+                                          >
+                                          <p class="audit-desc">
+                                            {{
+                                              selectedAudit?.goal_achievement
+                                            }}%
+                                          </p>
+                                        </div>
+                                        <div class="mb-3">
+                                          <label class="audit-label"
+                                            >Projects Worked On</label
+                                          >
+                                          <p class="audit-desc">
+                                            {{ selectedAudit?.projects_worked }}
+                                          </p>
+                                        </div>
+                                        <div class="mb-3">
+                                          <label class="audit-label"
+                                            >Tasks/Modules Completed</label
+                                          >
+                                          <p class="audit-desc">
+                                            {{
+                                              selectedAudit?.tasks_modules_completed
+                                            }}
+                                          </p>
+                                        </div>
+                                      </div>
+
+                                      <!-- 🧑‍💼 RIGHT: Manager Review -->
+                                      <div class="form-card space-y-4">
+                                        <h4 class="headlevel-three">
+                                          <i class="icon-briefcase"></i> Manager
+                                          Review
+                                        </h4>
+
+                                        <div class="mb-3">
+                                          <label class="audit-label"
+                                            >Manager Review Comments</label
+                                          >
+                                          <p class="audit-desc">
+                                            {{
+                                              selectedAudit?.manager_review_comments ||
+                                                "N/A"
+                                            }}
+                                          </p>
+                                        </div>
+                                        <div class="mb-3">
+                                          <label class="audit-label"
+                                            >Rating on Execution</label
+                                          >
+                                          <p class="audit-desc">
+                                            {{
+                                              selectedAudit?.execution_rating ||
+                                                "N/A"
+                                            }}
+                                          </p>
+                                        </div>
+                                        <div class="mb-3">
+                                          <label class="audit-label"
+                                            >Rating on Innovation</label
+                                          >
+                                          <p class="audit-desc">
+                                            {{
+                                              selectedAudit?.innovation_rating ||
+                                                "N/A"
+                                            }}
+                                          </p>
+                                        </div>
+                                        <div class="mb-3">
+                                          <label class="audit-label"
+                                            >Attendance & Discipline
+                                            Score</label
+                                          >
+                                          <p class="audit-desc">
+                                            {{
+                                              selectedAudit?.attendance_discipline_score ||
+                                                "N/A"
+                                            }}
+                                          </p>
+                                        </div>
+                                        <div class="mb-3">
+                                          <label class="audit-label"
+                                            >Quality of Delivery</label
+                                          >
+                                          <p class="audit-desc">
+                                            {{
+                                              selectedAudit?.delivery_quality ||
+                                                "N/A"
+                                            }}
+                                          </p>
+                                        </div>
+                                        <div class="mb-3">
+                                          <label class="audit-label"
+                                            >Ownership & Initiative</label
+                                          >
+                                          <p class="audit-desc">
+                                            {{
+                                              selectedAudit?.ownership_initiative ||
+                                                "N/A"
+                                            }}
+                                          </p>
+                                        </div>
+                                        <div class="mb-3">
+                                          <label class="audit-label"
+                                            >Contribution to Team Growth</label
+                                          >
+                                          <p class="audit-desc">
+                                            {{
+                                              selectedAudit?.team_growth_contribution ||
+                                                "N/A"
+                                            }}
+                                          </p>
+                                        </div>
+                                        <div class="mb-3">
+                                          <label class="audit-label"
+                                            >Promotion/Action Suggested</label
+                                          >
+                                          <p class="audit-desc">
+                                            {{
+                                              selectedAudit?.promotion_action_suggested ||
+                                                "N/A"
+                                            }}
+                                          </p>
+                                        </div>
+                                        <div class="mb-3">
+                                          <label class="audit-label"
+                                            >Final Remarks</label
+                                          >
+                                          <p class="audit-desc">
+                                            {{
+                                              selectedAudit?.final_remarks ||
+                                                "N/A"
+                                            }}
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </td>
+                            <td>
+                              <div>
+                                <ng-container
+                                  *ngIf="
+                                    emp.status === 'Submitted';
+                                    else noApprove
+                                  "
+                                >
+                                  <button
+                                    type="button"
+                                    class="small gradientBtn"
+                                  >
+                                    Approved
+                                  </button>
+                                </ng-container>
+
+                                <ng-template #noApprove> - </ng-template>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                *ngIf="!loading && !groupedEmployees.length"
+                class="text-center"
+              >
+                <p>No employees found.</p>
+              </div>
+            </div>
+
+            <ng-template #noData>
+              <div class="warning-block">
+                <p>No leave reports available.</p>
+              </div>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-3 hr-box">
+      <!-- Projects Section -->
+      <div class="col-md-4">
+        <div class="card">
+          <div class="section-header">
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="txt-14">Project</span>
+              <!-- <a class="text-white txt-14">see all</a> -->
+            </div>
+          </div>
+          <div class="section-content">
+            <div
+              class="form-group row projectBlock"
+              *ngFor="let project of projects"
+            >
+              <div class="col-sm-3">
+                <div class="d-flex justify-content-center flex-column">
+                  <p class="mb-2 txt-gry">Project Name</p>
+                  <p class="txt-bold">{{ project.name }}</p>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="d-flex justify-content-center flex-column">
+                  <p class="mb-2 txt-gry">Domain</p>
+                  <p class="txt-bold">{{ project.domain }}</p>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="d-flex justify-content-center flex-column">
+                  <p class="mb-2 txt-gry">Team Members</p>
+                  <div class="d-flex">
+                    <span
+                      *ngFor="let member of project.team_members"
+                      class="letter-badge bg-j"
+                      >{{ member.name.slice(0, 1) }}</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="d-flex justify-content-center flex-column">
+                  <span class="mb-2 txt-gry">Deadline </span>
+                  <span class="txt-bold">{{
+                    project.deadline | date : "shortDate"
+                  }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Recent Employee -->
+      <div class="col-md-4">
+        <div class="card">
+          <div class="section-header">
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="txt-14">Recent Employee</span>
+              <!-- <a class="text-white txt-14">see all</a> -->
+            </div>
+          </div>
+          <div class="section-content">
+            <div
+              class="form-group row projectBlock"
+              *ngFor="let recents of recentEmployees"
+            >
+              <div class="col-sm-4">
+                <div class="d-flex justify-content-center flex-column">
+                  <p class="mb-2 txt-gry">Name</p>
+                  <div class="nameBlock overflex">
+                    <div class="split-first">
+                      <p
+                        class="txt-bold badgefirstletter"
+                        [ngStyle]="{ 'background-color': recents.bgColor }"
+                      >
+                        {{ recents.name.slice(0, 1) }}
+                      </p>
+                    </div>
+                    <div>
+                      <p class="txt-bold mb-1">{{ recents.name }}</p>
+                      <p class="txt-bold">Depart</p>
+                      <!---{{ recents.employee_details.designation }}-->
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="d-flex justify-content-center flex-column">
+                  <p class="mb-2 txt-gry">Salary</p>
+                  <p class="txt-bold">{{ recents.domain }}</p>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="d-flex justify-content-center flex-column">
+                  <p class="mb-2 txt-gry">Join Date</p>
+                  <div>
+                    <span class="txt-small">{{
+                      recents.employee_details.date_of_joining
+                        | date : "shortDate"
+                    }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- open Position -->
+      <div class="col-md-4">
+        <div class="card">
+          <div class="section-header">
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="txt-14">Open Position</span>
+              <!-- <a class="text-white txt-14">see all</a> -->
+            </div>
+          </div>
+          <div class="section-content">
+            <div
+              class="form-group row projectBlock"
+              *ngFor="let position of openPositions"
+            >
+              <div class="col-sm-12">
+                <div class="d-flex justify-content-center flex-column">
+                  <p class="txt-bold mb-0">{{ position.title }}</p>
+                  <p class="txt-gry mb-0">Post at {{ position.posted_at }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

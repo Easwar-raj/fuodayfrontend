@@ -29,6 +29,7 @@ export class AuditComponent {
   selfRating: number = 0;
   auditReportList: any[] = [];
   selectedAudit: any = null;
+  isFormLocked = false;
 
   constructor(
     private fb: FormBuilder,
@@ -43,10 +44,19 @@ export class AuditComponent {
       audit_cycle_type: [''],
       selfRating: [''],
       technicalSkillsUsed: [[]],
-      communicationCollaboration: this.fb.group({
-        dailyStandups: [false],
-        clientMeetings: [false],
-        slack: [false]
+    communicationCollaboration: this.fb.group({
+        dailyStandups: this.fb.group({
+          checked: [false],
+          rating: ['']
+        }),
+        clientMeetings: this.fb.group({
+          checked: [false],
+          rating: ['']
+        }),
+        slack: this.fb.group({
+          checked: [false],
+          rating: ['']
+        }),
       }),
       crossFunctionalInvolvement: this.fb.group({
         techSupport: [false],
@@ -170,6 +180,21 @@ export class AuditComponent {
     });
   }
 
+    getCommunicationCollaborationSummary(): string {
+    const comms = this.auditForm.get('communicationCollaboration')?.value;
+    if (!comms) return '';
+
+    const selected: string[] = [];
+
+    for (const key in comms) {
+      if (comms[key]?.checked) {
+        const rating = comms[key]?.rating || 'N/A';
+        selected.push(`${key} (${rating})`);
+      }
+    }
+
+    return selected.join(', ');
+  }
 
 
   // onFileSelected(event: any) {
@@ -190,6 +215,10 @@ export class AuditComponent {
     }
   }
 
+  closeOverlay() {
+  this.isFormLocked = false;
+}
+
  submitForm() {
   const monthNames = [
     'January', 'February', 'March', 'April', 'May', 'June',
@@ -206,9 +235,10 @@ export class AuditComponent {
     technical_skills_used: Array.isArray(this.auditForm.value.technicalSkillsUsed)
       ? this.auditForm.value.technicalSkillsUsed.join(', ')
       : String(this.auditForm.value.technicalSkillsUsed),
-    communication_collaboration: typeof this.auditForm.value.communicationCollaboration === 'object'
-      ? Object.keys(this.auditForm.value.communicationCollaboration).filter(k => this.auditForm.value.communicationCollaboration[k]).join(', ')
-      : String(this.auditForm.value.communicationCollaboration),
+    // communication_collaboration: typeof this.auditForm.value.communicationCollaboration === 'object'
+    //   ? Object.keys(this.auditForm.value.communicationCollaboration).filter(k => this.auditForm.value.communicationCollaboration[k]).join(', ')
+    //   : String(this.auditForm.value.communicationCollaboration),
+    communication_collaboration: this.getCommunicationCollaborationSummary(),
     cross_functional_involvement: typeof this.auditForm.value.crossFunctionalInvolvement === 'object'
       ? Object.keys(this.auditForm.value.crossFunctionalInvolvement).filter(k => this.auditForm.value.crossFunctionalInvolvement[k]).join(', ')
       : String(this.auditForm.value.crossFunctionalInvolvement),
@@ -246,12 +276,13 @@ export class AuditComponent {
 
   this.http.post('https://backend.fuoday.com/api/hrms/performance/addaudit', requestBody, { headers }).subscribe({
     next: (res) => {
-      console.log('Form submitted:', res);
-      alert('Employee Audit Form submitted successfully!');
-      this.submitted = true;
-      this.auditForm.reset();
-      this.selectedFile = null;
-    },
+  console.log('Form submitted:', res);
+  alert('Employee Audit Form submitted successfully!');
+  this.submitted = true;
+  this.isFormLocked = true; // lock form
+  this.auditForm.reset();
+  this.selectedFile = null;
+},
     error: (err) => {
       console.error('Submission failed', err);
       alert('Submission failed. Please try again later.');

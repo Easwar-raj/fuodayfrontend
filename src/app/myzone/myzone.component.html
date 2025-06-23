@@ -69,6 +69,37 @@
                                 loop
                                 autoplay
                               ></dotlottie-player>
+                              <div class="celebration-view position-relative">
+                                <button type="button" class="small gradientBtn" (click)="openCelebrationPopup()" [class.active]="selectedType === 'Celebration'"
+    (click)="loadAnnouncements('Celebration')">View Celebrations</button>
+                                <div class="count-view">
+                                  <span class="counter">1</span>
+                                </div>
+                              </div>
+                              <!-- Celebrations Popup Modal -->
+                                <div class="modal-overlay" *ngIf="showCelebrationPopup">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <div>
+                                        <h3 class="headlevel-three mb-0">Celebrations</h3>
+                                      </div>
+                                       <button class="closeicon" (click)=" closeCelebrationPopup()">×</button>
+                                    </div>
+                                    <div class="modal-body">
+                                      <div *ngIf="announcements.length > 0; else noData">
+                                        <div *ngFor="let item of announcements" class="">
+                                          <h5 class="headlevel-three-normal">{{ item.title }}</h5>
+                                          <p class="mb-1 desc-one-b">{{ item.description }}</p>
+                                          <small class="text-muted">{{ item.date | date: 'mediumDate' }}</small>
+                                        </div>
+                                      </div>
+
+                                      <ng-template #noData>
+                                        <p class="text-muted">No {{ selectedType.toLowerCase() }} found.</p>
+                                      </ng-template>
+                                    </div>
+                                  </div>
+                                </div>
                             </div>
                           </div>
                         </div>
@@ -89,6 +120,37 @@
                                 loop
                                 autoplay
                               ></dotlottie-player>
+                              <div class="operations-view position-relative">
+                                <button type="button" class="small gradientBtn" (click)="openOperationsPopup()"  [class.active]="selectedType === 'Operation'"
+    (click)="loadAnnouncements('Operation')">View Operations</button>
+                                <div class="count-view">
+                                  <span class="counter">1</span>
+                                </div>
+                              </div>
+                              <!-- Operationss Popup Modal -->
+                                <div class="modal-overlay" *ngIf="showOperationsPopup">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <div>
+                                        <h3 class="headlevel-three mb-0">Operations</h3>
+                                      </div>
+                                       <button class="closeicon" (click)=" closeOperationsPopup()">×</button>
+                                    </div>
+                                    <div class="modal-body">
+                                      <div *ngIf="announcements.length > 0; else noData">
+                                        <div *ngFor="let item of announcements" class="">
+                                          <h5 class="headlevel-three-normal">{{ item.title }}</h5>
+                                          <p class="mb-2 desc-one-b">{{ item.description }}</p>
+                                          <small class="text-muted">{{ item.date | date: 'mediumDate' }}</small>
+                                        </div>
+                                      </div>
+
+                                      <ng-template #noData>
+                                        <p class="text-muted">No {{ selectedType.toLowerCase() }} found.</p>
+                                      </ng-template>
+                                    </div>
+                                  </div>
+                                </div>
                             </div>
                           </div>
                         </div>
@@ -108,20 +170,37 @@
                                 loop
                                 autoplay
                               ></dotlottie-player>
-                              <!-- <div class="announcement-view position-relative">
-                                <button type="button" class="small gradientBtn" (click)="openPopup()">View Announcement</button>
-                                <div class="announce-count">
+                              <div class="announcement-view position-relative">
+                                <button type="button" class="small gradientBtn" (click)="openAnnouncePopup()" [class.active]="selectedType === 'Announcement'"
+    (click)="loadAnnouncements('Announcement')">View Announcement</button>
+                                <div class="count-view">
                                   <span class="counter">1</span>
                                 </div>
-                              </div> -->
+                              </div>
                               <!-- Announce Popup Modal -->
-                                <!-- <div class="popup-overlay" *ngIf="showPopup">
-                                  <div class="popup-content">
-                                    <h3>Fill the audit form</h3>
-                                    <button (click)="goToAuditForm()" class="gradientBtn">Open Audit Form</button>
-                                    <button class="close-btn" (click)="closePopup()">×</button>
+                                <div class="modal-overlay" *ngIf="showAnnouncePopup">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <div>
+                                        <h3 class="headlevel-three mb-0">Announcement</h3>
+                                      </div>
+                                       <button class="closeicon" (click)="closeAnnouncePopup()">×</button>
+                                    </div>
+                                    <div class="modal-body">
+                                      <div *ngIf="announcements.length > 0; else noData">
+                                        <div *ngFor="let item of announcements" class="">
+                                          <h5 class="headlevel-three-normal">{{ item.title }}</h5>
+                                          <p class="mb-2 desc-one-b">{{ item.description }}</p>
+                                          <small class="text-muted">{{ item.date | date: 'mediumDate' }}</small>
+                                        </div>
+                                      </div>
+
+                                      <ng-template #noData>
+                                        <p class="text-muted">No {{ selectedType.toLowerCase() }} found.</p>
+                                      </ng-template>
+                                    </div>
                                   </div>
-                                </div> -->
+                                </div>
                             </div>
                           </div>
                         </div>
