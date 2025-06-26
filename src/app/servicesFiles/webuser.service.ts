@@ -25,4 +25,11 @@ export class WebuserService {
     });
     return this.http.post(`${this.baseUrl}/update/${id}`, formData,{headers});
   }
+  getEmployeesByManager(id: number): Observable<any> {
+    const token = localStorage.getItem('authToken');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
+    return this.http.get(`${this.baseUrl}/getemployeesbymanagers/${id}`,{ headers });
+  }
 }

@@ -3,23 +3,19 @@ import { isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { HrService } from '../servicesFiles/hr.service';
 import { AuthService } from '../servicesFiles/auth.service';
+import { WebuserService } from '../servicesFiles/webuser.service';
 import { EnquiryService } from '../servicesFiles/enquiry.service';
 import { LeaveService } from '../servicesFiles/leave.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AdminUserService } from '../servicesFiles/admin-user.service';
-
 
 @Component({
-  selector: 'app-hr',
+  selector: 'app-management-dashboard',
   standalone: false,
-  templateUrl: './hr.component.html',
-  styleUrl: './hr.component.scss',
+  templateUrl: './management-dashboard.component.html',
+  styleUrl: './management-dashboard.component.scss'
 })
-export class HrComponent implements OnInit {
+export class ManagementDashboardComponent implements OnInit {
   userId!: number;
-  admin_userId!: number;
   stats: any;
-  today: string = '';
 
   attendanceToday: any;
   employeeChart: any;
@@ -34,23 +30,24 @@ export class HrComponent implements OnInit {
   enquiries: any[] = [];
   loading: boolean = false;
   error: string = '';
-  successMessage!: string | null
   leaveData: any;
   leaveReport: any;
   showLeavePopup = false;
   showEmployeePopup = false;
   showAuditPopup = false;
   showEnquiryPopup = false;
-  showEventPopup = false;
+  showLatePopup = false;
+  showAuditViewPopup = false;
   styleName:string='';
   backgroundStyle: string = '';
   errorMessage: string = '';
   currentPage = 1;
   itemsPerPage = 10;
-  eventForm!: FormGroup;
-  isEditMode = false;
-  selectedEventId: number | null = null;
-  eventOptions = ['Celebration', 'Operation', 'Announcement'];
+  groupedEmployees: any[] = [];
+  // add the audit reports
+  auditReportList: any[] = [];
+  selectedAudit: any = null;
+
 
   webUsers: any;
 
@@ -58,25 +55,16 @@ export class HrComponent implements OnInit {
 
 
   constructor(
-    private fb: FormBuilder,
     private hrService: HrService,
     private authService: AuthService,
+    private webuserService: WebuserService,
     @Inject(PLATFORM_ID) private platformId: Object,
     private http: HttpClient,
     private enquiryService: EnquiryService,
-    private leaveService: LeaveService,
-    private adminUserService: AdminUserService,
+    private leaveService: LeaveService
   ) {}
 
   ngOnInit(): void {
-    const currentDate = new Date();
-  this.today = currentDate.toISOString().split('T')[0];
-    this.eventForm = this.fb.group({
-      event: [''],
-      title: ['', Validators.required],
-      date: ['', Validators.required],
-      description: [''],
-    });
     this.isBrowser = isPlatformBrowser(this.platformId);
 
     if (this.isBrowser) {
@@ -84,7 +72,6 @@ export class HrComponent implements OnInit {
       if (userData) {
         const user = JSON.parse(userData);
         this.userId = user.id;
-        this.admin_userId = user.admin_user_id;
         this.userName = user.name;
         this.userRole = user.role;
         this.empId = user.emp_id;
@@ -101,20 +88,17 @@ export class HrComponent implements OnInit {
         this.loadDashboard();
         this.loadLeaveStatus();
         this.loadEmployeeStatus(this.userId);
-
+        this.getAllAuditReports(); 
       } else {
         console.error('User data not found or missing ID.');
       }
     }
 
     this.fetchEnquiries();
+    this.fetchGroupedEmployees();
 
 
   }
-  openDatePicker(event: Event): void {
-  const input = event.target as HTMLInputElement;
-  input.showPicker?.(); // Modern browsers only
-}
 
   loadDashboard(): void {
     this.hrService.getHrDashboard(this.userId).subscribe({
@@ -212,58 +196,19 @@ export class HrComponent implements OnInit {
     }
     return color;
   }
-
-//  Event Add
-
-onSubmit(): void {
-    if (this.eventForm.invalid) return;
-
-    const payload: any = {
-      admin_user_id: this.admin_userId, // Replace with actual admin_user_id logic
-      ...this.eventForm.value,
-      action: this.isEditMode ? 'update' : 'create',
-    };
-
-    if (this.isEditMode && this.selectedEventId) {
-      payload.id = this.selectedEventId;
-    }
-
-    this.adminUserService.saveEvent(payload).subscribe({
-      next: () => {
-        this.successMessage = this.isEditMode
-          ? 'Event updated successfully.'
-          : 'Event created successfully.';
-        this.resetForm();
-        // Clear message after 3 seconds
-        setTimeout(() => (this.successMessage = null), 3000);
+    fetchGroupedEmployees() {
+    this.loading = true;
+    this.webuserService.getEmployeesByManager(this.userId).subscribe({
+      next: (res) => {
+        this.groupedEmployees = res.data;
+        this.loading = false;
       },
       error: (err) => {
-        console.error('Error saving event:', err?.error?.message || err.message);
+        console.error('Error fetching employees', err);
+        this.loading = false;
       },
     });
   }
-
-  editEvent(event: any): void {
-    this.eventForm.patchValue({
-      event: event.event,
-      title: event.title,
-      date: event.date,
-      description: event.description,
-    });
-    this.selectedEventId = event.id;
-    this.isEditMode = true;
-  }
-
-  resetForm(): void {
-    this.eventForm.reset();
-    this.selectedEventId = null;
-    this.isEditMode = false;
-  }
-
-
-
-
-
 openEmployeePopup(): void {
     this.showEmployeePopup = true; // only if needed on open
   }
@@ -286,12 +231,31 @@ closeEmployeePopup(): void {
   closeAuditPopup(): void {
     this.showAuditPopup = false;
   }
-  openEventPopup(): void {
-    this.showEventPopup = true;
+  openLatePopup(): void {
+    this.showLatePopup = true;
   }
 
-  closeEventPopup(): void {
-    this.showEventPopup = false;
+  closeLatePopup(): void {
+    this.showLatePopup = false;
+  }
+  // old code for openauditviewPopup()
+  // openAuditViewPopup(): void {
+  //   this.showAuditViewPopup = true;
+  // }
+  openAuditViewPopup(empId: string): void {
+  const audit = this.auditReportList.find(a => a.emp_id === empId);
+  if (audit) {
+    this.selectedAudit = audit;
+    this.showAuditViewPopup = true;
+  } else {
+    console.warn('No audit found for emp_id:', empId);
+    this.selectedAudit = null;
+   }
+}
+
+
+  closeAuditViewPopup(): void {
+    this.showAuditViewPopup = false;
   }
   openEnquiryPopup(): void {
     this.showEnquiryPopup = true;
@@ -300,4 +264,39 @@ closeEmployeePopup(): void {
   closeEnquiryPopup(): void {
     this.showEnquiryPopup = false;
   }
+
+  
+  // getauditreport api call 
+
+  getAllAuditReports() {
+    if (!this.userId) {
+      console.error('web_user_id is missing');
+      return;
+    }
+
+    const url = `https://backend.fuoday.com/api/hrms/performance/getallauditreport/${this.userId}`;
+
+    this.http.get<any>(url).subscribe({
+      next: (response) => {
+        if (response && response.status === 'Success') {
+          this.auditReportList = response.data;
+          console.log("line 270", this.auditReportList);
+        } else {
+          console.warn('Unexpected response format', response);
+        }
+      },
+      error: (err) => {
+        console.error('Failed to load audit reports:', err);
+      }
+    });
+  }
+
+ 
+
+
 }
+
+
+
+
+

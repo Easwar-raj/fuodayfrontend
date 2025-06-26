@@ -121,9 +121,22 @@
   </form>
 </div> -->
 
+
+<!-- Form Overlay -->
+
+<div *ngIf="isFormLocked" class="form-lock-overlay">
+  <div class="lock-message-box">
+    <button class="close-icon" (click)="closeOverlay()">×</button>
+    <i class="fas fa-lock"></i>
+    <p>Audit Form Submitted</p>
+    <p class="info-text">You may now close this form or return to dashboard.</p>
+  </div>
+</div>
+
 <!-- Show table if designation is Founder & CEO -->
-<div *ngIf="employee.designation === 'Founder & CEO'; else auditFormBlock">
   <!-- ✅ Table of Audit Reports -->
+<div *ngIf="employee.designation === 'Founder & CEO'; else auditFormBlock">
+
   <table class="table table-striped table-bordered">
     <thead>
       <tr>
@@ -148,10 +161,11 @@
   </table>
 </div>
 
+
 <!-- Template block for others -->
 <ng-template #auditFormBlock>
   <div class="audit-wrapper">
-    <form [formGroup]="auditForm" (ngSubmit)="submitForm()" class="audit-form">
+    <form [formGroup]="auditForm" (ngSubmit)="submitForm()" class="audit-form" [class.locked]="isFormLocked">
       <!-- Section 1: Individual Overview -->
       <div class="section-header">
         <h2 class="headlevel-three mb-0">
@@ -280,31 +294,41 @@
             <option value="ci_cd">CI/CD</option>
           </select>
         </div>
-        <div
-          class="form-field checkbox-group"
-          formGroupName="communicationCollaboration"
-        >
+        <div class="form-field checkbox-group" formGroupName="communicationCollaboration">
           <label class="font-weight-700">Communication & Collaboration</label>
-          <div class="com-group">
-            <div class="mr-10px">
-              <input
-                type="checkbox"
-                id="comm1"
-                formControlName="dailyStandups"
-              />
-              <label for="comm1">Daily Standups</label>
+          <div>
+            <div formGroupName="dailyStandups" class="comm-item">
+              <div>
+                <input type="checkbox" id="comm1" formControlName="checked">
+                <label for="comm1">Daily Standups</label>
+              </div>
+              <div class="radio-row" *ngIf="auditForm.get('communicationCollaboration.dailyStandups.checked')?.value">
+                <label><input type="radio" formControlName="rating" value="good"> Good</label>
+                <label><input type="radio" formControlName="rating" value="poor"> Poor</label>
+                <label><input type="radio" formControlName="rating" value="excellent"> Excellent</label>
+              </div>
             </div>
-            <div class="mr-10px">
-              <input
-                type="checkbox"
-                id="comm2"
-                formControlName="clientMeetings"
-              />
-              <label for="comm2">Client Meetings</label>
+            <div formGroupName="clientMeetings" class="comm-item">
+              <div>
+                <input type="checkbox" id="comm2" formControlName="checked">
+                <label for="comm2">Client Meetings</label>
+              </div>
+              <div class="radio-row" *ngIf="auditForm.get('communicationCollaboration.clientMeetings.checked')?.value">
+                <label><input type="radio" formControlName="rating" value="good"> Good</label>
+                <label><input type="radio" formControlName="rating" value="poor"> Poor</label>
+                <label><input type="radio" formControlName="rating" value="excellent"> Excellent</label>
+              </div>
             </div>
-            <!-- <div class="mr-10px">
-              <input type="checkbox" id="comm3" formControlName="slack" />
-              <label for="comm3">Slack</label>
+            <!-- <div formGroupName="slack" class="comm-item">
+              <div>
+                <input type="checkbox" id="comm3" formControlName="checked">
+                <label for="comm3">Slack</label>
+              </div>
+              <div class="radio-row" *ngIf="auditForm.get('communicationCollaboration.slack.checked')?.value">
+                <label><input type="radio" formControlName="rating" value="good"> Good</label>
+                <label><input type="radio" formControlName="rating" value="poor"> Poor</label>
+                <label><input type="radio" formControlName="rating" value="excellent"> Excellent</label>
+              </div>
             </div> -->
           </div>
         </div>
@@ -420,10 +444,13 @@
             />
             <div class="gradientBtn smallBlock">
               <i class="fas fa-cloud-upload-alt file-upload-icon mr-20px"></i
-              ><span>{{
-                selectedFiles["kpiMetricsFile"] || "Upload"
-              }}</span>
+              ><span>Upload</span>
             </div>
+            <span class="top-span">
+              {{
+                selectedFiles["kpiMetricsFile"]
+              }}
+            </span>
           </div>
         </div>
         <!-- ADDED: Projects Worked On -->
@@ -452,11 +479,14 @@
             />
             <div class="gradientBtn smallBlock">
               <i class="fas fa-file-alt file-upload-icon mr-20px"></i
-              ><span>{{
-                selectedFiles["performanceEvidencesFile"] ||
-                  "Upload"
-              }}</span>
+              ><span>
+
+                  Upload
+              </span>
             </div>
+            <span class="top-span">{{
+                selectedFiles["performanceEvidencesFile"]
+              }}</span>
           </div>
         </div>
       </div>
@@ -477,10 +507,11 @@
             />
             <div class="gradientBtn smallBlock">
               <i class="fas fa-paperclip file-upload-icon mr-20px"></i
-              ><span>{{
-                selectedFiles["attachments"] || "Upload"
-              }}</span>
+              ><span>Upload</span>
             </div>
+            <span class="top-span">{{
+                selectedFiles["attachments"]
+              }}</span>
           </div>
         </div>
         <div class="form-field">
@@ -526,13 +557,13 @@
         <i class="fas fa-check-circle"></i>Successfully submitted your audit
         form!
       </div>
-      <div
+      <!-- <div
         *ngIf="submitted && auditForm.invalid"
         class="feedback-message error"
       >
         <i class="fas fa-exclamation-circle"></i>Please fill all required fields
         and confirm acknowledgement.
-      </div>
+      </div> -->
     </form>
   </div>
 </ng-template>

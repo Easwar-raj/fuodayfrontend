@@ -3,6 +3,79 @@
     <!-- Error Message -->
   <div *ngIf="errorMessage" class="error-message">
     {{ errorMessage }}
+  </div> 
+  <div class="task-addBlock">
+      <div class="task-add d-flex justify-content-end mb-2">
+        <button type="button" class="gradientBtn" (click)="openTaskPopup()">Task Assign</button>
+      </div>
+      <!-- Task Assign Popup -->
+<div class="modal-overlay" *ngIf="showTaskPopup">
+  <div class="modal-content">
+    <div class="modal-header">
+      <div>
+        <h3 class="headlevel-three mb-0">Assign New Task</h3>
+      </div>
+      <button class="closeicon" type="button" (click)="closeTaskPopup()">X</button>
+    </div>
+
+<div class="modal-body">
+  <form [formGroup]="taskForm" (ngSubmit)="submitTask()">
+  <div>
+    <label>Assigned By</label>
+    <input formControlName="assigned_by" type="text" class="thisinputDisable" />
+  </div>
+
+  <div>
+    <label>Assign Date</label>
+    <input formControlName="date" type="date"/>
+  </div>
+
+  <!-- <div>
+    <label>Assigned To</label>
+    <input formControlName="assigned_to" type="text" />
+  </div> -->
+  <div>
+  <label>Assigned To</label>
+  <select formControlName="assigned_to_id" (change)="onAssignedToChange($event)">
+    <option value="">-- Select Employee --</option>
+    <option *ngFor="let emp of assignedToMeForm" [value]="emp.web_user_id">
+      {{ emp.emp_name }}
+    </option>
+  </select>
+</div>
+
+
+      <div>
+    <label>Project Name</label>
+    <input formControlName="project" type="text" placeholder="Project Name" />
+  </div>
+    <div>
+    <label>Description</label>
+    <textarea formControlName="description"></textarea>
+  </div>
+  <div>
+    <label>Priority</label>
+    <select formControlName="priority">
+      <option value="Low">Low</option>
+      <option value="Medium">Medium</option>
+      <option value="High">High</option>
+    </select>
+  </div>
+    <div>
+    <label>Deadline</label>
+    <input formControlName="deadline" type="date" />
+  </div>
+  <div *ngIf="successMessage" style="color: green">{{ successMessage }}</div>
+  <div *ngIf="errorMessage" style="color: red">{{ errorMessage }}</div>
+  <div class="d-flex justify-content-end">
+    <button type="submit" class="gradientBtn">Create Task</button>
+  </div>
+
+</form>
+</div>
+
+  </div>
+</div>
   </div>
   <div class="row gy-4">
     <div class="col-lg-6">
@@ -11,9 +84,14 @@
       <h2 class="headlevel-three">Assigned Works</h2>
       <div class="task-block"  >
         <div class="task" *ngFor="let task of assignedToMe">
-          <div class="task-title">{{ task.project_name }}</div>
-          <div class="text-mute">Assigned by <span class="task-badge">{{ task.assigned_by }}</span></div>
-          <p class="text-mute mb-0">{{ task.description }}</p>
+          <div class="task-title">{{ task.project }}</div>
+          <div class="assigngt">
+           <div class="text-mute">Assigned by <span class="task-badge">{{ task.assigned_to }}</span></div>
+          <div class="text-mute">Assigned Date <span class="task-badge">{{task.date}}</span></div>
+          </div>
+          <p class="text-mute mb-0">Task : {{ task.description }}</p>
+          <div class="text-mute">Dead Line <span class="task-badge">{{task.deadline}}</span></div>
+          <div class="text-mute">Status <span class="task-badge">{{task.progress}}</span></div>
         </div>
       </div>
     </div>
@@ -25,9 +103,17 @@
       <h2 class="headlevel-three">Pending Works</h2>
       <div class="task-block"  >
         <div class="task" *ngFor="let task of assignedByMe">
-          <div class="task-title">{{ task.project_name }}</div>
-          <div class="text-mute">Assigned by <span class="task-badge">{{ task.assigned_to }}</span></div>
+          <div class="task-title">{{ task.project}}</div>
+          <div class="assigngt">
+            <div class="text-mute">Assigned by <span class="task-badge">{{ task.assigned_by }}</span></div>
+            <div class="text-mute">Assigned Date <span class="task-badge">{{task.date}}</span></div>
+          </div>
           <p class="text-mute mb-0">{{ task.description }}</p>
+          <div class="text-mute">Dead Line <span class="task-badge">{{task.deadline}}</span></div>
+          <div class="text-mute">Status <span class="small gradientBtn">{{task.progress}}</span></div>
+          <div class="completegt d-flex justify-content-end">
+            <button type="button" class="small completedBtn">Completed</button>
+          </div>
         </div>
       </div>
     </div>
@@ -77,3 +163,21 @@
 
 
 </div>
+
+
+
+<!-- Task Assign -->
+
+
+
+  <!-- Optional fields
+  <input formControlName="assigned_by" type="text" placeholder="Assigned By" />
+  <input formControlName="assigned_by_id" type="number" placeholder="Assigned By ID" />
+  <input formControlName="assigned_to_id" type="number" placeholder="Assigned To ID" />
+  <input formControlName="project_id" type="number" placeholder="Project ID" />
+  <input formControlName="project" type="text" placeholder="Project Name" /> -->
+
+
+
+
+

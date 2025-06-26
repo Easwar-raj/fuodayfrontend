@@ -57,6 +57,7 @@ export class DualnavComponent {
   organizationLogo: string = '';
   empID: string = '';
   userName!: string;
+  department:string = '';
   userMail! : string;
   userRole: string = '';
   designation:string='';

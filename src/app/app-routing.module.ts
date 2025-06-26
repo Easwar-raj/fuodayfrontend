@@ -49,6 +49,7 @@ import { RecruiterSupportComponent } from './atsPack/recruiter-support/recruiter
 import { AtsInterviewComponent } from './atsPack/ats-interview/ats-interview.component';
 import { AuditComponent } from './audit/audit.component';
 import { EmpAuditComponent } from './emp-audit/emp-audit.component';
+import { ManagementDashboardComponent } from './management-dashboard/management-dashboard.component';
 
 
 const routes: Routes = [
@@ -105,6 +106,7 @@ const routes: Routes = [
         ],
       },
       { path: 'hr', component: HrComponent ,  data: { animation: 'Hr' },},
+      { path: 'managementDashboard', component: ManagementDashboardComponent ,  data: { animation: 'Hr' },},
       {
          path: 'payroll',
          component: PayrollComponent,
